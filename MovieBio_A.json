@@ -1,0 +1,57 @@
+[
+  {
+    "id": 0,
+    "Title": "John Wick 4",
+    "Genres": "Neo noir, action, thriller, crime",
+    "Director": "Chad Stahelski",
+    "LeadActor": "Keanu Reeves(John Wick)",
+    "Duration": 169,
+    "Release": "23-03-2023",
+    "Description": "The storyline follows John Wick: Chapter 4 as he tries to find his way home after being stranded on an alien planet. John Wick: Chapter 4 is definitely a John Wick: Chapter 4 movie you don't want to miss with stunning visuals and an action-packed plot!",
+    "Price": 12
+  },
+  {
+    "id": 1,
+    "Title": "Creed III",
+    "Genres": "Action, sports, drama",
+    "Director": "Michael B. Jordan",
+    "LeadActor": "Jonathan Majors(Damian Anderson), Michael B. Jordan(Adonis Creed)",
+    "Duration": 117,
+    "Release": "2-03-2023",
+    "Description": "Damian and Donnie were childhood friends, but while the young Creed found success in the ring, Damian wound up in prison for 18 years. Now, he's out — and he's got some issues with his former friend. A boxer himself, Damian feels robbed of his career, and he's here to take the title and everything Donnie's got. Once brothers, these two rivals will have to settle their differences inside the ring.",
+    "Price": 12
+  },
+  {
+    "id": 2,
+    "Title": "The Super Mario Bros. Movie",
+    "Genres": "Animation, romance, comedy, adventure, science-fiction, fantasy, family movie",
+    "Director": "Aaron Horvath, Michael Jelenic",
+    "LeadActor": "Chris Pratt(Mario), Charlie Day(Luigi)",
+    "Duration": 93,
+    "Release": "5-04-2023",
+    "Description": "A Brooklyn plumber named Mario travels through the Mushroom Kingdom with a princess named Peach and an anthropomorphic mushroom named Toad to find Mario's brother, Luigi, and to save the world from a ruthless fire-breathing Koopa named Bowser.",
+    "Price": 12
+  },
+  {
+    "id": 3,
+    "Title": "Shazam! Fury of the Gods",
+    "Genres": "Action, comedy, superhero, science-fiction, adventure, fantasy, fiction, crime, science fantasy",
+    "Director": "David F. Sandberg",
+    "LeadActor": "Zachary Levi(adult Shazam), Asher Angel(young Shazam)",
+    "Duration": 130,
+    "Release": "16-03-2023",
+    "Description": "Fury of the Gods is the long-awaited sequel to the 2019 DCEU film Shazam! This film once again revolves around foster kid Billy Batson (Asher Angel), who gains the ability to transform into a superhero, played by Zachary Levi, every time he says the word Shazam.",
+    "Price": 12
+  },
+  {
+    "id": 4,
+    "Title": "65",
+    "Genres": "Action, science-fiction, thriller, adventure, fantasy, drama, mystery, survival",
+    "Director": "Scott Beck, Bryan Woods",
+    "LeadActor": "Adam Driver(Mills)",
+    "Duration": 93,
+    "Release": "16-03-2023",
+    "Description": "After a catastrophic crash on an unknown planet, pilot Mills (Adam Driver) quickly discovers he’s actually stranded on Earth… 65 million years ago. Now, with only one chance at rescue, Mills and the only other survivor, Koa (Ariana Greenblatt), must make their way across an unknown terrain riddled with dangerous prehistoric creatures in an epic fight to survive.",
+    "Price": 12
+  }
+]

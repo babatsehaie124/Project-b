@@ -71,7 +71,7 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("Your reservation starts here");
-            Reservering.Reserveren(user);
+            Reservering.Reserveren();
 
             // Reservation();
         }

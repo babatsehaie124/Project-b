@@ -1,8 +1,7 @@
 using System;
 
-namespace CinemaReservation
-{
-    class Program
+
+    class Reservering
     {
         private const int ROW_COUNT = 10;
         private const int COL_COUNT = 20;
@@ -15,7 +14,7 @@ namespace CinemaReservation
         private static int cursorRow = 0;
         private static int cursorCol = 0;
 
-        static void Main(string[] args)
+        public static void Reserveren()
         {
             InitializeSeats();
 
@@ -187,5 +186,4 @@ namespace CinemaReservation
         }
     }
 
-}
 

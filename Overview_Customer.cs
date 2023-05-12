@@ -16,16 +16,18 @@ class Overzicht_Customer
         {
             List<Movies> movies = GetMovieData();
             ViewData(movies);
-            User(user);
+            Console.WriteLine("Enter [B] to go back to the menu.");
+            string input2 = Console.ReadLine().ToLower();
+            if (input2 == "b")
+                Menu.Start(user);
+            // else if (input2 = "a")
+
         }
         else if (input == "2")
         {
             Console.Clear();
             Console.WriteLine("Returning to menu.");
             Menu.Start(user);
-
-
-
         }
         else
         {
@@ -36,7 +38,7 @@ class Overzicht_Customer
 
     static List<Movies> GetMovieData()
     {
-        string jsonData = File.ReadAllText("Customer/MovieBio.json");
+        string jsonData = File.ReadAllText("MovieBio.json");
         Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonData);
         List<Movies> movies = new List<Movies>();
         foreach (JObject item in data)
@@ -59,20 +61,22 @@ class Overzicht_Customer
 
     static void ViewData(List<Movies> movies)
     {
-        Console.WriteLine("Data in MovieBio.json:\n");
+        Console.WriteLine("Overzicht van huidige films:\n");
         foreach (Movies movie in movies)
         {
-            Console.WriteLine($"Title: {movie.Title}");
-            Console.WriteLine($"Genres: {movie.Genres}");
-            Console.WriteLine($"Director(s): {movie.Director}");
-            Console.WriteLine($"Lead actor(s): {movie.LeadActor}");
-            Console.WriteLine($"Duration: {movie.Duration} minutes");
-            Console.WriteLine($"Release date: {movie.Release}");
-            Console.WriteLine($"Description: {movie.Description}");
-            Console.WriteLine($"Price: {movie.Price},-\n");
-
+            Console.WriteLine($"Titel: {movie.Title}");
+            // Console.WriteLine($"Genres: {movie.Genres}");
+            // Console.WriteLine($"Director(s): {movie.Director}");
+            // Console.WriteLine($"Lead actor(s): {movie.LeadActor}");
+            Console.WriteLine($"Duur: {movie.Duration} minuten");
+            // Console.WriteLine($"Release date: {movie.Release}");
+            Console.WriteLine($"Beschrijving: {movie.Description}");
+            Console.WriteLine($"Prijs: {movie.Price},-\n");
         }
-
+        // Console.WriteLine("Enter [B] to go back to the menu.");
+        // string input2 = Console.ReadLine().ToLower();
+        // if (input2 == "b")
+        // Menu.Start(user);
     }
 
 }

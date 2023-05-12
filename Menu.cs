@@ -34,16 +34,16 @@ ______ _                                  ______      _   _               _
         }
         if (user != true && Admin != true)
         {
-            Console.WriteLine("[L1]- login");
+            Console.WriteLine("[L1]- Login");
         }
-        Console.WriteLine("[B]- info cinema");
-        Console.WriteLine("[M]- overzicht movies");
-        Console.WriteLine("[R]- reservation");
+        Console.WriteLine("[B]- Info cinema");
+        Console.WriteLine("[M]- Overzicht movies");
+        Console.WriteLine("[R]- Reservation");
         if (user == true || Admin == true)
         {
-            Console.WriteLine("[L2]- logout");
+            Console.WriteLine("[L2]- Logout");
         }
-        Console.WriteLine("[Q]- quit program");
+        Console.WriteLine("[Q]- Quit program");
 
         string input = Console.ReadLine().ToUpper();
         if (input == "L1")

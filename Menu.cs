@@ -34,34 +34,33 @@ ______ _                                  ______      _   _               _
         }
         if (user != true && Admin != true)
         {
-            Console.WriteLine("[L1]- Login");
+            Console.WriteLine("[L1]- Inloggen");
         }
-        Console.WriteLine("[B]- Info cinema");
-        Console.WriteLine("[M]- Overzicht movies");
-        Console.WriteLine("[R]- Reservation");
+        Console.WriteLine("[B]- Bioscoop informatie");
+        Console.WriteLine("[M]- Overzicht films");
+        Console.WriteLine("[R]- Reserveren");
         if (user == true || Admin == true)
         {
-            Console.WriteLine("[L2]- Logout");
+            Console.WriteLine("[L2]- Uitloggen");
         }
-        Console.WriteLine("[Q]- Quit program");
+        Console.WriteLine("[Q]- Verlaat programma");
 
         string input = Console.ReadLine().ToUpper();
         if (input == "L1")
         {
             Console.Clear();
             UserLogin.Start();
-
         }
         else if (input == "B")
         {
             Console.Clear();
-            Console.WriteLine("You will be redirected to our cinema information page...");
+            Console.WriteLine("U wordt nu doorverwezen naar onze bioscoop informatie pagina...");
             Info.CinemaInfo(user);
         }
         else if (input == "M")
         {
             Console.Clear();
-            Console.WriteLine("You will be redirected to our movie library...");
+            Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
             Overzicht_Customer.User(user);
 
 

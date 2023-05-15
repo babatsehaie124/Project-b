@@ -127,7 +127,7 @@ ______ _                                  ______      _   _               _
         {
 
             Console.WriteLine("Hello admin. You can add or delete movies and change the data from the movies which is possible as well.");
-            // AdminOverzicht();
+            Overzicht_Admin.Admin();
 
         }
         else

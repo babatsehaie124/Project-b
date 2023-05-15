@@ -1,19 +1,11 @@
 static class Menu
 {
 
-    //This shows the menu. You can call back to this method to show the menu again
-    //after another presentation method is completed.
-    //You could edit this to show different menus depending on the user's role
     static public void Start(bool user)
     {
 
 
         bool Admin = false;
-        // ConsoleKeyInfo cki;
-        // cki = Console.ReadKey();
-        // Console.WriteLine("u pressed ");
-        // Random rnd = new Random();
-        // int menu = rnd.Next(1, 3);
 
 
         string menu2 = @"
@@ -69,55 +61,55 @@ ______ _                                  ______      _   _               _
         else if (input == "R")
         {
             Console.Clear();
-            Console.WriteLine("Your reservation starts here");
+            Console.WriteLine("Je reservering begint hier");
             Reservering.Reserveren();
 
             // Reservation();
         }
         else if (input == "L2" && user == true || input == "L2" && Admin == true)
         {
-            Console.WriteLine("Are you sure you want to logout? (Y or N)");
+            Console.WriteLine("Weet je zeker dat je wil uitloggen? (J of N)");
             string choice = Console.ReadLine().ToUpper();
-            if (choice == "Y")
+            if (choice == "J")
             {
                 Console.Clear();
-                Console.WriteLine("You are being logged out...");
+                Console.WriteLine("Je bent uitgelogd...");
                 user = false;
 
                 Start(user);
             }
             else if (choice == "N")
             {
-                Console.WriteLine("Going back to the menu");
+                Console.WriteLine("Je keert terug naar het menu...");
                 Start(user);
             }
             else
             {
-                Console.WriteLine("Invalid input");
+                Console.WriteLine("Ongeldige invoer.");
                 Start(user);
             }
         }
         else if (input == "Q")
         {
-            Console.WriteLine("Do you wish to leave? [Y] or [N]");
+            Console.WriteLine("Weet je zeker dat je het programma wil verlaten? [J] of [N]");
             string choice = Console.ReadLine().ToUpper();
-            if (choice == "Y")
+            if (choice == "J")
             {
-                Console.WriteLine("Quiting program...");
+                Console.WriteLine("Sluit programma af...");
 
 
             }
             else if (choice == "N")
             {
                 Console.Clear();
-                Console.WriteLine("Going back to the menu");
+                Console.WriteLine("Je keert terug naar het menu...");
 
                 Start(user);
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("Invalid input");
+                Console.WriteLine("Ongeldige invoer.");
 
                 Start(user);
 
@@ -126,13 +118,13 @@ ______ _                                  ______      _   _               _
         else if (input == "A" && Admin == true)
         {
 
-            Console.WriteLine("Hello admin. You can add or delete movies and change the data from the movies which is possible as well.");
+            Console.WriteLine("Hallo admin. Hier kun je films toevoegen en verwijderen, en het wijzigen van de data in huidige films.");
             Overzicht_Admin.Admin();
 
         }
         else
         {
-            Console.WriteLine("Invalid input");
+            Console.WriteLine("Ongeldige invoer.");
             Console.Clear();
             Start(user);
         }

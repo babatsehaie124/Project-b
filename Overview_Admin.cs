@@ -8,44 +8,44 @@ class Overzicht_Admin
 {
     static public void Admin()
     {
-        Console.WriteLine("Overview Current Movies\n");
-        Console.WriteLine("Enter 1 to view current movies:");
-        Console.WriteLine("Enter 2 to add a movie:");
-        Console.WriteLine("Enter 3 to edit a movie:");
-        Console.WriteLine("Enter 4 to delete a movie:");
-        Console.WriteLine("Enter 5 to return to menu:");
+        Console.WriteLine("Overzicht huidige films\n");
+        Console.WriteLine("Toets A in om huidige films te zien:");
+        Console.WriteLine("Toets B in om een film toe te voegen:");
+        Console.WriteLine("Toets C om een film te wijzigen:");
+        Console.WriteLine("Toets D om een film te verwijderen:");
+        Console.WriteLine("Toets E om terug te keren naar het menu:");
 
         string input = Console.ReadLine();
         string fileName = "MovieBio_A.json";
 
-        if (input == "1")
+        if (input == "A")
         {
             List<Movies> movies = GetMovieData();
             ViewData(movies);
         }
 
-        else if (input == "2")
+        else if (input == "B")
         {
             AddData(fileName);
         }
 
-        else if (input == "3")
+        else if (input == "C")
         {
             EditData(fileName);
         }
 
-        else if (input == "4")
+        else if (input == "D")
         {
             DeleteData(fileName);
         }
 
-        else if (input == "5")
+        else if (input == "E")
         {
 
         }
         else
         {
-            Console.WriteLine("Invalid choice. Please try again.\n");
+            Console.WriteLine("Onjuiste keuze. Probeer nogmaals.\n");
             Admin();
         }
     }
@@ -90,22 +90,22 @@ class Overzicht_Admin
     }
     static void AddData(string fileName)
     {
-        Console.WriteLine("Enter the data\n");
+        Console.WriteLine("Voer de data in\n");
         Console.WriteLine("Id: ");
         int idData = int.Parse(Console.ReadLine());
-        Console.WriteLine("Film Title: ");
+        Console.WriteLine("Film Titel: ");
         string name_Data = Console.ReadLine();
         Console.WriteLine("Genre: ");
         string genre_Data = Console.ReadLine();
-        Console.WriteLine("Lead Actor: ");
+        Console.WriteLine("Hoofdrol: ");
         string lead_Data = Console.ReadLine();
-        Console.WriteLine("Duration: ");
+        Console.WriteLine("Duur: ");
         int duration_Data = int.Parse(Console.ReadLine());
-        Console.WriteLine("Release: ");
+        Console.WriteLine("Uitkomst: ");
         string release_data = Console.ReadLine();
-        Console.WriteLine("Description: ");
+        Console.WriteLine("Beschrijving: ");
         string desc_Data = Console.ReadLine();
-        Console.WriteLine("Price: ");
+        Console.WriteLine("Prijs: ");
         int price_Data = int.Parse(Console.ReadLine());
 
         string jsonData = File.ReadAllText(fileName);
@@ -132,7 +132,7 @@ class Overzicht_Admin
 
     static void EditData(string fileName)
     {
-        Console.WriteLine("Enter the index of the data to edit:");
+        Console.WriteLine("Voer de datum van de index in die je wil wijzigen:");
         int index = int.Parse(Console.ReadLine());
 
         string jsonData = File.ReadAllText(fileName);
@@ -141,40 +141,40 @@ class Overzicht_Admin
         if (index < data.Count)
         {
             JObject movie = (JObject)data[index];
-            Console.WriteLine("Which field would you like to edit? (Title/Description/Price/)");
+            Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
             string fieldToEdit = Console.ReadLine();
 
             switch (fieldToEdit)
             {
                 case "Title":
-                    Console.WriteLine($"Enter the new title for the movie ({movie["Title"]}):");
+                    Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
                     string newTitle = Console.ReadLine();
                     movie["Title"] = newTitle;
                     break;
                 case "Description":
-                    Console.WriteLine($"Enter the new description for the movie ({movie["Description"]}):");
+                    Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
                     string newDescription = Console.ReadLine();
                     movie["Description"] = newDescription;
                     break;
                 case "Price":
-                    Console.WriteLine($"Enter the new price for the movie ({movie["Price"]}):");
+                    Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
                     string newPrice = Console.ReadLine();
                     movie["Price"] = newPrice;
                     break;
                 default:
-                    Console.WriteLine("Invalid field name.");
+                    Console.WriteLine("Ongeldige invoer.");
                     EditData(fileName);
                     return;
             }
 
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(fileName, output);
-            Console.WriteLine($"Data at index {index} has been updated in {fileName}.");
+            Console.WriteLine($"Data op index {index} is gewijzigd in {fileName}.");
             Admin();
         }
         else
         {
-            Console.WriteLine("Invalid index. Please try again.\n");
+            Console.WriteLine("Ongeldige index. Probeer nog een keer .\n");
             EditData(fileName);
         }
     }
@@ -187,7 +187,7 @@ class Overzicht_Admin
         Console.WriteLine("Data in " + fileName + ":\n");
         Console.WriteLine(data);
         Console.WriteLine();
-        Console.WriteLine("Enter the id index of the data to delete:");
+        Console.WriteLine("Voer de index van de film in die je wil verwijderen:");
         int index = int.Parse(Console.ReadLine());
 
         if (index < data.Count)
@@ -195,11 +195,11 @@ class Overzicht_Admin
             data.RemoveAt(index);
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(fileName, output);
-            Console.WriteLine("Data deleted from " + fileName + ".");
+            Console.WriteLine("Data verwijderd van " + fileName + ".");
         }
         else
         {
-            Console.WriteLine("Invalid index. Please try again.");
+            Console.WriteLine("Ongeldige index. Probeer nogmaals.");
             DeleteData(fileName);
             Admin();
         }

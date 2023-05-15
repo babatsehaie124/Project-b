@@ -61,7 +61,7 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            Overzicht_Customer.User(user);
+            // Overzicht_Customer.User(user);
 
 
             // Overzicht();

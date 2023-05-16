@@ -61,9 +61,9 @@ class Reservering
                         Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen reserveren.");
                         break;
                     }
-                    Console.WriteLine("Wil je nog meer stoelen reserveren? [Y] of [N]");
+                    Console.WriteLine("Wil je nog meer stoelen reserveren? [J] of [N]");
                     string reser_input = Console.ReadLine().ToUpper();
-                    if (reser_input == "Y")
+                    if (reser_input == "J")
                     {
 
                     }
@@ -97,7 +97,9 @@ class Reservering
                 else if (row == 7 && (col == 2 || col == 7 || col == 12 ||
                     col == 17))
                 {
+                    Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                    Console.ResetColor();
                 }
                 else
                 {
@@ -152,13 +154,14 @@ class Reservering
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     Console.Write($"[_{LOVESEAT_AVAILABLE}{LOVESEAT_AVAILABLE}_]");
+                    Console.BackgroundColor = ConsoleColor.White;
                     Console.ResetColor();
                     col++;
                 }
                 else if (seats[row, col] == PREMIUMSEAT_AVAILABLE)
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write($"[__{PREMIUMSEAT_AVAILABLE}_]");
+                    Console.Write($"[_{PREMIUMSEAT_AVAILABLE}{PREMIUMSEAT_AVAILABLE}_]");
                     Console.ResetColor();
                     col++;
                 }
@@ -183,7 +186,8 @@ class Reservering
         Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} = Premium seats");
 
         Console.WriteLine("[X] = Bezet\n");
-        Console.WriteLine("Druk Enter om een stoel te selecteren.");
+        Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
+        Console.WriteLine("Klik Enter om een stoel te reserveren.");
         Console.WriteLine();
     }
 

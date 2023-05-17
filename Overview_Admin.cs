@@ -8,11 +8,14 @@ class Overzicht_Admin
 {
     static public void Admin()
     {
+        // welkom admin
         Console.WriteLine("Overzicht huidige films\n");
         Console.WriteLine("Toets A in om huidige films te zien:");
         Console.WriteLine("Toets B in om een film toe te voegen:");
         Console.WriteLine("Toets C om een film te wijzigen:");
         Console.WriteLine("Toets D om een film te verwijderen:");
+        // optie voor prijs te wijzigen
+        // vragen customers zien
         Console.WriteLine("Toets E om terug te keren naar het menu:");
 
         string input = Console.ReadLine();

@@ -1,14 +1,14 @@
 ﻿[
 	{
 		"id": 1,
-		"emailAddress": "n@b.c",
-		"password": "xyz",
-		"fullName": "Nikola Tesla"
+		"emailAddress": "1054255@hr.nl",
+		"password": "hr1",
+		"fullName": "Adrian Yan"
 	},
 	{
 		"id": 2,
-		"emailAddress": "t@b.c",
-		"password": "xyz",
-		"fullName": "Thomas Edison"
+		"emailAddress": "1050045",
+		"password": "hr2",
+		"fullName": "Amen Tsehaie"
 	}
 ]

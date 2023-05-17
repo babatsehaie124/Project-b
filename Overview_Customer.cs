@@ -30,16 +30,23 @@ public static class Overzicht_Customer
             PrintMov(movies[selectedIndex - 1]);
 
             Console.WriteLine("[S] Selecteer een andere film");
+            Console.WriteLine("[R] Reserveer een stoel");
             Console.WriteLine("[T] Terug naar het menu");
 
             string input = Console.ReadLine();
             if (input?.ToLower() == "s")
             {
+                Console.Clear();
                 User(user);
             }
             else if (input?.ToLower() == "t")
             {
+                Console.Clear();
                 Menu.Start(user);
+            }
+            else if (input == "r")
+            {
+                Reservering.Reserveren(user);
             }
         }
         else
@@ -51,6 +58,7 @@ public static class Overzicht_Customer
 
     static void PrintMov(Movies movie)
     {
+        Console.Clear();
         Console.WriteLine($"Titel: {movie.Title}");
         Console.WriteLine($"Genres: {movie.Genres}");
         Console.WriteLine($"Regisseur(s): {movie.Director}");

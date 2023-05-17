@@ -65,7 +65,7 @@ class Overzicht_Admin
                 Duration = (int)item["Duration"],
                 Release = (string)item["Release"],
                 Description = (string)item["Description"],
-                Price = (string)item["Price"]
+                Price = (int)item["Price"]
             };
             movies.Add(movie);
         }

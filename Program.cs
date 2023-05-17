@@ -1,5 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-Console.Clear();
+﻿Console.Clear();
 bool user = false;
 Menu.Start(user);

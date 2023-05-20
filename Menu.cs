@@ -1,13 +1,8 @@
 static class Menu
 {
-
     static public void Start(bool user)
     {
-
-
         bool Admin = false;
-
-
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
 | ___ (_)                                 | ___ \    | | | |             | |                
@@ -19,7 +14,7 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-
+        // als admin true is in userlogin 
         if (Admin == true)
         {
             Console.WriteLine("[A]- Admin access movies");
@@ -53,18 +48,13 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            Overzicht_Customer.User(user);
-
-
-            // Overzicht();
+            Overzicht_Admin.Admin(user);
         }
         else if (input == "R")
         {
             Console.Clear();
             Console.WriteLine("Je reservering begint hier");
             Reservering.Reserveren(user);
-
-            // Reservation();
         }
         else if (input == "L2" && user == true || input == "L2" && Admin == true)
         {
@@ -96,31 +86,24 @@ ______ _                                  ______      _   _               _
             if (choice == "J")
             {
                 Console.WriteLine("Sluit programma af...");
-
-
             }
             else if (choice == "N")
             {
                 Console.Clear();
                 Console.WriteLine("Je keert terug naar het menu...");
-
                 Start(user);
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Ongeldige invoer.");
-
                 Start(user);
-
             }
         }
         else if (input == "A" && Admin == true)
         {
-
             Console.WriteLine("Hallo admin. Hier kun je films toevoegen en verwijderen, en het wijzigen van de data in huidige films.");
-            Overzicht_Admin.Admin();
-
+            Overzicht_Admin.Admin(user);
         }
         else
         {
@@ -128,6 +111,5 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             Start(user);
         }
-
     }
 }

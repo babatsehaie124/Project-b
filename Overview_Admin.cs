@@ -6,19 +6,20 @@ using Newtonsoft.Json.Linq;
 
 class Overzicht_Admin
 {
-    static public void Admin()
+    static public void Admin(bool user)
     {
-        // welkom admin
-        Console.WriteLine("Overzicht huidige films\n");
+        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.Clear(); // Clear the console to apply the background color
+        Console.WriteLine("Welkom Admin! \n");
         Console.WriteLine("Toets A in om huidige films te zien:");
         Console.WriteLine("Toets B in om een film toe te voegen:");
         Console.WriteLine("Toets C om een film te wijzigen:");
         Console.WriteLine("Toets D om een film te verwijderen:");
-        // optie voor prijs te wijzigen
-        // vragen customers zien
-        Console.WriteLine("Toets E om terug te keren naar het menu:");
+        Console.WriteLine("Toets E om de prijs van een film te veranderen:");
+        Console.WriteLine("Toets F om de vragen van de klanten te zien:");
+        Console.WriteLine("Toets G om terug te keren naar het menu:");
 
-        string input = Console.ReadLine();
+        string input = Console.ReadLine().ToUpper();
         string fileName = "MovieBio_A.json";
 
         if (input == "A")
@@ -44,15 +45,28 @@ class Overzicht_Admin
 
         else if (input == "E")
         {
-
+            ChangePrice();
         }
+        
+        else if (input == "F")
+        {
+            CustomerQuestions();
+        }
+
+        else if (input == "G")
+        {
+            Console.WriteLine("Je wordt teruggestuurd naar het menu...");
+            Console.ResetColor();
+            Menu.Start(user);
+        }
+
         else
         {
             Console.WriteLine("Onjuiste keuze. Probeer nogmaals.\n");
-            Admin();
+            Admin(user);
         }
     }
-    static List<Movies> GetMovieData()
+    static public List<Movies> GetMovieData()
     {
         string jsonData = File.ReadAllText("MovieBio_A.json");
         Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonData);
@@ -72,10 +86,12 @@ class Overzicht_Admin
             };
             movies.Add(movie);
         }
+        Console.ResetColor();
         return movies;
+        
     }
 
-    static void ViewData(List<Movies> movies)
+    static public void ViewData(List<Movies> movies)
     {
         Console.WriteLine("Data in MovieBio_A.json:\n");
         foreach (Movies movie in movies)
@@ -89,7 +105,8 @@ class Overzicht_Admin
             Console.WriteLine($"Description: {movie.Description}");
             Console.WriteLine($"Price: {movie.Price},-\n");
         }
-        Admin();
+        Console.ResetColor();
+        Admin(true);
     }
     static void AddData(string fileName)
     {
@@ -113,7 +130,6 @@ class Overzicht_Admin
 
         string jsonData = File.ReadAllText(fileName);
         List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
-
         dynamic newMovie = new
         {
             id = idData,
@@ -130,10 +146,11 @@ class Overzicht_Admin
         string output = JsonConvert.SerializeObject(data, Formatting.Indented);
         File.WriteAllText(fileName, output);
         Console.WriteLine("Data added to " + fileName + ".");
-        Admin();
+        Admin(true);
+        Console.ResetColor();
     }
 
-    static void EditData(string fileName)
+    static public void EditData(string fileName)
     {
         Console.WriteLine("Voer de datum van de index in die je wil wijzigen:");
         int index = int.Parse(Console.ReadLine());
@@ -146,7 +163,6 @@ class Overzicht_Admin
             JObject movie = (JObject)data[index];
             Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
             string fieldToEdit = Console.ReadLine();
-
             switch (fieldToEdit)
             {
                 case "Title":
@@ -169,19 +185,18 @@ class Overzicht_Admin
                     EditData(fileName);
                     return;
             }
-
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(fileName, output);
             Console.WriteLine($"Data op index {index} is gewijzigd in {fileName}.");
-            Admin();
+            Admin(true);
         }
         else
         {
             Console.WriteLine("Ongeldige index. Probeer nog een keer .\n");
             EditData(fileName);
         }
+        Console.ResetColor();
     }
-
 
     static void DeleteData(string fileName)
     {
@@ -204,7 +219,18 @@ class Overzicht_Admin
         {
             Console.WriteLine("Ongeldige index. Probeer nogmaals.");
             DeleteData(fileName);
-            Admin();
+            Admin(true);
         }
+        Console.ResetColor();
+    }
+
+    static void ChangePrice()
+    {
+
+    }
+
+    static void CustomerQuestions()
+    {
+
     }
 }

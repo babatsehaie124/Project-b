@@ -24,8 +24,7 @@ public static class Overzicht_Customer
         {
             Menu.Start(user);
         }
-
-        if (int.TryParse(input0, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= movies.Length)
+        else if (int.TryParse(input0, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= movies.Length)
         {
             PrintMov(movies[selectedIndex - 1]);
 

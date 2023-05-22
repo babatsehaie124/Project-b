@@ -77,7 +77,7 @@ class Overzicht_Admin
             {
                 Title = (string)item["Title"],
                 Genres = (string)item["Genres"],
-                Director = (string)item["Director"],
+                Regisseur = (string)item["Regisseur"],
                 LeadActor = (string)item["LeadActor"],
                 Duration = (int)item["Duration"],
                 Release = (string)item["Release"],
@@ -98,7 +98,7 @@ class Overzicht_Admin
         {
             Console.WriteLine($"Title: {movie.Title}");
             Console.WriteLine($"Genres: {movie.Genres}");
-            Console.WriteLine($"Director(s): {movie.Director}");
+            Console.WriteLine($"Director(s): {movie.Regisseur}");
             Console.WriteLine($"Lead actor(s): {movie.LeadActor}");
             Console.WriteLine($"Duration: {movie.Duration} minutes");
             Console.WriteLine($"Release date: {movie.Release}");

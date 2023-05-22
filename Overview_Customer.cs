@@ -46,11 +46,9 @@ public static class Overzicht_Customer
             else if (input == "r")
             {
                 Console.WriteLine("Selecteer een film om te reserveren: ");
-                // PrintMov(movies[selectedIndex - 1]);
                 string input1 = Console.ReadLine();
                 if (input1 == "1" || input1 == "4" || input1 == "7" || input1 == "10")
                 {
-                    
                     ReserveringZaal3.Reserveren(user);
                 }
                 else if (input1 == "2" || input1 == "5" || input1 == "8")
@@ -61,7 +59,11 @@ public static class Overzicht_Customer
                 {
                     Reservering.Reserveren(user);
                 }
-                Reservering.Reserveren(user);
+                else
+                {
+                    Console.WriteLine("Ongeldige invoer");
+                    User(user);
+                }
             }
         }
         else
@@ -76,7 +78,7 @@ public static class Overzicht_Customer
         // Console.Clear();
         Console.WriteLine($"Titel: {movie.Title}");
         Console.WriteLine($"Genres: {movie.Genres}");
-        Console.WriteLine($"Regisseur(s): {movie.Director}");
+        Console.WriteLine($"Regisseur(s): {movie.Regisseur}");
         Console.WriteLine($"Hoofd acteur(s): {movie.LeadActor}");
         Console.WriteLine($"Duur: {movie.Duration} minuten");
         Console.WriteLine($"Release: {movie.Release}");

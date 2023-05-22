@@ -20,7 +20,7 @@ class Overzicht_Admin
         Console.WriteLine("Toets G om terug te keren naar het menu:");
 
         string input = Console.ReadLine().ToUpper();
-        string fileName = "MovieBio_A.json";
+        string fileName = "MovieBio.json";
 
         if (input == "A")
         {
@@ -47,7 +47,7 @@ class Overzicht_Admin
         {
             ChangePrice();
         }
-        
+
         else if (input == "F")
         {
             CustomerQuestions();
@@ -68,7 +68,7 @@ class Overzicht_Admin
     }
     static public List<Movies> GetMovieData()
     {
-        string jsonData = File.ReadAllText("MovieBio_A.json");
+        string jsonData = File.ReadAllText("MovieBio.json");
         Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonData);
         List<Movies> movies = new List<Movies>();
         foreach (JObject item in data)
@@ -88,12 +88,12 @@ class Overzicht_Admin
         }
         Console.ResetColor();
         return movies;
-        
+
     }
 
     static public void ViewData(List<Movies> movies)
     {
-        Console.WriteLine("Data in MovieBio_A.json:\n");
+        Console.WriteLine("Data in MovieBio.json:\n");
         foreach (Movies movie in movies)
         {
             Console.WriteLine($"Title: {movie.Title}");

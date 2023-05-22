@@ -1,6 +1,3 @@
-
-using System;
-using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -9,15 +6,15 @@ class Overzicht_Admin
     static public void Admin(bool user)
     {
         Console.BackgroundColor = ConsoleColor.DarkBlue;
-        Console.Clear(); // Clear the console to apply the background color
+        Console.Clear();
         Console.WriteLine("Welkom Admin! \n");
         Console.WriteLine("Toets A in om huidige films te zien:");
         Console.WriteLine("Toets B in om een film toe te voegen:");
-        Console.WriteLine("Toets C om een film te wijzigen:");
+        Console.WriteLine("Toets C om de data van een film te wijzigen:");
         Console.WriteLine("Toets D om een film te verwijderen:");
-        Console.WriteLine("Toets E om de prijs van een film te veranderen:");
-        Console.WriteLine("Toets F om de vragen van de klanten te zien:");
-        Console.WriteLine("Toets G om terug te keren naar het menu:");
+        Console.WriteLine("Toets E om de vragen van de klanten te zien:");
+        Console.WriteLine("Toets F om terug te keren naar het menu:");
+        // optie voor rooster zien en kunnen wijzigen
 
         string input = Console.ReadLine().ToUpper();
         string fileName = "MovieBio.json";
@@ -45,18 +42,14 @@ class Overzicht_Admin
 
         else if (input == "E")
         {
-            ChangePrice();
+            PrintQuestionsFromJson(true);
         }
 
         else if (input == "F")
         {
-            CustomerQuestions();
-        }
-
-        else if (input == "G")
-        {
             Console.WriteLine("Je wordt teruggestuurd naar het menu...");
             Console.ResetColor();
+            Console.Clear();
             Menu.Start(user);
         }
 
@@ -93,6 +86,7 @@ class Overzicht_Admin
 
     static public void ViewData(List<Movies> movies)
     {
+        Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.WriteLine("Data in MovieBio.json:\n");
         foreach (Movies movie in movies)
         {
@@ -106,7 +100,7 @@ class Overzicht_Admin
             Console.WriteLine($"Price: {movie.Price},-\n");
         }
         Console.ResetColor();
-        Admin(true);
+        // Admin(true);
     }
     static void AddData(string fileName)
     {
@@ -224,13 +218,20 @@ class Overzicht_Admin
         Console.ResetColor();
     }
 
-    static void ChangePrice()
+    public static void PrintQuestionsFromJson(bool user)
     {
+        string filename = "userdata.json";
+        string json = File.ReadAllText(filename);
+        List<User> userList = JsonConvert.DeserializeObject<List<User>>(json);
+        System.Console.WriteLine();
 
+        foreach (User userEntry in userList)
+        {
+            Console.WriteLine("Question from " + userEntry.FirstName + ": " + userEntry.Question);
+        }
+        System.Console.WriteLine();
+
+        Info.CinemaInfo(user);
     }
 
-    static void CustomerQuestions()
-    {
-
-    }
 }

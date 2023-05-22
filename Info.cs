@@ -115,6 +115,7 @@ public class Info
 
     public static void Contact(bool user)
     {
+        // if statement voor als user als in ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
         Console.WriteLine("Vul de gegevens in:");
 
         Console.WriteLine("Voornaam: ");

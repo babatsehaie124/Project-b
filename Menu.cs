@@ -56,6 +56,13 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("Je reservering begint hier");
             Reservering.Reserveren(user);
         }
+        else if (input == "S")
+        {
+            Console.Clear();
+            Console.WriteLine("Maak u keuze aub");
+            CinemaStore.Products(user);
+
+        }
         else if (input == "L2" && user == true || input == "L2" && Admin == true)
         {
             Console.WriteLine("Weet je zeker dat je wil uitloggen? (J of N)");

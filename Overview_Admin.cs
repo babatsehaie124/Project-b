@@ -48,6 +48,7 @@ class Overzicht_Admin
         else if (input == "F")
         {
             Console.WriteLine("Je wordt teruggestuurd naar het menu...");
+            Thread.Sleep(3000); // gamechanger
             Console.ResetColor();
             Console.Clear();
             Menu.Start(user);
@@ -146,11 +147,14 @@ class Overzicht_Admin
 
     static public void EditData(string fileName)
     {
+        string jsonData = File.ReadAllText(fileName);
+        JArray data = JArray.Parse(jsonData);
+        dynamic ddata = JsonConvert.DeserializeObject(jsonData);
+        Console.WriteLine("Data in " + fileName + ":\n");
+        Console.WriteLine(ddata);
         Console.WriteLine("Voer de datum van de index in die je wil wijzigen:");
         int index = int.Parse(Console.ReadLine());
 
-        string jsonData = File.ReadAllText(fileName);
-        JArray data = JArray.Parse(jsonData);
 
         if (index < data.Count)
         {
@@ -159,20 +163,20 @@ class Overzicht_Admin
             string fieldToEdit = Console.ReadLine();
             switch (fieldToEdit)
             {
-                case "Title":
+                case "Titel":
                     Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
                     string newTitle = Console.ReadLine();
-                    movie["Title"] = newTitle;
+                    movie["Titel"] = newTitle;
                     break;
-                case "Description":
+                case "Beschrijving":
                     Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
                     string newDescription = Console.ReadLine();
-                    movie["Description"] = newDescription;
+                    movie["Beschrijving"] = newDescription;
                     break;
-                case "Price":
+                case "Prijs":
                     Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
-                    string newPrice = Console.ReadLine();
-                    movie["Price"] = newPrice;
+                    int newPrice = int.Parse(Console.ReadLine());
+                    movie["Prijs"] = newPrice;
                     break;
                 default:
                     Console.WriteLine("Ongeldige invoer.");
@@ -182,6 +186,7 @@ class Overzicht_Admin
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(fileName, output);
             Console.WriteLine($"Data op index {index} is gewijzigd in {fileName}.");
+            Thread.Sleep(3000);
             Admin(true);
         }
         else

@@ -24,6 +24,7 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("[L1]- Inloggen");
         }
         Console.WriteLine("[B]- Bioscoop informatie");
+        Console.WriteLine("[S] Aanwezige etenswaren");
         Console.WriteLine("[M]- Overzicht films");
         Console.WriteLine("[R]- Reserveren");
         if (user == true || Admin == true)

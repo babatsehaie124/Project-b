@@ -29,6 +29,13 @@ public static class CinemaStore
                 Console.WriteLine($"Beschrijving: {product.Candy_Bag}");
                 Console.WriteLine($"Standaard prijs(2D): {product.Crisps} euro");
             }
+            Console.WriteLine("[T] terug naar het menu");
+            string? choice = Console.ReadLine().ToLower();
+            if (choice == "t")
+            {
+                Console.Clear();
+                Menu.Start(user);
+            }
         }
 
         if (input == "t")

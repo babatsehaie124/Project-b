@@ -12,7 +12,7 @@ class Reservering
     private static char[,] seats;
     private static int cursorRow = 0;
     private static int cursorCol = 0;
-
+// optie om terug te keren zonder te reserveren
 
     public static void Reserveren(bool user)
     {

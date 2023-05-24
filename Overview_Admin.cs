@@ -232,7 +232,7 @@ class Overzicht_Admin
 
         foreach (User userEntry in userList)
         {
-            Console.WriteLine("Question from " + userEntry.FirstName + ": " + userEntry.Question);
+            Console.WriteLine("Question from " + userEntry.Fullname + ": " + userEntry.Question);
         }
         System.Console.WriteLine();
 

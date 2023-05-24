@@ -1,6 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 
 public class Info
@@ -116,13 +118,14 @@ public class Info
     public static void Contact(bool user)
     {
         // if statement voor als user als in ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
+        if (user == true)
+        {
+            Loggedinquestion(true);
+        }
         Console.WriteLine("Vul de gegevens in:");
 
-        Console.WriteLine("Voornaam: ");
-        string firstName = Console.ReadLine();
-
-        Console.WriteLine("Achternaam: ");
-        string lastName = Console.ReadLine();
+        Console.WriteLine("Volledige naam: ");
+        string fullName = Console.ReadLine();
 
         Console.WriteLine("Email: ");
         string email = Console.ReadLine();
@@ -139,7 +142,7 @@ public class Info
         Console.WriteLine("Vraag: ");
         string question = Console.ReadLine();
 
-        User newUser = new User { FirstName = firstName, LastName = lastName, Email = email, Question = question };
+        User newUser = new User { Fullname = fullName, Email = email, Question = question };
 
         string filename = "userdata.json";
 
@@ -153,9 +156,50 @@ public class Info
 
         File.WriteAllText(filename, json);
 
-        Console.WriteLine("Gebruiker is toegevoegd.");
+        Console.WriteLine("Uw vraag is toegevoegd.");
         Console.Clear();
         CinemaInfo(user);
+    }
+
+    public static void Loggedinquestion(bool user)
+    {
+        // Read the JSON file content
+            string jsonfile = File.ReadAllText("accounts.json");
+
+            // Parse the JSON array
+            JArray jsonArray = JArray.Parse(jsonfile);
+
+            // Get the last object from the array
+            JObject lastObject = (JObject)jsonArray.Last;
+
+            // Access the last account's FullName and EmailAddress
+            string lastFullName = lastObject["fullName"].ToString();
+            string lastEmailAddress = lastObject["emailAddress"].ToString();
+
+            // Use the last account information
+            Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
+
+            Console.WriteLine("Vraag: ");
+            string question = Console.ReadLine();
+
+            User newUser = new User { Fullname = lastFullName, Email = lastEmailAddress, Question = question };
+
+            string filename = "userdata.json";
+
+            string json = File.ReadAllText(filename);
+
+            List<User> userList = JsonConvert.DeserializeObject<List<User>>(json);
+
+            userList.Add(newUser);
+
+            json = JsonConvert.SerializeObject(userList, Formatting.Indented);
+
+            File.WriteAllText(filename, json);
+
+            Console.WriteLine("Uw vraag is toegevoegd.");
+            Console.Clear();
+            CinemaInfo(user);
+    
     }
 
     public static void Faq(bool user)

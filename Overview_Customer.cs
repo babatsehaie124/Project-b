@@ -75,7 +75,6 @@ public static class Overzicht_Customer
 
     static void PrintMov(Movies movie)
     {
-        // Console.Clear();
         Console.WriteLine($"Titel: {movie.Title}");
         Console.WriteLine($"Genres: {movie.Genres}");
         Console.WriteLine($"Regisseur(s): {movie.Regisseur}");

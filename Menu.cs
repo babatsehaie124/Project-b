@@ -60,7 +60,7 @@ ______ _                                  ______      _   _               _
         else if (input == "S")
         {
             Console.Clear();
-            Console.WriteLine("Maak u keuze aub");
+            Console.WriteLine("Maak uw keuze aub");
             CinemaStore.Products(user);
 
         }

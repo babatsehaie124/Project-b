@@ -13,6 +13,10 @@ class Reservering
     private static int cursorRow = 0;
     private static int cursorCol = 0;
 
+    private static int selectedRow = -1;
+    private static int selectedCol = -1;
+
+
 
     public static void Reserveren(bool user)
     {
@@ -76,33 +80,40 @@ class Reservering
             }
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
-                if (seats[cursorRow, cursorCol] == SEAT_TAKEN)
+                if (selectedRow == -1 && selectedCol == -1)
                 {
-                    Console.WriteLine("Sorry, deze stoel is al bezet.");
+                    selectedRow = cursorRow;
+                    selectedCol = cursorCol;
                 }
                 else
                 {
-                    ReserveSeat(cursorRow, cursorCol);
-                    Console.WriteLine($"Je hebt stoel {GetSeatRow(cursorRow, cursorCol)} gereserveerd.\n");
-                    reservedSeatCount++;
-
-                    if (reservedSeatCount >= 10)
+                    if (seats[selectedRow, selectedCol] == SEAT_TAKEN)
                     {
-                        Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen reserveren.");
-                        break;
+                        Console.WriteLine("Sorry, deze stoel is al bezet.");
                     }
-                    Console.WriteLine("Wil je nog meer stoelen reserveren? [J] of [N]");
-                    string reser_input = Console.ReadLine().ToUpper();
-                    if (reser_input == "J")
+                    else
                     {
+                        ReserveSeat(selectedRow, selectedCol);
+                        Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gereserveerd.\n");
+                        reservedSeatCount++;
 
-                    }
-                    else if (reser_input == "N")
-                    {
-                        Console.WriteLine("Je wordt teruggestuurd naar het menu...");
-                        ja = false;
-                        Menu.Start(user);
-                        break;
+                        selectedRow = -1;
+                        selectedCol = -1;
+
+                        if (reservedSeatCount >= 10)
+                        {
+                            Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen reserveren.");
+                            break;
+                        }
+                        Console.WriteLine("Wil je nog meer stoelen reserveren? [J] of [N]");
+                        string reser_input = Console.ReadLine().ToUpper();
+                        if (reser_input == "N")
+                        {
+                            Console.WriteLine("Je wordt teruggestuurd naar het menu...");
+                            ja = false;
+                            Menu.Start(user);
+                            break;
+                        }
                     }
                 }
             }
@@ -125,11 +136,16 @@ class Reservering
                     seats[row, col] = LOVESEAT_AVAILABLE;
                 }
                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
-                    col == 6 || col == 9 || col == 10 || col == 13 || col == 14))
+                        col == 6 || col == 9 || col == 10 || col == 13 || col == 14))
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
                     Console.ResetColor();
+                }
+                else if (row == selectedRow && col == selectedCol)
+                {
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
                 {
@@ -212,8 +228,14 @@ class Reservering
     private static void PrintInstructions()
     {
         Console.WriteLine("[_] = Normale seats");
+
+        Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine($" {LOVESEAT_AVAILABLE} = Love seats");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} = Premium seats");
+        Console.ResetColor();
         Console.WriteLine("[X] = Bezet\n");
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
         Console.WriteLine("Klik Enter om een stoel te reserveren.");

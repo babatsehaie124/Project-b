@@ -1,7 +1,7 @@
 class Reservering
 {
     private const int ROW_COUNT = 10;
-    private const int COL_COUNT = 20;
+    private const int COL_COUNT = 15;
     private const char SEAT_AVAILABLE = 'O';
     private const char SEAT_TAKEN = 'X';
     private const char LOVESEAT_AVAILABLE = '♥';
@@ -12,7 +12,7 @@ class Reservering
     private static char[,] seats;
     private static int cursorRow = 0;
     private static int cursorCol = 0;
-// optie om terug te keren zonder te reserveren
+
 
     public static void Reserveren(bool user)
     {
@@ -119,13 +119,13 @@ class Reservering
         {
             for (int col = 0; col < COL_COUNT; col++)
             {
-                if (row == 5 && (col == 2 || col == 3 || col == 7 ||
-                    col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
+                if (row == 5 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 13 || col == 14))
                 {
                     seats[row, col] = LOVESEAT_AVAILABLE;
                 }
-                else if (row == 7 && (col == 2 || col == 3 || col == 7 ||
-                    col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
+                else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 13 || col == 14))
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
@@ -154,8 +154,9 @@ class Reservering
 
     private static void PrintSeatingArea()
     {
-        Console.WriteLine("                           Scherm");
-        Console.WriteLine("  --------------------------------------------------------------\n");
+        Console.WriteLine("                   Scherm Zaal 1");
+        Console.WriteLine("  -----------------------------------------------\n");
+        Console.WriteLine("Uitgang                                   Uitgang");
 
         Console.Write("   ");
         for (int col = 0; col < COL_COUNT; col++)
@@ -203,16 +204,16 @@ class Reservering
 
             Console.WriteLine("|");
         }
-        Console.WriteLine("  --------------------------------------------------------------\n");
+        Console.WriteLine("  -------------------Projector-------------------");
+        Console.WriteLine("  ---------------------|=o=|---------------------\n");
     }
 
 
     private static void PrintInstructions()
     {
-        Console.WriteLine("[_] = Beschikbare stoel");
+        Console.WriteLine("[_] = Normale seats");
         Console.WriteLine($" {LOVESEAT_AVAILABLE} = Love seats");
         Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} = Premium seats");
-
         Console.WriteLine("[X] = Bezet\n");
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
         Console.WriteLine("Klik Enter om een stoel te reserveren.");

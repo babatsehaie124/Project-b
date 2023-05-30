@@ -10,7 +10,7 @@ public class Info
 
     public static void CinemaInfo(bool user)
     {
-        Console.WriteLine("[a] Bioscoop informatie\n[b] Contact\n[c] Informatie contact\n[d] laat gegevens zien\n[e] terug naar het menu");
+        Console.WriteLine("[a] Bioscoop informatie\n[b] Contact\n[c] Informatie contact\n[d]terug naar het menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
         if (User_lower == "a")
@@ -26,10 +26,6 @@ public class Info
             Contactinfo(user);
         }
         else if (User_lower == "d")
-        {
-            ReadJsonFileBasic(user);
-        }
-        else if (User_lower == "e")
         {
             Console.Clear();
             Console.WriteLine("Keert terug naar het menu");
@@ -210,15 +206,6 @@ public class Info
         CinemaInfo(user);
     }
 
-    public static void ReadJsonFileBasic(bool user)
-    {
-        string filename = "userdata.json";
-        string json = File.ReadAllText(filename);
-        Console.Clear();
-        Console.WriteLine(json);
-        Info.CinemaInfo(user);
-
-    }
 
 }
 

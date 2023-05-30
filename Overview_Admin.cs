@@ -14,6 +14,7 @@ class Overzicht_Admin
         Console.WriteLine("Toets D om een film te verwijderen:");
         Console.WriteLine("Toets E om de vragen van de klanten te zien:");
         Console.WriteLine("Toets F om terug te keren naar het menu:");
+        Console.WriteLine("Toets G om gestelde vragen te zien:");
         // optie voor rooster zien en kunnen wijzigen
 
         string input = Console.ReadLine().ToUpper();
@@ -52,6 +53,10 @@ class Overzicht_Admin
             Console.ResetColor();
             Console.Clear();
             Menu.Start(user);
+        }
+        else if (input == "G")
+        {
+            ReadJsonFileBasic(user);
         }
 
         else
@@ -237,6 +242,16 @@ class Overzicht_Admin
         System.Console.WriteLine();
 
         Info.CinemaInfo(user);
+    }
+
+    public static void ReadJsonFileBasic(bool user)
+    {
+        string filename = "userdata.json";
+        string json = File.ReadAllText(filename);
+        Console.Clear();
+        Console.WriteLine(json);
+        Info.CinemaInfo(user);
+
     }
 
 }

@@ -13,6 +13,9 @@ class ReserveringZaal3
     private static int cursorRow = 0;
     private static int cursorCol = 0;
 
+    private static int selectedRow = -1;
+    private static int selectedCol = -1;
+
 
     public static void Reserveren(bool user)
     {
@@ -111,7 +114,7 @@ class ReserveringZaal3
 
     }
 
-    private static void InitializeSeats()
+        private static void InitializeSeats()
     {
         seats = new char[ROW_COUNT, COL_COUNT];
 
@@ -119,21 +122,26 @@ class ReserveringZaal3
         {
             for (int col = 0; col < COL_COUNT; col++)
             {
-                if (row == 5 && (col == 1 || col == 2 || col == 5 ||
-                    col == 6 || col == 9 || col == 10 || col == 13 || 
+                 if (row == 5 && (col == 1 || col == 2 || col == 5 ||
+                     col == 6 || col == 9 || col == 10 || col == 13 || 
                     col == 14 || col == 17 || col == 18 || col == 21 || col == 22 
-                    || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+                     || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
                 {
                     seats[row, col] = LOVESEAT_AVAILABLE;
                 }
-                else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
-                    col == 6 || col == 9 || col == 10 || col == 13 || 
-                    col == 14 || col == 17 || col == 18 || col == 21 || col == 22 
-                    || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
+                     col == 6 || col == 9 || col == 10 || col == 13 || 
+                     col == 14 || col == 17 || col == 18 || col == 21 || col == 22 
+                     || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
                     Console.ResetColor();
+                }
+                else if (row == selectedRow && col == selectedCol)
+                {
+                    Console.BackgroundColor = ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
                 else
                 {
@@ -147,12 +155,20 @@ class ReserveringZaal3
             string[] reservedSeats = File.ReadAllLines("reserved_seats.txt");
             foreach (string seatName in reservedSeats)
             {
-                int row = seatName[0] - 'A';
-                int col = int.Parse(seatName.Substring(1)) - 1;
-                seats[row, col] = SEAT_TAKEN;
+                if (seatName.Length >= 2)
+                {
+                    int row = seatName[0] - 'A';
+                    int col = int.Parse(seatName.Substring(1)) - 1;
+
+                    if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                    {
+                        seats[row, col] = SEAT_TAKEN;
+                    }
+                }
             }
         }
     }
+
 
 
 
@@ -209,16 +225,25 @@ class ReserveringZaal3
             Console.WriteLine("|");
         }
         Console.WriteLine("  ----------------------------------------------Projector----------------------------------------------------");
-        Console.WriteLine("  ------------------------------------------------|=o=|------------------------------------------------------\n");
     }
 
 
     private static void PrintInstructions()
     {
         Console.WriteLine("[_] = Normale seats");
+
+        Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine($" {LOVESEAT_AVAILABLE} = Love seats");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} = Premium seats");
+        Console.ResetColor();
+
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("[X] = Bezet\n");
+        Console.ResetColor();
+
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
         Console.WriteLine("Klik Enter om een stoel te reserveren.");
         Console.WriteLine();

@@ -77,6 +77,13 @@ class ReserveringZaal2
                     cursorCol++;
                 }
             }
+
+            else if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Console.WriteLine("Je wordt teruggestuurd naar het menu...\n");
+                Menu.Start(user);
+            }
+
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
                 if (seats[cursorRow, cursorCol] == SEAT_TAKEN)
@@ -241,7 +248,8 @@ class ReserveringZaal2
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Klik Enter om een stoel te reserveren.");
+        Console.WriteLine("Druk Enter om een stoel te reserveren");
+        Console.WriteLine("Druk Esc om terug te keren naar het menu");
         Console.WriteLine();
     }
 

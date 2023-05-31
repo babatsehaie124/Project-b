@@ -77,6 +77,13 @@ class ReserveringZaal3
                     cursorCol++;
                 }
             }
+
+            else if (keyInfo.Key == ConsoleKey.Escape)
+            {
+                Console.WriteLine("Je wordt teruggestuurd naar het menu...\n");
+                Menu.Start(user);
+            }
+
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
                 if (seats[cursorRow, cursorCol] == SEAT_TAKEN)
@@ -114,7 +121,7 @@ class ReserveringZaal3
 
     }
 
-        private static void InitializeSeats()
+    private static void InitializeSeats()
     {
         seats = new char[ROW_COUNT, COL_COUNT];
 
@@ -122,17 +129,17 @@ class ReserveringZaal3
         {
             for (int col = 0; col < COL_COUNT; col++)
             {
-                 if (row == 5 && (col == 1 || col == 2 || col == 5 ||
-                     col == 6 || col == 9 || col == 10 || col == 13 || 
-                    col == 14 || col == 17 || col == 18 || col == 21 || col == 22 
-                     || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+                if (row == 5 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 13 ||
+                   col == 14 || col == 17 || col == 18 || col == 21 || col == 22
+                    || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
                 {
                     seats[row, col] = LOVESEAT_AVAILABLE;
                 }
-                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
-                     col == 6 || col == 9 || col == 10 || col == 13 || 
-                     col == 14 || col == 17 || col == 18 || col == 21 || col == 22 
-                     || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+                else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 13 ||
+                    col == 14 || col == 17 || col == 18 || col == 21 || col == 22
+                    || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
@@ -245,7 +252,8 @@ class ReserveringZaal3
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Klik Enter om een stoel te reserveren.");
+        Console.WriteLine("Druk Enter om een stoel te reserveren");
+        Console.WriteLine("Druk Esc om terug te keren naar het menu");
         Console.WriteLine();
     }
 

@@ -82,6 +82,7 @@ class Reservering
 
             else if (keyInfo.Key == ConsoleKey.Escape)
             {
+                Console.Clear();
                 Console.WriteLine("Je wordt teruggestuurd naar het menu...\n");
                 Menu.Start(user);
             }

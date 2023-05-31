@@ -172,9 +172,6 @@ public class Info
             string lastFullName = lastObject["fullName"].ToString();
             string lastEmailAddress = lastObject["emailAddress"].ToString();
 
-            // Use the last account information
-            Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
-
             Console.WriteLine("Vraag: ");
             string question = Console.ReadLine();
 

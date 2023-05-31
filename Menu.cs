@@ -87,6 +87,7 @@ ______ _                                  ______      _   _               _
             if (choice == "J")
             {
                 Console.WriteLine("Sluit programma af...");
+                System.Environment.Exit(0);
             }
             else if (choice == "N")
             {

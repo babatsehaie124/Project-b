@@ -23,15 +23,14 @@ ______ _                                  ______      _   _               _
         {
             Console.WriteLine("[L1]- Inloggen");
         }
-        Console.WriteLine("[B]- Bioscoop informatie");
-        Console.WriteLine("[S] Aanwezige etenswaren");
-        Console.WriteLine("[M]- Overzicht films");
-        Console.WriteLine("[R]- Reserveren");
+        Console.WriteLine("[B] - Bioscoop informatie");
+        Console.WriteLine("[S] - Aanwezige etenswaren");
+        Console.WriteLine("[M] - Overzicht films / reserveer");
         if (user == true || Admin == true)
         {
             Console.WriteLine("[L2]- Uitloggen");
         }
-        Console.WriteLine("[Q]- Verlaat programma");
+        Console.WriteLine("[Q] - Verlaat programma");
 
         string input = Console.ReadLine().ToUpper();
         if (input == "L1")
@@ -49,13 +48,7 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            Overzicht_Admin.Admin(user);
-        }
-        else if (input == "R")
-        {
-            Console.Clear();
-            Console.WriteLine("Je reservering begint hier");
-            Reservering.Reserveren(user);
+            Overzicht_Customer.User(user);
         }
         else if (input == "S")
         {

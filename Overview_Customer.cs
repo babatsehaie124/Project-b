@@ -15,22 +15,27 @@ public static class Overzicht_Customer
         {
             Console.WriteLine($"[{i + 1}] {movies[i].Title}");
         }
-
-        Console.WriteLine("[T] Terug naar het menu");
-        Console.WriteLine("Selecteer een film:");
+        Console.WriteLine();
+        Console.WriteLine("[R] - Reserveer een stoel");
+        Console.WriteLine("[T] - Terug naar het menu");
+        Console.WriteLine("Selecteer een van de opties: ");
 
         string? input0 = Console.ReadLine();
         if (input0?.ToLower() == "t")
         {
             Menu.Start(user);
         }
+        else if (input0.ToLower() == "r")
+        {
+            // Rooster moet hier komen
+        }
         else if (int.TryParse(input0, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= movies.Length)
         {
             PrintMov(movies[selectedIndex - 1]);
 
-            Console.WriteLine("[S] Selecteer een andere film");
-            Console.WriteLine("[R] Reserveer een stoel");
-            Console.WriteLine("[T] Terug naar het menu");
+            Console.WriteLine("[S] - Selecteer een andere film");
+            Console.WriteLine("[R] - Reserveer een stoel");
+            Console.WriteLine("[T] - Terug naar het menu");
 
             string input = Console.ReadLine();
             if (input?.ToLower() == "s")

@@ -1,6 +1,6 @@
-class Choosefood
+public class Choosefood
 {
-    public void PickFood()
+    public static void PickFood()
     {
         Console.WriteLine("Bedankt voor het reserveren van een ticket");
         Console.WriteLine("Wilt u?:");

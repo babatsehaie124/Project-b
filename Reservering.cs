@@ -120,8 +120,9 @@ class Reservering
                         if (reser_input == "N")
                         {
                             // doorverstuurd naar eten
-                            Console.WriteLine("Je wordt teruggestuurd naar het menu...");
+                            Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
+                            Choosefood.PickFood();
                             ja = false;
                             Menu.Start(user);
                             break;
@@ -154,22 +155,17 @@ class Reservering
                 seats[row, col] = PREMIUMSEAT_AVAILABLE;
                 Console.ResetColor();
             }
-            // else if (row == selectedRow && col == selectedCol)
-            // {
-            //     Console.BackgroundColor = ConsoleColor.Cyan;
-            //     Console.ForegroundColor = ConsoleColor.Black;
-            // }
             else
             {
                 seats[row, col] = SEAT_AVAILABLE;
             }
         }
     }
-
+    // hier controleert hij de huidig beschikbare stoelen
     if (File.Exists("reserved_seats.txt"))
     {
-        string[] reservedSeats = File.ReadAllLines("reserved_seats.txt");
-        foreach (string seatName in reservedSeats)
+        string[] Seats = File.ReadAllLines("reserved_seats.txt");
+        foreach (string seatName in Seats)
         {
             if (seatName.Length >= 2)
             {
@@ -271,8 +267,8 @@ class Reservering
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Druk Enter om een stoel te reserveren.");
-        Console.WriteLine("Druk Esc om terug te keren naar het menu");
+        Console.WriteLine("Druk [Enter] om een stoel te reserveren");
+        Console.WriteLine("Druk [Esc] om terug te keren naar het menu");
         Console.WriteLine();
     }
 
@@ -297,17 +293,16 @@ class Reservering
     private static void SelectSeat(int row, int col)
     {
 
-        if (seats[row, col - 1] == SELECT_SEAT)
+        if (seats[row, col - 1] == LOVESEAT_AVAILABLE)
         {
             seats[row, col - 1] = SELECT_SEAT;
         }
-        else if (seats[row, col + 1] == SELECT_SEAT)
+        else if (seats[row, col + 1] == LOVESEAT_AVAILABLE)
         {
             seats[row, col + 1] = SELECT_SEAT;
         }
         seats[row, col] = SELECT_SEAT;
         SaveSeatsData();
-        System.Console.WriteLine("klaar met selecteren");
     }
     private static void ReserveSeat(int row, int col)
     {

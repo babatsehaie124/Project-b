@@ -105,16 +105,16 @@ class Reservering
                     {
                         SelectSeat(selectedRow, selectedCol);
                         Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} geselecteerd.\n");
-                        // reservedSeatCount++;
+                        reservedSeatCount++;
 
                         selectedRow = -1;
                         selectedCol = -1;
 
-                        // if (reservedSeatCount >= 10)
-                        // {
-                        //     Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen reserveren.");
-                        //     break;
-                        // }
+                        if (reservedSeatCount >= 10)
+                        {
+                            Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen selecteren.");
+                            break;
+                        }
                         Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
                         string reser_input = Console.ReadLine().ToUpper();
                         if (reser_input == "N")
@@ -162,9 +162,9 @@ class Reservering
         }
     }
     // hier controleert hij de huidig beschikbare stoelen
-    if (File.Exists("reserved_seats.txt"))
+    if (File.Exists("selected_seats1.txt"))
     {
-        string[] Seats = File.ReadAllLines("reserved_seats.txt");
+        string[] Seats = File.ReadAllLines("selected_seats1.txt");
         foreach (string seatName in Seats)
         {
             if (seatName.Length >= 2)
@@ -267,20 +267,20 @@ class Reservering
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Druk [Enter] om een stoel te reserveren");
+        Console.WriteLine("Druk [Enter] om een stoel te selecteren");
         Console.WriteLine("Druk [Esc] om terug te keren naar het menu");
         Console.WriteLine();
     }
 
     private static void SaveSeatsData()
     {
-        using (StreamWriter writer = new StreamWriter("reserved_seats.txt"))
+        using (StreamWriter writer = new StreamWriter("selected_seats1.txt"))
         {
             for (int row = 0; row < ROW_COUNT; row++)
             {
                 for (int col = 0; col < COL_COUNT; col++)
                 {
-                    if (seats[row, col] == SEAT_TAKEN)
+                    if (seats[row, col] == SELECT_SEAT)
                     {
                         string seatName = GetSeatRow(row, col);
                         writer.WriteLine(seatName);
@@ -306,7 +306,7 @@ class Reservering
     }
     private static void ReserveSeat(int row, int col)
     {
-
+        // rushil moet dit aanroepen zodra eten en drinken 
         if (seats[row, col - 1] == LOVESEAT_AVAILABLE)
         {
             seats[row, col - 1] = SEAT_TAKEN;
@@ -316,7 +316,7 @@ class Reservering
             seats[row, col + 1] = SEAT_TAKEN;
         }
         seats[row, col] = SEAT_TAKEN;
-        SaveSeatsData();
+        // SaveSeatsData();
     }
 
     private static string GetSeatRow(int row, int col)

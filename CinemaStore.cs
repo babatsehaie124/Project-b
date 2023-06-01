@@ -17,19 +17,6 @@ public static class CinemaStore
             Console.Clear();
             string storedata = File.ReadAllText("Store.json");
             var products = JsonConvert.DeserializeObject<List<Storeproducts>>(storedata);
-            Console.WriteLine("   _____      _     _             
-  / ____ | (_)(_)
- | | _   _ _ ___ _ _ __   ___
- | |   | | | | / __ | | '_ \ / _ \ 
- | | ___ | | _ | | \__ \ | | | | __ /
-  \_____\__, _ | _ | ___ / _ | _ | | _ |\___ |
-                                  )
-
-
-
-
-
-
 
 
             Console.WriteLine("Welkom klant bij onze Eet-drinkmenu");

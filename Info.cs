@@ -160,42 +160,42 @@ public class Info
     public static void Loggedinquestion(bool user)
     {
         // Read the JSON file content
-            string jsonfile = File.ReadAllText("accounts.json");
+        string jsonfile = File.ReadAllText("accounts.json");
 
-            // Parse the JSON array
-            JArray jsonArray = JArray.Parse(jsonfile);
+        // Parse the JSON array
+        JArray jsonArray = JArray.Parse(jsonfile);
 
-            // Get the last object from the array
-            JObject lastObject = (JObject)jsonArray.Last;
+        // Get the last object from the array
+        JObject lastObject = (JObject)jsonArray.Last;
 
-            // Access the last account's FullName and EmailAddress
-            string lastFullName = lastObject["fullName"].ToString();
-            string lastEmailAddress = lastObject["emailAddress"].ToString();
+        // Access the last account's FullName and EmailAddress
+        string lastFullName = lastObject["fullName"].ToString();
+        string lastEmailAddress = lastObject["emailAddress"].ToString();
 
-            // Use the last account information
-            Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
+        // Use the last account information
+        Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
 
-            Console.WriteLine("Vraag: ");
-            string question = Console.ReadLine();
+        Console.WriteLine("Vraag: ");
+        string question = Console.ReadLine();
 
-            User newUser = new User { Fullname = lastFullName, Email = lastEmailAddress, Question = question };
+        User newUser = new User { Fullname = lastFullName, Email = lastEmailAddress, Question = question };
 
-            string filename = "userdata.json";
+        string filename = "userdata.json";
 
-            string json = File.ReadAllText(filename);
+        string json = File.ReadAllText(filename);
 
-            List<User> userList = JsonConvert.DeserializeObject<List<User>>(json);
+        List<User> userList = JsonConvert.DeserializeObject<List<User>>(json);
 
-            userList.Add(newUser);
+        userList.Add(newUser);
 
-            json = JsonConvert.SerializeObject(userList, Formatting.Indented);
+        json = JsonConvert.SerializeObject(userList, Formatting.Indented);
 
-            File.WriteAllText(filename, json);
+        File.WriteAllText(filename, json);
 
-            Console.WriteLine("Uw vraag is toegevoegd.");
-            Console.Clear();
-            CinemaInfo(user);
-    
+        Console.WriteLine("Uw vraag is toegevoegd.");
+        Console.Clear();
+        CinemaInfo(user);
+
     }
 
     public static void Faq(bool user)

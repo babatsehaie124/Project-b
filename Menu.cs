@@ -15,10 +15,10 @@ ______ _                                  ______      _   _               _
 
         Console.WriteLine(menu2);
         // als admin true is in userlogin 
-        if (Admin == true)
-        {
-            Console.WriteLine("[A]- Admin access movies");
-        }
+        // if (Admin == true)
+        // {
+        //     Console.WriteLine("[A]- Admin access movies");
+        // }
         if (user != true && Admin != true)
         {
             Console.WriteLine("[L1]- Inloggen");
@@ -102,11 +102,11 @@ ______ _                                  ______      _   _               _
                 Start(user);
             }
         }
-        else if (input == "A" && Admin == true)
-        {
-            Console.WriteLine("Hallo admin. Hier kun je films toevoegen en verwijderen, en het wijzigen van de data in huidige films.");
-            Overzicht_Admin.Admin(user);
-        }
+        // else if (input == "A" && Admin == true)
+        // {
+        //     Console.WriteLine("Hallo admin. Hier kun je films toevoegen en verwijderen, en het wijzigen van de data in huidige films.");
+        //     Overzicht_Admin.Admin(user);
+        // }
         else
         {
             Console.WriteLine("Ongeldige invoer.");

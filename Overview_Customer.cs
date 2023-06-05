@@ -23,10 +23,12 @@ public static class Overzicht_Customer
         string? input0 = Console.ReadLine();
         if (input0?.ToLower() == "t")
         {
+            Console.Clear();
             Menu.Start(user);
         }
         else if (input0.ToLower() == "r")
         {
+            Console.Clear();
             // Rooster moet hier komen
         }
         else if (int.TryParse(input0, out int selectedIndex) && selectedIndex >= 1 && selectedIndex <= movies.Length)
@@ -66,6 +68,7 @@ public static class Overzicht_Customer
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Ongeldige invoer");
                     User(user);
                 }
@@ -73,6 +76,7 @@ public static class Overzicht_Customer
         }
         else
         {
+            Console.Clear();
             Console.WriteLine("Ongeldige invoer");
             User(user);
         }
@@ -80,6 +84,7 @@ public static class Overzicht_Customer
 
     static void PrintMov(Movies movie)
     {
+        Console.Clear();
         Console.WriteLine($"Titel: {movie.Title}");
         Console.WriteLine($"Genres: {movie.Genres}");
         Console.WriteLine($"Regisseur(s): {movie.Regisseur}");

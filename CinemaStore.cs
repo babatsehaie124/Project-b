@@ -8,8 +8,8 @@ public static class CinemaStore
     public static void Products(bool user)
     {
         Console.WriteLine("Welkom bij onze online winkel.");
-        Console.WriteLine("[P] Bekijk aanwezige producten.");
-        Console.WriteLine("[T] Terug naar het menu.");
+        Console.WriteLine("[P] - Bekijk aanwezige producten.");
+        Console.WriteLine("[T] - Terug naar het menu.");
         string? input = Console.ReadLine().ToLower();
 
         if (input == "p")

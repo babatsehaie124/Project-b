@@ -1,5 +1,4 @@
 {
-  "timetable": {
     "Maandag": [
       {
       "id": 0,
@@ -566,5 +565,4 @@
         "Duration": 119
       }
     ]
-  }
 }

@@ -8,13 +8,13 @@ class Overzicht_Admin
         Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.Clear();
         Console.WriteLine("Welkom Admin! \n");
-        Console.WriteLine("Toets A in om huidige films te zien:");
-        Console.WriteLine("Toets B in om een film toe te voegen:");
-        Console.WriteLine("Toets C om de data van een film te wijzigen:");
-        Console.WriteLine("Toets D om een film te verwijderen:");
-        Console.WriteLine("Toets E om de vragen van de klanten te zien:");
-        Console.WriteLine("Toets F om terug te keren naar het menu:");
-        Console.WriteLine("Toets G om gestelde vragen te zien:");
+        Console.WriteLine("[A] - Huidige films bekijken.");
+        Console.WriteLine("[B] - Een film toevoegen.");
+        Console.WriteLine("[C] - Data van een film wijzigen.");
+        Console.WriteLine("[D] - Een film verwijderen.");
+        Console.WriteLine("[E] - Bekijk de vragen van klanten.");
+        Console.WriteLine("[F] - Terug naar de normale menu.");
+        Console.WriteLine("Toets G om gestelde vragen te zien.");
         // optie voor rooster zien en kunnen wijzigen
 
         string input = Console.ReadLine().ToUpper();
@@ -23,39 +23,47 @@ class Overzicht_Admin
         if (input == "A")
         {
             List<Movies> movies = GetMovieData();
+            Console.Clear();
             ViewData(movies);
         }
 
         else if (input == "B")
         {
+            Console.Clear();
             AddData(fileName);
         }
 
         else if (input == "C")
         {
+            Console.Clear();
             EditData(fileName);
         }
 
         else if (input == "D")
         {
+            Console.Clear();
             DeleteData(fileName);
         }
 
         else if (input == "E")
         {
+            Console.Clear();
             PrintQuestionsFromJson(true);
         }
 
         else if (input == "F")
         {
+            Console.Clear();
             Console.WriteLine("Je wordt teruggestuurd naar het menu...");
             Thread.Sleep(3000); // gamechanger
             Console.ResetColor();
             Console.Clear();
+            user = false;
             Menu.Start(user);
         }
         else if (input == "G")
         {
+            Console.Clear();
             ReadJsonFileBasic(user);
         }
 
@@ -105,8 +113,8 @@ class Overzicht_Admin
             Console.WriteLine($"Description: {movie.Description}");
             Console.WriteLine($"Price: {movie.Price},-\n");
         }
-        Console.ResetColor();
-        // Admin(true);
+        // Console.ResetColor();
+        Admin(true);
     }
     static void AddData(string fileName)
     {
@@ -157,7 +165,7 @@ class Overzicht_Admin
         dynamic ddata = JsonConvert.DeserializeObject(jsonData);
         Console.WriteLine("Data in " + fileName + ":\n");
         Console.WriteLine(ddata);
-        Console.WriteLine("Voer de datum van de index in die je wil wijzigen:");
+        Console.WriteLine("Voer de id van de movie in die je wil wijzigen:");
         int index = int.Parse(Console.ReadLine());
 
 
@@ -225,7 +233,8 @@ class Overzicht_Admin
             DeleteData(fileName);
             Admin(true);
         }
-        Console.ResetColor();
+        Admin(true);
+        // Console.ResetColor();
     }
 
     public static void PrintQuestionsFromJson(bool user)

@@ -7,6 +7,17 @@ class Overzicht_Admin
     {
         Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.Clear();
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Welkom Admin! \n");
         Console.WriteLine("[A] - Huidige films bekijken.");
         Console.WriteLine("[B] - Een film toevoegen.");
@@ -14,7 +25,7 @@ class Overzicht_Admin
         Console.WriteLine("[D] - Een film verwijderen.");
         Console.WriteLine("[E] - Bekijk de vragen van klanten.");
         Console.WriteLine("[F] - Terug naar de normale menu.");
-        Console.WriteLine("Toets G om gestelde vragen te zien.");
+
         // optie voor rooster zien en kunnen wijzigen
 
         string input = Console.ReadLine().ToUpper();
@@ -60,11 +71,6 @@ class Overzicht_Admin
             Console.Clear();
             user = false;
             Menu.Start(user);
-        }
-        else if (input == "G")
-        {
-            Console.Clear();
-            ReadJsonFileBasic(user);
         }
 
         else
@@ -163,44 +169,74 @@ class Overzicht_Admin
         string jsonData = File.ReadAllText(fileName);
         JArray data = JArray.Parse(jsonData);
         dynamic ddata = JsonConvert.DeserializeObject(jsonData);
-        Console.WriteLine("Data in " + fileName + ":\n");
-        Console.WriteLine(ddata);
-        Console.WriteLine("Voer de id van de movie in die je wil wijzigen:");
-        int index = int.Parse(Console.ReadLine());
+        int index = 0;
+
+        do
+        {
+            try
+            {
+                Console.WriteLine("Data in " + fileName + ":\n");
+                Console.WriteLine(ddata);
+                Console.WriteLine("Voer de id van de movie in die je wil wijzigen:");
+                index = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                continue;
+            }
+        }
+        while (false);
 
 
         if (index < data.Count)
         {
-            JObject movie = (JObject)data[index];
-            Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
-            string fieldToEdit = Console.ReadLine();
-            switch (fieldToEdit)
+            Console.WriteLine("wil je doorgaan?[D]\nOf terug naar de menu?[T]");
+            string answer = Console.ReadLine();
+            if (answer == "D")
             {
-                case "Titel":
-                    Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
-                    string newTitle = Console.ReadLine();
-                    movie["Titel"] = newTitle;
-                    break;
-                case "Beschrijving":
-                    Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
-                    string newDescription = Console.ReadLine();
-                    movie["Beschrijving"] = newDescription;
-                    break;
-                case "Prijs":
-                    Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
-                    int newPrice = int.Parse(Console.ReadLine());
-                    movie["Prijs"] = newPrice;
-                    break;
-                default:
-                    Console.WriteLine("Ongeldige invoer.");
-                    EditData(fileName);
-                    return;
+                JObject movie = (JObject)data[index];
+                Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
+                string fieldToEdit = Console.ReadLine();
+                switch (fieldToEdit)
+                {
+                    case "Titel":
+                        Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
+                        string newTitle = Console.ReadLine();
+                        movie["Titel"] = newTitle;
+                        break;
+                    case "Beschrijving":
+                        Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
+                        string newDescription = Console.ReadLine();
+                        movie["Beschrijving"] = newDescription;
+                        break;
+                    case "Prijs":
+                        Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
+                        int newPrice = int.Parse(Console.ReadLine());
+                        movie["Prijs"] = newPrice;
+                        break;
+                    default:
+                        Console.WriteLine("Ongeldige invoer.");
+                        EditData(fileName);
+                        return;
+                }
+                string output = JsonConvert.SerializeObject(data, Formatting.Indented);
+                File.WriteAllText(fileName, output);
+                Console.WriteLine($"Data op index {index} is gewijzigd in {fileName}.");
+                Thread.Sleep(3000);
+                Admin(true);
             }
-            string output = JsonConvert.SerializeObject(data, Formatting.Indented);
-            File.WriteAllText(fileName, output);
-            Console.WriteLine($"Data op index {index} is gewijzigd in {fileName}.");
-            Thread.Sleep(3000);
-            Admin(true);
+            else if (answer == "T")
+            {
+                Console.WriteLine("Keert terug naar de menu...");
+                Thread.Sleep(3000);
+                Admin(true);
+            }
+            else
+            {
+                Console.WriteLine("Verkeerde input. probeer het opnieuw.");
+                EditData(fileName);
+            }
+
         }
         else
         {
@@ -250,7 +286,9 @@ class Overzicht_Admin
         }
         System.Console.WriteLine();
 
-        Info.CinemaInfo(user);
+
+
+        AdminInfo.CinemaInfo(user);
     }
 
     public static void ReadJsonFileBasic(bool user)
@@ -259,7 +297,7 @@ class Overzicht_Admin
         string json = File.ReadAllText(filename);
         Console.Clear();
         Console.WriteLine(json);
-        Info.CinemaInfo(user);
+        AdminInfo.CinemaInfo(user);
 
     }
 

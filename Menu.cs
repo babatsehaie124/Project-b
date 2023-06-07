@@ -25,7 +25,8 @@ ______ _                                  ______      _   _               _
         }
         Console.WriteLine("[B] - Bioscoop informatie");
         Console.WriteLine("[S] - Aanwezige etenswaren");
-        Console.WriteLine("[M] - Overzicht films / reserveer");
+        Console.WriteLine("[M] - Overzicht films");
+        Console.WriteLine("[R] - Reserveer");
         if (user == true || Admin == true)
         {
             Console.WriteLine("[L2]- Uitloggen");

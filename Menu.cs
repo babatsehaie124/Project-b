@@ -25,8 +25,7 @@ ______ _                                  ______      _   _               _
         }
         Console.WriteLine("[B] - Bioscoop informatie");
         Console.WriteLine("[S] - Aanwezige etenswaren");
-        Console.WriteLine("[M] - Overzicht films");
-        Console.WriteLine("[R] - Reserveer");
+        Console.WriteLine("[M] - Overzicht films / reserveer");
         if (user == true || Admin == true)
         {
             Console.WriteLine("[L2]- Uitloggen");
@@ -51,7 +50,7 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
             Overzicht_Customer.User(user);
         }
-        else if (input == "S")
+        else if (input == "E")
         {
             Console.Clear();
             Console.WriteLine("Maak uw keuze aub");

@@ -18,12 +18,12 @@ public class Rooster
         else if (User_lower == "c")
         {
             Console.Clear();
-            Console.WriteLine("Keert terug naar het menu");
+            Console.WriteLine("Keer terug naar het menu");
             Menu.Start(user);
         }
         else
         {
-            Console.WriteLine("Verkeerde Input!probeer opnieuw!");
+            Console.WriteLine("Verkeerde Input! Probeer opnieuw!");
             RoosterMenu(user);
         }
     }

@@ -24,8 +24,9 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("[L1]- Inloggen");
         }
         Console.WriteLine("[B] - Bioscoop informatie");
-        Console.WriteLine("[S] - Aanwezige etenswaren");
-        Console.WriteLine("[M] - Overzicht films / reserveer");
+        Console.WriteLine("[E] - Aanwezige etenswaren");
+        Console.WriteLine("[M] - Overzicht films");
+        Console.WriteLine("[R] - Reserveren");
         if (user == true || Admin == true)
         {
             Console.WriteLine("[L2]- Uitloggen");
@@ -49,6 +50,12 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
             Overzicht_Customer.User(user);
+        }
+        else if (input == "R")
+        {
+            Console.Clear();
+            Console.WriteLine("U wordt nu doorverwezen naar ons reserveringssysteem.");
+            Rooster.RoosterMenu(user);
         }
         else if (input == "E")
         {

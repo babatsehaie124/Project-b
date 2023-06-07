@@ -19,6 +19,7 @@ ______ _                                  ______      _   _               _
 
         Console.WriteLine(menu2);
         Console.WriteLine("Welkom Admin! \n");
+
         Console.WriteLine("[A] - Huidige films bekijken.");
         Console.WriteLine("[B] - Een film toevoegen.");
         Console.WriteLine("[C] - Data van een film wijzigen.");
@@ -191,7 +192,7 @@ ______ _                                  ______      _   _               _
         if (index < data.Count)
         {
             Console.WriteLine("wil je doorgaan?[D]\nOf terug naar de menu?[T]");
-            string answer = Console.ReadLine();
+            string answer = Console.ReadLine().ToUpper();
             if (answer == "D")
             {
                 JObject movie = (JObject)data[index];

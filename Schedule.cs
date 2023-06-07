@@ -14,12 +14,12 @@ public class Rooster
         else if (User_lower == "t")
         {
             Console.Clear();
-            Console.WriteLine("Keer terug naar het menu");
+            Console.WriteLine("Keer terug naar het menu...");
             Menu.Start(user);
         }
         else
         {
-            Console.WriteLine("Verkeerde Input! Probeer opnieuw!");
+            Console.WriteLine("Ongeldige invoer");
             RoosterMenu(user);
         }
     }
@@ -131,7 +131,8 @@ public class Rooster
                     else if (input0.ToLower() == "r")
                     {
                         Console.Clear();
-                        Roosterreserveer(selectedFilm.Zaal);
+                        Roosterreserveer roosterreserveer = new(selectedFilm.Zaal);
+                        Roosterreserveer.Reser(user);
                     }
                 }
                 else if (filter.ToLower() == "n")
@@ -156,21 +157,6 @@ public class Rooster
         }
     }
 
-    public static void Roosterreserveer(int zaal)
-    {
-        if (zaal == 1)
-        {
-            Reservering reserveer = new();
-        }
-        else if (zaal == 2)
-        {
-            ReserveringZaal2 reserveer = new();
-        }
-        else if (zaal == 3)
-        {
-            ReserveringZaal3 reserveer = new();
-        }
-    }
 }
 
 

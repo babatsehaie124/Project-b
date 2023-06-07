@@ -134,6 +134,18 @@ public class Rooster
                         Roosterreserveer(selectedFilm.Zaal);
                     }
                 }
+                else if (filter.ToLower() == "n")
+                {
+                    Console.WriteLine("[T] - Terug naar het rooster menu");
+                    Console.WriteLine("Selecteer de opties: ");
+
+                    string? input0 = Console.ReadLine();
+                    if (input0?.ToLower() == "t")
+                    {
+                        Console.Clear();
+                        RoosterMenu(user);
+                    }
+                }
             }
             else
             {

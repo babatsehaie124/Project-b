@@ -122,7 +122,7 @@ class ReserveringZaal3
                             // doorverstuurd naar eten
                             Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
-                            Choosefood.PickFood();
+                            //Choosefood.PickFood();
                             ja = false;
                             Menu.Start(user);
                             break;
@@ -136,56 +136,56 @@ class ReserveringZaal3
     }
 
     private static void InitializeSeats()
-{
-    seats = new char[ROW_COUNT, COL_COUNT];
-
-    for (int row = 0; row < ROW_COUNT; row++)
     {
-        for (int col = 0; col < COL_COUNT; col++)
-        {
-            if (row == 5 && (col == 1 || col == 2 || col == 5 ||
-                col == 6 || col == 9 || col == 10 || col == 13 ||
-                col == 14 || col == 17 || col == 18 || col == 21 || col == 22
-                || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+        seats = new char[ROW_COUNT, COL_COUNT];
 
+        for (int row = 0; row < ROW_COUNT; row++)
+        {
+            for (int col = 0; col < COL_COUNT; col++)
             {
-                seats[row, col] = LOVESEAT_AVAILABLE;
-            }
+                if (row == 5 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 13 ||
+                    col == 14 || col == 17 || col == 18 || col == 21 || col == 22
+                    || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
+
+                {
+                    seats[row, col] = LOVESEAT_AVAILABLE;
+                }
                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
                 col == 6 || col == 9 || col == 10 || col == 13 ||
                 col == 14 || col == 17 || col == 18 || col == 21 || col == 22
                 || col == 25 || col == 26 || col == 29 || col == 30 || col == 33 || col == 34))
 
-            {
-                Console.BackgroundColor = ConsoleColor.White;
-                seats[row, col] = PREMIUMSEAT_AVAILABLE;
-                Console.ResetColor();
-            }
-            else
-            {
-                seats[row, col] = SEAT_AVAILABLE;
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                    Console.ResetColor();
+                }
+                else
+                {
+                    seats[row, col] = SEAT_AVAILABLE;
+                }
             }
         }
-    }
-    // hier controleert hij de huidig beschikbare stoelen
-    if (File.Exists("selected_seats3.txt"))
-    {
-        string[] Seats = File.ReadAllLines("selected_seats3.txt");
-        foreach (string seatName in Seats)
+        // hier controleert hij de huidig beschikbare stoelen
+        if (File.Exists("selected_seats3.txt"))
         {
-            if (seatName.Length >= 2)
+            string[] Seats = File.ReadAllLines("selected_seats3.txt");
+            foreach (string seatName in Seats)
             {
-                int row = seatName[0] - 'A';
-                int col = int.Parse(seatName.Substring(1)) - 1;
-
-                if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                if (seatName.Length >= 2)
                 {
-                    seats[row, col] = SEAT_TAKEN;
+                    int row = seatName[0] - 'A';
+                    int col = int.Parse(seatName.Substring(1)) - 1;
+
+                    if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                    {
+                        seats[row, col] = SEAT_TAKEN;
+                    }
                 }
             }
         }
     }
-}
 
 
 

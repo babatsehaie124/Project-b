@@ -1,7 +1,7 @@
-class ReserveringsManagerZaal2
+class ReserveringsManager
 {
     private const int ROW_COUNT = 10;
-    private const int COL_COUNT = 20;
+    private const int COL_COUNT = 15;
     private const char SEAT_AVAILABLE = 'O';
     private const char SEAT_TAKEN = 'X';
     private const char LOVESEAT_AVAILABLE = '♥';
@@ -17,10 +17,11 @@ class ReserveringsManagerZaal2
     private static int selectedRow = -1;
     private static int selectedCol = -1;
 
-
+    private static Reservering currentReservation;
 
     public static void Reserveren(bool user)
     {
+        currentReservation = new(1);
         InitializeSeats();
         bool ja = true;
         int reservedSeatCount = 0;
@@ -87,7 +88,7 @@ class ReserveringsManagerZaal2
                 Menu.Start(user);
             }
 
-            else if (keyInfo.Key == ConsoleKey.Enter)
+            else if (keyInfo.Key == ConsoleKey.Spacebar)
             {
                 if (selectedRow == -1 && selectedCol == -1)
                 {
@@ -143,15 +144,13 @@ class ReserveringsManagerZaal2
         {
             for (int col = 0; col < COL_COUNT; col++)
             {
-                if (row == 5 && (col == 2 || col == 3 || col == 7 ||
-                    col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
-
+                if (row == 5 && (col == 1 || col == 2 || col == 5 ||
+                    col == 6 || col == 9 || col == 10 || col == 12 || col == 13))
                 {
                     seats[row, col] = LOVESEAT_AVAILABLE;
                 }
-                else if (row == 7 && (col == 2 || col == 3 || col == 7 ||
-                        col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
-
+                else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
+                        col == 6 || col == 9 || col == 10 || col == 12 || col == 13))
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
@@ -164,20 +163,17 @@ class ReserveringsManagerZaal2
             }
         }
         // hier controleert hij de huidig beschikbare stoelen
-        if (File.Exists("selected_seats2.txt"))
+        currentReservation.LoadFromCurrent();
+        foreach (string seatName in currentReservation.Stoelen)
         {
-            string[] Seats = File.ReadAllLines("selected_seats2.txt");
-            foreach (string seatName in Seats)
+            if (seatName.Length >= 2)
             {
-                if (seatName.Length >= 2)
-                {
-                    int row = seatName[0] - 'A';
-                    int col = int.Parse(seatName.Substring(1)) - 1;
+                int row = seatName[0] - 'A';
+                int col = int.Parse(seatName.Substring(1)) - 1;
 
-                    if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
-                    {
-                        seats[row, col] = SEAT_TAKEN;
-                    }
+                if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                {
+                    seats[row, col] = SEAT_TAKEN;
                 }
             }
         }
@@ -188,10 +184,9 @@ class ReserveringsManagerZaal2
 
     private static void PrintSeatingArea()
     {
-        Console.WriteLine("                         Scherm Zaal 2");
-        Console.WriteLine("  --------------------------------------------------------------\n");
-        Console.WriteLine("Uitgang                                                  Uitgang");
-
+        Console.WriteLine("                   Scherm Zaal 1");
+        Console.WriteLine("  -----------------------------------------------\n");
+        Console.WriteLine("Uitgang                                   Uitgang");
 
         Console.Write("   ");
         for (int col = 0; col < COL_COUNT; col++)
@@ -245,7 +240,7 @@ class ReserveringsManagerZaal2
 
             Console.WriteLine("|");
         }
-        Console.WriteLine("  -------------------------Projector----------------------------\n"); ;
+        Console.WriteLine("  -------------------Projector-------------------\n");
     }
 
 
@@ -277,7 +272,8 @@ class ReserveringsManagerZaal2
 
     private static void SaveSeatsData()
     {
-        using (StreamWriter writer = new StreamWriter("selected_seats2.txt"))
+        // currentReservation.Seats.
+        using (StreamWriter writer = new StreamWriter("selected_seats1.txt"))
         {
             for (int row = 0; row < ROW_COUNT; row++)
             {
@@ -304,12 +300,24 @@ class ReserveringsManagerZaal2
         {
             seats[row, col + 1] = SELECT_SEAT;
         }
-        seats[row, col] = SELECT_SEAT;
-        SaveSeatsData();
+
+        if (seats[row, col] == SELECT_SEAT)
+        {
+            seats[row, col] = SEAT_AVAILABLE;
+            currentReservation.Stoelen.Remove(GetSeatRow(row, col));
+            Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gedeselecteerd.\n");;
+        }
+        else
+        {
+            seats[row, col] = SELECT_SEAT;
+            currentReservation.Stoelen.Add(GetSeatRow(row, col));
+        }
+
+        currentReservation.SaveAsCurrent();
     }
     private static void ReserveSeat(int row, int col)
     {
-
+        // rushil moet dit aanroepen zodra eten en drinken 
         if (seats[row, col - 1] == LOVESEAT_AVAILABLE)
         {
             seats[row, col - 1] = SEAT_TAKEN;
@@ -327,5 +335,25 @@ class ReserveringsManagerZaal2
         char rowName = (char)('A' + row);
         int seatNumber = col + 1;
         return $"{rowName}{seatNumber}";
+    }
+}
+
+public class Gereserveerd
+{
+    private List<Reservering> _reserveringen = new();
+
+    public Gereserveerd()
+    {
+        //this._reserveringen = ...;
+    }
+
+    public void Add(Reservering _reservering)
+    {
+        this._reserveringen.Append(_reservering);
+    }
+
+    public List<Reservering> FindByScheduleId(int roosterId)
+    {
+        return this._reserveringen.Where(r => r.RoosterId == roosterId).ToList();
     }
 }

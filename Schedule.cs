@@ -148,15 +148,15 @@ public class Rooster
     {
         if (zaal == 1)
         {
-            Reservering reserveer = new();
+            ReserveringsManager reserveer = new();
         }
         else if (zaal == 2)
         {
-            ReserveringZaal2 reserveer = new();
+            ReserveringsManagerZaal2 reserveer = new();
         }
         else if (zaal == 3)
         {
-            ReserveringZaal3 reserveer = new();
+            ReserveringsManagerZaal3 reserveer = new();
         }
     }
 }

@@ -132,7 +132,7 @@ public class Rooster
                     {
                         Console.Clear();
                         Roosterreserveer roosterreserveer = new(selectedFilm.Zaal);
-                        Roosterreserveer.Reser(user);
+                        //Roosterreserveer.Reser(user);
                     }
                 }
                 else if (filter.ToLower() == "n")
@@ -157,6 +157,21 @@ public class Rooster
         }
     }
 
+    public static void Roosterreserveer(int zaal)
+    {
+        if (zaal == 1)
+        {
+            ReserveringsManager reserveer = new();
+        }
+        else if (zaal == 2)
+        {
+            ReserveringsManagerZaal2 reserveer = new();
+        }
+        else if (zaal == 3)
+        {
+            ReserveringsManagerZaal3 reserveer = new();
+        }
+    }
 }
 
 

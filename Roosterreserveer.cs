@@ -10,15 +10,15 @@ public class  Roosterreserveer
     {
         if (Zaal == 1)
         {
-            Reservering.Reserveren(user);
+            ReserveringsManager.Reserveren(user);
         }
         else if (Zaal == 2)
         {
-            ReserveringZaal2.Reserveren(user);
+            ReserveringsManagerZaal2.Reserveren(user);
         }
         else if (Zaal == 3)
         {
-            ReserveringZaal3.Reserveren(user);
+            ReserveringsManagerZaal3.Reserveren(user);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 class ReserveringsManager
 {
     private const int ROW_COUNT = 10;
@@ -17,7 +18,7 @@ class ReserveringsManager
     private static int selectedRow = -1;
     private static int selectedCol = -1;
 
-    private static Reservering currentReservation;
+    private static Reservering? currentReservation;
 
     public static void Reserveren(bool user)
     {
@@ -99,7 +100,24 @@ ______ _                                  ______      _   _               _
                 Menu.Start(user);
             }
 
-            else if (keyInfo.Key == ConsoleKey.Spacebar)
+            // else if (keyInfo.Key == ConsoleKey.Spacebar)
+            //pas wanneer een stoel succesvol opgeslagen kan worden
+            // {
+            //     if (seats[selectedRow, selectedCol] == SEAT_AVAILABLE) pas wanneer een stoel succesvol opgeslagen kan worden
+            //     {
+            //         System.Console.WriteLine("Je hebt nog niks geselecteerd. Selecteer een stoel als u de door wilt gaan met u reservering.\n");
+            //         Reserveren(user);
+            //         break;
+            //     }
+            //     else
+            //     Console.WriteLine("Je wordt doorverwezen...\n");
+            //     Thread.Sleep(3000);
+            //     ja = false;
+            //     Menu.Start(user);
+            //     // break;
+            // }
+
+            else if (keyInfo.Key == ConsoleKey.Enter)
             {
                 if (selectedRow == -1 && selectedCol == -1)
                 {
@@ -116,7 +134,13 @@ ______ _                                  ______      _   _               _
                     else
                     {
                         SelectSeat(selectedRow, selectedCol);
-                        Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} geselecteerd.\n");
+                        if (seats[selectedRow, selectedCol] == SELECT_SEAT )
+                        {
+                            Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} geselecteerd.\n");
+                            reservedSeatCount--;
+                        }
+                        else
+                        Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gedeselecteerd.\n");
                         reservedSeatCount++;
 
                         selectedRow = -1;
@@ -127,18 +151,9 @@ ______ _                                  ______      _   _               _
                             Console.WriteLine("Het maximale aantal stoelen per Reserverings is bereikt. Je kunt niet meer stoelen selecteren.");
                             break;
                         }
-                        Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
-                        string reser_input = Console.ReadLine().ToUpper();
-                        if (reser_input == "N")
-                        {
-                            // doorverstuurd naar eten
-                            Console.WriteLine("Je wordt doorverwezen...\n");
-                            Thread.Sleep(3000);
-                            //Choosefood.PickFood();
-                            ja = false;
-                            Menu.Start(user);
-                            break;
-                        }
+                        // Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
+                        // string reser_input = Console.ReadLine().ToUpper();
+                        // if (reser_input == "N")
                     }
                 }
             }
@@ -189,9 +204,6 @@ ______ _                                  ______      _   _               _
             }
         }
     }
-
-
-
 
     private static void PrintSeatingArea()
     {
@@ -276,8 +288,9 @@ ______ _                                  ______      _   _               _
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Druk [Space] om een stoel te selecteren");
-        Console.WriteLine("Druk [Esc] om terug te keren naar het menu");
+        Console.WriteLine("[Space] - Selecteer een stoel");
+        Console.WriteLine("[Enter] - Ga door met je reservering");
+        Console.WriteLine("[Esc]   - Keer terug naar het menu");
         Console.WriteLine();
     }
 
@@ -316,7 +329,7 @@ ______ _                                  ______      _   _               _
         {
             seats[row, col] = SEAT_AVAILABLE;
             currentReservation.Stoelen.Remove(GetSeatRow(row, col));
-            Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gedeselecteerd.\n");
+            
         }
         else
         {
@@ -355,7 +368,8 @@ public class Gereserveerd
 
     public Gereserveerd()
     {
-        //this._reserveringen = ...;
+        string jsonData = File.ReadAllText("HuidigeReservering.json");
+        this._reserveringen = JsonConvert.DeserializeObject<List<Reservering>>(jsonData);
     }
 
     public void Add(Reservering _reservering)

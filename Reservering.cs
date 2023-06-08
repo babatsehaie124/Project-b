@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 public class Reservering
 {
     public int RoosterId;
@@ -13,11 +14,15 @@ public class Reservering
 
     public void LoadFromCurrent()
     {
-        // get data from HuidigeReservering.json
+        string jsonData = File.ReadAllText("HuidigeReservering.json");
+        List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
     }
 
     public void SaveAsCurrent()
     {
-        //write to HuidigeReservering.json
+        string jsonData = File.ReadAllText("HuidigeReservering.json");
+        List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+
+        //dynamic current
     }
 }

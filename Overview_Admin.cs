@@ -8,13 +8,13 @@ class Overzicht_Admin
         Console.BackgroundColor = ConsoleColor.DarkBlue;
         Console.Clear();
         Console.WriteLine("Welkom Admin! \n");
-        Console.WriteLine("Toets A in om huidige films te zien:");
-        Console.WriteLine("Toets B in om een film toe te voegen:");
-        Console.WriteLine("Toets C om de data van een film te wijzigen:");
-        Console.WriteLine("Toets D om een film te verwijderen:");
-        Console.WriteLine("Toets E om de vragen van de klanten te zien:");
-        Console.WriteLine("Toets F om terug te keren naar het menu:");
-        Console.WriteLine("Toets G om gestelde vragen te zien:");
+        Console.WriteLine("[A] - in om huidige films te zien:");
+        Console.WriteLine("[B] - in om een film toe te voegen:");
+        Console.WriteLine("[C] - om de data van een film te wijzigen:");
+        Console.WriteLine("[D] - om een film te verwijderen:");
+        Console.WriteLine("[E] - om de vragen van de klanten te zien:");
+        Console.WriteLine("[F] - om terug te keren naar het menu:");
+        Console.WriteLine("[G] - Overzicht ");
         // optie voor rooster zien en kunnen wijzigen
 
         string input = Console.ReadLine().ToUpper();

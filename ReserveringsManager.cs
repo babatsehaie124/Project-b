@@ -113,7 +113,7 @@ class ReserveringsManager
 
                         if (reservedSeatCount >= 10)
                         {
-                            Console.WriteLine("Het maximale aantal stoelen per Reservering is bereikt. Je kunt niet meer stoelen selecteren.");
+                            Console.WriteLine("Het maximale aantal stoelen per Reserverings is bereikt. Je kunt niet meer stoelen selecteren.");
                             break;
                         }
                         Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
@@ -123,7 +123,7 @@ class ReserveringsManager
                             // doorverstuurd naar eten
                             Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
-                            Choosefood.PickFood();
+                            //Choosefood.PickFood();
                             ja = false;
                             Menu.Start(user);
                             break;

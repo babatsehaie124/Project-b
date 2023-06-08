@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 class ReserveringsManager
 {
     private const int ROW_COUNT = 10;
@@ -356,7 +357,8 @@ public class Gereserveerd
 
     public Gereserveerd()
     {
-        //this._reserveringen = ...;
+        string jsonData = File.ReadAllText("HuidigeReservering.json");
+        this._reserveringen = JsonConvert.DeserializeObject<List<Reservering>>(jsonData);
     }
 
     public void Add(Reservering _reservering)

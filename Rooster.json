@@ -1,7 +1,417 @@
 {
-    "Maandag": [
+  "Maandag": [
+    {
+      "id": 1,
+      "Title": "John Wick 4",
+      "Zaal": 1,
+      "Start": "12:30",
+      "Ending": "15:19",
+      "Duration": 169
+    },
+    {
+      "id": 2,
+      "Title": "Creed III",
+      "Zaal": 2,
+      "Start": "12:00",
+      "Ending": "13:57",
+      "Duration": 117
+    },
+    {
+      "id": 3,
+      "Title": "Suzume",
+      "Zaal": 3,
+      "Start": "14:00",
+      "Ending": "16:02",
+      "Duration": 122
+    },
+    {
+      "id": 4,
+      "Title": "Spoiler Alert",
+      "Zaal": 1,
+      "Start": "16:30",
+      "Ending": "18:29",
+      "Duration": 119
+    },
+    {
+      "id": 5,
+      "Title": "65",
+      "Zaal": 2,
+      "Start": "15:30",
+      "Ending": "17:03",
+      "Duration": 93
+    },
+    {
+      "id": 6,
+      "Title": "Black Lotus",
+      "Zaal": 3,
+      "Start": "17:30",
+      "Ending": "19:00",
+      "Duration": 90
+    },
+    {
+      "id": 7,
+      "Title": "Guardians of the Galaxy Vol. 3",
+      "Zaal": 1,
+      "Start": "19:30",
+      "Ending": "22:00",
+      "Duration": 150
+    },
+    {
+      "id": 8,
+      "Title": "The Super Mario Bros. Movie",
+      "Zaal": 2,
+      "Start": "13:30",
+      "Ending": "15:03",
+      "Duration": 93
+    },
+    {
+      "id": 9,
+      "Title": "Shazam! Fury of the Gods",
+      "Zaal": 3,
+      "Start": "15:30",
+      "Ending": "18:40",
+      "Duration": 130
+    },
+    {
+      "id": 10,
+      "Title": "Dungeons & Dragons: Honor Among Thieves",
+      "Zaal": 1,
+      "Start": "17:30",
+      "Ending": "20:44",
+      "Duration": 134
+    }
+  ],
+  "Dinsdag": [
+    {
+      "id": 11,
+      "Title": "The Super Mario Bros. Movie",
+      "Zaal": 3,
+      "Start": "10:30",
+      "Ending": "12:03",
+      "Duration": 93
+    },
+    {
+      "id": 12,
+      "Title": "Shazam! Fury of the Gods",
+      "Zaal": 2,
+      "Start": "10:00",
+      "Ending": "12:10",
+      "Duration": 130
+    },
+    {
+      "id": 13,
+      "Title": "John Wick 4",
+      "Zaal": 1,
+      "Start": "12:30",
+      "Ending": "15:19",
+      "Duration": 169
+    },
+    {
+      "id": 14,
+      "Title": "Creed III",
+      "Zaal": 3,
+      "Start": "13:00",
+      "Ending": "14:57",
+      "Duration": 117
+    },
+    {
+      "id": 15,
+      "Title": "65",
+      "Zaal": 2,
+      "Start": "15:30",
+      "Ending": "17:03",
+      "Duration": 93
+    },
+    {
+      "id": 16,
+      "Title": "Black Lotus",
+      "Zaal": 1,
+      "Start": "15:45",
+      "Ending": "17:15",
+      "Duration": 90
+    },
+    {
+      "id": 17,
+      "Title": "Guardians of the Galaxy Vol. 3",
+      "Zaal": 3,
+      "Start": "17:30",
+      "Ending": "20:00",
+      "Duration": 150
+    },
+    {
+      "id": 18,
+      "Title": "Suzume",
+      "Zaal": 2,
+      "Start": "17:15",
+      "Ending": "19:17",
+      "Duration": 122
+    },
+    {
+      "id": 19,
+      "Title": "Dungeons & Dragons: Honor Among Thieves",
+      "Zaal": 1,
+      "Start": "20:15",
+      "Ending": "22:29",
+      "Duration": 134
+    },
+    {
+      "id": 20,
+      "Title": "Spoiler Alert",
+      "Zaal": 3,
+      "Start": "20:30",
+      "Ending": "22:29",
+      "Duration": 119
+    }
+  ],
+  "Woensdag": [
+    {
+      "id": 21,
+      "Title": "65",
+      "Zaal": 3,
+      "Start": "10:00",
+      "Ending": "11:33",
+      "Duration": 93
+    },
+    {
+      "id": 22,
+      "Title": "Black Lotus",
+      "Zaal": 1,
+      "Start": "10:00",
+      "Ending": "11:30",
+      "Duration": 90
+    },
+    {
+      "id": 23,
+      "Title": "John Wick 4",
+      "Zaal": 2,
+      "Start": "11:45",
+      "Ending": "14:34",
+      "Duration": 169
+    },
+    {
+      "id": 24,
+      "Title": "Creed III",
+      "Zaal": 4,
+      "Start": "12:00",
+      "Ending": "13:57",
+      "Duration": 117
+    },
+    {
+      "id": 25,
+      "Title": "The Super Mario Bros. Movie",
+      "Zaal": 3,
+      "Start": "12:30",
+      "Ending": "14:03",
+      "Duration": 93
+    },
+    {
+      "id": 26,
+      "Title": "Shazam! Fury of the Gods",
+      "Zaal": 2,
+      "Start": "13:00",
+      "Ending": "15:10",
+      "Duration": 130
+    },
+    {
+      "id": 27,
+      "Title": "Guardians of the Galaxy Vol. 3",
+      "Zaal": 1,
+      "Start": "14:30",
+      "Ending": "17:00",
+      "Duration": 150
+    },
+    {
+      "id": 28,
+      "Title": "Suzume",
+      "Zaal": 4,
+      "Start": "15:00",
+      "Ending": "17:02",
+      "Duration": 122
+    },
+    {
+      "id": 29,
+      "Title": "Dungeons & Dragons: Honor Among Thieves",
+      "Zaal": 3,
+      "Start": "16:00",
+      "Ending": "18:14",
+      "Duration": 134
+    },
+    {
+      "id": 30,
+      "Title": "Spoiler Alert",
+      "Zaal": 2,
+      "Start": "17:00",
+      "Ending": "18:59",
+      "Duration": 119
+    }
+  ],    
+  "Donderdag": [
+    {
+    "id": 31,
+    "Title": "Guardians of the Galaxy Vol. 3",
+    "Zaal": 2,
+    "Start": "10:00",
+    "Ending": "12:30",
+    "Duration": 150
+    },
+    {
+    "id": 32,
+    "Title": "Suzume",
+    "Zaal": 1,
+    "Start": "10:00",
+    "Ending": "12:02",
+    "Duration": 122
+    },
+    {
+    "id": 33,
+    "Title": "John Wick 4",
+    "Zaal": 3,
+    "Start": "12:30",
+    "Ending": "15:19",
+    "Duration": 169
+    },
+    {
+    "id": 34,
+    "Title": "Creed III",
+    "Zaal": 4,
+    "Start": "12:30",
+    "Ending": "14:27",
+    "Duration": 117
+    },
+    {
+    "id": 35,
+    "Title": "The Super Mario Bros. Movie",
+    "Zaal": 5,
+    "Start": "15:30",
+    "Ending": "17:03",
+    "Duration": 93
+    },
+    {
+    "id": 36,
+    "Title": "Shazam! Fury of the Gods",
+    "Zaal": 6,
+    "Start": "15:30",
+    "Ending": "18:40",
+    "Duration": 130
+    },
+    {
+    "id": 37,
+    "Title": "65",
+    "Zaal": 7,
+    "Start": "18:45",
+    "Ending": "20:18",
+    "Duration": 93
+    },
+    {
+    "id": 38,
+    "Title": "Black Lotus",
+    "Zaal": 8,
+    "Start": "18:45",
+    "Ending": "20:15",
+    "Duration": 90
+    },
+    {
+    "id": 39,
+    "Title": "Dungeons & Dragons: Honor Among Thieves",
+    "Zaal": 9,
+    "Start": "20:30",
+    "Ending": "22:44",
+    "Duration": 134
+    },
+    {
+    "id": 40,
+    "Title": "Spoiler Alert",
+    "Zaal": 10,
+    "Start": "20:30",
+    "Ending": "22:29",
+    "Duration": 119
+    }
+    ],
+  "Vrijdag": [
+    {
+    "id": 41,
+    "Title": "Guardians of the Galaxy Vol. 3",
+    "Zaal": 2,
+    "Start": "10:00",
+    "Ending": "12:30",
+    "Duration": 150
+    },
+    {
+    "id": 42,
+    "Title": "Suzume",
+    "Zaal": 1,
+    "Start": "10:00",
+    "Ending": "12:02",
+    "Duration": 122
+    },
+    {
+    "id": 43,
+    "Title": "John Wick 4",
+    "Zaal": 3,
+    "Start": "12:30",
+    "Ending": "15:19",
+    "Duration": 169
+    },
+    {
+    "id": 44,
+    "Title": "Creed III",
+    "Zaal": 4,
+    "Start": "12:30",
+    "Ending": "14:27",
+    "Duration": 117
+    },
+    {
+    "id": 45,
+    "Title": "The Super Mario Bros. Movie",
+    "Zaal": 5,
+    "Start": "15:30",
+    "Ending": "17:03",
+    "Duration": 93
+    },
+    {
+    "id": 46,
+    "Title": "Shazam! Fury of the Gods",
+    "Zaal": 6,
+    "Start": "15:30",
+    "Ending": "18:40",
+    "Duration": 130
+    },
+    {
+    "id": 47,
+    "Title": "65",
+    "Zaal": 7,
+    "Start": "18:45",
+    "Ending": "20:18",
+    "Duration": 93
+    },
+    {
+    "id": 48,
+    "Title": "Black Lotus",
+    "Zaal": 8,
+    "Start": "18:45",
+    "Ending": "20:15",
+    "Duration": 90
+    },
+    {
+    "id": 49,
+    "Title": "Dungeons & Dragons: Honor Among Thieves",
+    "Zaal": 9,
+    "Start": "20:30",
+    "Ending": "22:44",
+    "Duration": 134
+    },
+    {
+    "id": 50,
+    "Title": "Spoiler Alert",
+    "Zaal": 10,
+    "Start": "20:30",
+    "Ending": "22:29",
+    "Duration": 119
+    }
+    ],
+    "Zaterdag": [
       {
-      "id": 0,
+      "id": 51,
       "Title": "John Wick 4",
       "Zaal": 1,
       "Start": "12:30",
@@ -9,7 +419,7 @@
       "Duration": 169
       },
       {
-      "id": 1,
+      "id": 52,
       "Title": "Creed III",
       "Zaal": 2,
       "Start": "12:00",
@@ -17,7 +427,7 @@
       "Duration": 117
       },
       {
-      "id": 7,
+      "id": 53,
       "Title": "Suzume",
       "Zaal": 3,
       "Start": "14:00",
@@ -25,7 +435,7 @@
       "Duration": 122
       },
       {
-      "id": 9,
+      "id": 54,
       "Title": "Spoiler Alert",
       "Zaal": 1,
       "Start": "16:30",
@@ -33,7 +443,7 @@
       "Duration": 119
       },
       {
-      "id": 4,
+      "id": 55,
       "Title": "65",
       "Zaal": 2,
       "Start": "15:30",
@@ -41,7 +451,7 @@
       "Duration": 93
       },
       {
-      "id": 5,
+      "id": 56,
       "Title": "Black Lotus",
       "Zaal": 3,
       "Start": "17:30",
@@ -49,7 +459,7 @@
       "Duration": 90
       },
       {
-      "id": 6,
+      "id": 57,
       "Title": "Guardians of the Galaxy Vol. 3",
       "Zaal": 1,
       "Start": "19:30",
@@ -57,7 +467,7 @@
       "Duration": 150
       },
       {
-      "id": 10,
+      "id": 58,
       "Title": "The Super Mario Bros. Movie",
       "Zaal": 2,
       "Start": "13:30",
@@ -65,7 +475,7 @@
       "Duration": 93
       },
       {
-      "id": 11,
+      "id": 59,
       "Title": "Shazam! Fury of the Gods",
       "Zaal": 3,
       "Start": "15:30",
@@ -73,496 +483,86 @@
       "Duration": 130
       },
       {
-      "id": 12,
+      "id": 60,
       "Title": "Dungeons & Dragons: Honor Among Thieves",
       "Zaal": 1,
       "Start": "17:30",
       "Ending": "20:44",
       "Duration": 134
       }
-    ],
-    "Dinsdag": [
-      {
-        "id": 2,
-        "Title": "The Super Mario Bros. Movie",
-        "Zaal": 3,
-        "Start": "10:30",
-        "Ending": "12:03",
-        "Duration": 93
-      },
-      {
-        "id": 3,
-        "Title": "Shazam! Fury of the Gods",
-        "Zaal": 2,
-        "Start": "10:00",
-        "Ending": "12:10",
-        "Duration": 130
-      },
-      {
-        "id": 0,
-        "Title": "John Wick 4",
-        "Zaal": 1,
-        "Start": "12:30",
-        "Ending": "15:19",
-        "Duration": 169
-      },
-      {
-        "id": 1,
-        "Title": "Creed III",
-        "Zaal": 3,
-        "Start": "13:00",
-        "Ending": "14:57",
-        "Duration": 117
-      },
-      {
-        "id": 4,
-        "Title": "65",
-        "Zaal": 2,
-        "Start": "15:30",
-        "Ending": "17:03",
-        "Duration": 93
-      },
-      {
-        "id": 5,
-        "Title": "Black Lotus",
-        "Zaal": 1,
-        "Start": "15:45",
-        "Ending": "17:15",
-        "Duration": 90
-      },
-      {
-        "id": 6,
-        "Title": "Guardians of the Galaxy Vol. 3",
-        "Zaal": 3,
-        "Start": "17:30",
-        "Ending": "20:00",
-        "Duration": 150
-      },
-      {
-        "id": 7,
-        "Title": "Suzume",
-        "Zaal": 2,
-        "Start": "17:15",
-        "Ending": "19:17",
-        "Duration": 122
-      },
-      {
-        "id": 8,
-        "Title": "Dungeons & Dragons: Honor Among Thieves",
-        "Zaal": 1,
-        "Start": "20:15",
-        "Ending": "22:29",
-        "Duration": 134
-      },
-      {
-        "id": 9,
-        "Title": "Spoiler Alert",
-        "Zaal": 3,
-        "Start": "20:30",
-        "Ending": "22:29",
-        "Duration": 119
-      }
-    ],
-    "Woensdag": [
-      {
-        "id": 4,
-        "Title": "65",
-        "Zaal": 3,
-        "Start": "10:00",
-        "Ending": "11:33",
-        "Duration": 93
-      },
-      {
-        "id": 5,
-        "Title": "Black Lotus",
-        "Zaal": 1,
-        "Start": "10:00",
-        "Ending": "11:30",
-        "Duration": 90
-      },
-      {
-        "id": 0,
-        "Title": "John Wick 4",
-        "Zaal": 2,
-        "Start": "11:45",
-        "Ending": "14:34",
-        "Duration": 169
-      },
-      {
-        "id": 1,
-        "Title": "Creed III",
-        "Zaal": 4,
-        "Start": "12:00",
-        "Ending": "13:57",
-        "Duration": 117
-      },
-      {
-        "id": 2,
-        "Title": "The Super Mario Bros. Movie",
-        "Zaal": 3,
-        "Start": "12:30",
-        "Ending": "14:03",
-        "Duration": 93
-      },
-      {
-        "id": 3,
-        "Title": "Shazam! Fury of the Gods",
-        "Zaal": 2,
-        "Start": "13:00",
-        "Ending": "15:10",
-        "Duration": 130
-      },
-      {
-        "id": 6,
-        "Title": "Guardians of the Galaxy Vol. 3",
-        "Zaal": 1,
-        "Start": "14:30",
-        "Ending": "17:00",
-        "Duration": 150
-      },
-      {
-        "id": 7,
-        "Title": "Suzume",
-        "Zaal": 4,
-        "Start": "15:00",
-        "Ending": "17:02",
-        "Duration": 122
-      },
-      {
-        "id": 8,
-        "Title": "Dungeons & Dragons: Honor Among Thieves",
-        "Zaal": 3,
-        "Start": "16:00",
-        "Ending": "18:14",
-        "Duration": 134
-      },
-      {
-        "id": 9,
-        "Title": "Spoiler Alert",
-        "Zaal": 2,
-        "Start": "17:00",
-        "Ending": "18:59",
-        "Duration": 119
-      }
-    ],
-    "Donderdag": [
-      {
-        "id": 6,
-        "Title": "Guardians of the Galaxy Vol. 3",
-        "Zaal": 2,
-        "Start": "10:00",
-        "Ending": "12:30",
-        "Duration": 150
-      },
-      {
-        "id": 7,
-        "Title": "Suzume",
-        "Zaal": 1,
-        "Start": "10:00",
-        "Ending": "12:02",
-        "Duration": 122
-      },
-      {
-        "id": 0,
-        "Title": "John Wick 4",
-        "Zaal": 3,
-        "Start": "12:30",
-        "Ending": "15:19",
-        "Duration": 169
-      },
-      {
-        "id": 1,
-        "Title": "Creed III",
-        "Zaal": 4,
-        "Start": "12:30",
-        "Ending": "14:27",
-        "Duration": 117
-      },
-      {
-        "id": 2,
-        "Title": "The Super Mario Bros. Movie",
-        "Zaal": 5,
-        "Start": "15:30",
-        "Ending": "17:03",
-        "Duration": 93
-      },
-      {
-        "id": 3,
-        "Title": "Shazam! Fury of the Gods",
-        "Zaal": 6,
-        "Start": "15:30",
-        "Ending": "18:40",
-        "Duration": 130
-      },
-      {
-        "id": 4,
-        "Title": "65",
-        "Zaal": 7,
-        "Start": "18:45",
-        "Ending": "20:18",
-        "Duration": 93
-      },
-      {
-        "id": 5,
-        "Title": "Black Lotus",
-        "Zaal": 8,
-        "Start": "18:45",
-        "Ending": "20:15",
-        "Duration": 90
-      },
-      {
-        "id": 8,
-        "Title": "Dungeons & Dragons: Honor Among Thieves",
-        "Zaal": 9,
-        "Start": "20:30",
-        "Ending": "22:44",
-        "Duration": 134
-      },
-      {
-        "id": 9,
-        "Title": "Spoiler Alert",
-        "Zaal": 10,
-        "Start": "20:30",
-        "Ending": "22:29",
-        "Duration": 119
-      }
-    ],
-    "Vrijdag": [
-      {
-        "id": 6,
-        "Title": "Guardians of the Galaxy Vol. 3",
-        "Zaal": 2,
-        "Start": "10:00",
-        "Ending": "12:30",
-        "Duration": 150
-      },
-      {
-        "id": 7,
-        "Title": "Suzume",
-        "Zaal": 1,
-        "Start": "10:00",
-        "Ending": "12:02",
-        "Duration": 122
-      },
-      {
-        "id": 0,
-        "Title": "John Wick 4",
-        "Zaal": 3,
-        "Start": "12:30",
-        "Ending": "15:19",
-        "Duration": 169
-      },
-      {
-        "id": 1,
-        "Title": "Creed III",
-        "Zaal": 4,
-        "Start": "12:30",
-        "Ending": "14:27",
-        "Duration": 117
-      },
-      {
-        "id": 2,
-        "Title": "The Super Mario Bros. Movie",
-        "Zaal": 5,
-        "Start": "15:30",
-        "Ending": "17:03",
-        "Duration": 93
-      },
-      {
-        "id": 3,
-        "Title": "Shazam! Fury of the Gods",
-        "Zaal": 6,
-        "Start": "15:30",
-        "Ending": "18:40",
-        "Duration": 130
-      },
-      {
-        "id": 4,
-        "Title": "65",
-        "Zaal": 7,
-        "Start": "18:45",
-        "Ending": "20:18",
-        "Duration": 93
-      },
-      {
-        "id": 5,
-        "Title": "Black Lotus",
-        "Zaal": 8,
-        "Start": "18:45",
-        "Ending": "20:15",
-        "Duration": 90
-      },
-      {
-        "id": 8,
-        "Title": "Dungeons & Dragons: Honor Among Thieves",
-        "Zaal": 9,
-        "Start": "20:30",
-        "Ending": "22:44",
-        "Duration": 134
-      },
-      {
-        "id": 9,
-        "Title": "Spoiler Alert",
-        "Zaal": 10,
-        "Start": "20:30",
-        "Ending": "22:29",
-        "Duration": 119
-      }
-    ],
-    "Zaterdag": [
-      {
-        "id": 0,
-        "Title": "John Wick 4",
-        "Zaal": 1,
-        "Start": "12:30",
-        "Ending": "15:19",
-        "Duration": 169
-      },
-      {
-        "id": 1,
-        "Title": "Creed III",
-        "Zaal": 2,
-        "Start": "12:00",
-        "Ending": "13:57",
-        "Duration": 117
-      },
-      {
-        "id": 7,
-        "Title": "Suzume",
-        "Zaal": 3,
-        "Start": "14:00",
-        "Ending": "16:02",
-        "Duration": 122
-      },
-      {
-        "id": 9,
-        "Title": "Spoiler Alert",
-        "Zaal": 1,
-        "Start": "16:30",
-        "Ending": "18:29",
-        "Duration": 119
-      },
-      {
-        "id": 4,
-        "Title": "65",
-        "Zaal": 2,
-        "Start": "15:30",
-        "Ending": "17:03",
-        "Duration": 93
-      },
-      {
-        "id": 5,
-        "Title": "Black Lotus",
-        "Zaal": 3,
-        "Start": "17:30",
-        "Ending": "19:00",
-        "Duration": 90
-      },
-      {
-        "id": 6,
-        "Title": "Guardians of the Galaxy Vol. 3",
-        "Zaal": 1,
-        "Start": "19:30",
-        "Ending": "22:00",
-        "Duration": 150
-      },
-      {
-        "id": 10,
-        "Title": "The Super Mario Bros. Movie",
-        "Zaal": 2,
-        "Start": "13:30",
-        "Ending": "15:03",
-        "Duration": 93
-      },
-      {
-        "id": 11,
-        "Title": "Shazam! Fury of the Gods",
-        "Zaal": 3,
-        "Start": "15:30",
-        "Ending": "18:40",
-        "Duration": 130
-      },
-      {
-        "id": 12,
-        "Title": "Dungeons & Dragons: Honor Among Thieves",
-        "Zaal": 1,
-        "Start": "17:30",
-        "Ending": "20:44",
-        "Duration": 134
-      }
-    ],
-    "Zondag": [
-      {
-        "id": 1,
+      ],
+      "Zondag": [
+        {
+        "id": 61,
         "Title": "John Wick 4",
         "Zaal": 1,
         "Start": "12:00",
         "Ending": "14:49",
         "Duration": 169
-      },
-      {
-        "id": 2,
+        },
+        {
+        "id": 62,
         "Title": "Creed III",
         "Zaal": 2,
         "Start": "12:00",
         "Ending": "13:57",
         "Duration": 117
-      },
-      {
-        "id": 3,
+        },
+        {
+        "id": 63,
         "Title": "Shazam! Fury of the Gods",
         "Zaal": 2,
         "Start": "14:10",
         "Ending": "16:20",
         "Duration": 130
-      },
-      {
-        "id": 4,
+        },
+        {
+        "id": 64,
         "Title": "65",
         "Zaal": 3,
         "Start": "12:00",
         "Ending": "13:33",
         "Duration": 93
-      },
-      {
-        "id": 5,
+        },
+        {
+        "id": 65,
         "Title": "Black Lotus",
         "Zaal": 1,
         "Start": "15:00",
         "Ending": "16:30",
         "Duration": 90
-      },
-      {
-        "id": 6,
+        },
+        {
+        "id": 66,
         "Title": "Guardians of the Galaxy Vol. 3",
         "Zaal": 2,
         "Start": "16:30",
         "Ending": "19:00",
         "Duration": 150
-      },
-      {
-        "id": 7,
+        },
+        {
+        "id": 67,
         "Title": "Suzume",
         "Zaal": 3,
         "Start": "14:00",
         "Ending": "16:02",
         "Duration": 122
-      },
-      {
-        "id": 8,
+        },
+        {
+        "id": 68,
         "Title": "Dungeons & Dragons: Honor Among Thieves",
         "Zaal": 1,
         "Start": "17:00",
         "Ending": "19:14",
         "Duration": 134
-      },
-      {
-        "id": 9,
+        },
+        {
+        "id": 69,
         "Title": "Spoiler Alert",
         "Zaal": 2,
         "Start": "19:30",
         "Ending": "21:29",
         "Duration": 119
-      }
-    ]
+        }
+        ]
 }

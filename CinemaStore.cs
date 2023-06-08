@@ -7,6 +7,17 @@ public static class CinemaStore
 {
     public static void Products(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Welkom bij onze online winkel.");
         Console.WriteLine("[P] - Bekijk aanwezige producten.");
         Console.WriteLine("[T] - Terug naar het menu.");
@@ -18,17 +29,6 @@ public static class CinemaStore
             string storedata = File.ReadAllText("Store.json");
             var products = JsonConvert.DeserializeObject<List<Storeproducts>>(storedata);
             Console.Clear();
-            string menu2 = @"
-______ _                                  ______      _   _               _                 
-| ___ (_)                                 | ___ \    | | | |             | |                
-| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
-| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
-| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
-\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
-                                  | |                                                       
-                                  |_|";
-
-
             Console.WriteLine(menu2);
 
             Console.WriteLine("Welkom klant bij onze Eet-drinkmenu");
@@ -37,7 +37,7 @@ ______ _                                  ______      _   _               _
 
             foreach (var product in products)
             {
-                Console.WriteLine("                                    Extra informatie hierover:");
+                Console.WriteLine("                                    Extra informatie:");
                 Console.WriteLine($"Kleine Popcorn: {product.Small_Popcorn} euro         | Dezelfde prijzen gelden voor de smaken: Zoet, Zout, Mix en Caramel.");
                 Console.WriteLine($"Medium Popcorn: {product.Medium_Popcorn} euro");
                 Console.WriteLine($"Grote Popcorn:  {product.Large_Popcorn} euro\n");

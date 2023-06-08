@@ -6,21 +6,24 @@ class AccountModel
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("emailAddress")]
-    public string EmailAddress { get; set; }
+    [JsonPropertyName("email")]
+    public string Email { get; set; }
 
-    [JsonPropertyName("password")]
-    public string Password { get; set; }
+    [JsonPropertyName("wachtwoord")]
+    public string Wachtwoord { get; set; }
 
-    [JsonPropertyName("fullName")]
-    public string FullName { get; set; }
+    [JsonPropertyName("fName")]
+    public string fName { get; set; }
+    [JsonPropertyName("lName")]
+    public string lName { get; set; }
 
-    public AccountModel(int id, string emailAddress, string password, string fullName)
+    public AccountModel(int id, string emailAddress, string wachtwoord, string fname, string lname)
     {
         Id = id;
-        EmailAddress = emailAddress;
-        Password = password;
-        FullName = fullName;
+        Email = emailAddress;
+        Wachtwoord = wachtwoord;
+        fName = fname;
+        lName = lname;
     }
 
 }

@@ -1,0 +1,20 @@
+﻿[
+	{
+		"email": "ADMIN@hr.nl",
+		"wachtwoord": "ADMINLOGIN",
+		"fName": "admin",
+		"lName": "admin"
+	},
+	{
+		"email": "1054255@hr.nl",
+		"wachtwoord": "hr1",
+		"fName": "Adrian",
+		"lName": "Yan"
+	},
+	{
+		"email": "1050045",
+		"wachtwoord": "hr2",
+		"fName": "Amen",
+		"lName": "Tsehaie"
+	}
+]

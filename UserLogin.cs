@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 static class UserLogin
 {
     static private AccountsLogic accountsLogic = new AccountsLogic();
@@ -5,32 +6,73 @@ static class UserLogin
 
     public static void Start()
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("[I] - Inloggen");
         Console.WriteLine("[R] - Registreren");
 
-        Console.WriteLine("Please enter your email address:");
-        string email = Console.ReadLine();
-        Console.WriteLine("Please enter your password: ");
-        string password = Console.ReadLine();
-        AccountModel acc = accountsLogic.CheckLogin(email, password);
-        if (acc != null)
+        string input = Console.ReadLine().ToLower();
+        if (input == "i")
         {
-            Console.Clear();
-            Console.WriteLine("Welkom terug " + acc.FullName);
-            Console.WriteLine("Uw email is " + acc.EmailAddress);
-
-            //Write some code to go back to the menu
-            if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
+            Console.WriteLine("Please enter your email address:");
+            string email = Console.ReadLine();
+            Console.WriteLine("Please enter your password: ");
+            string password = Console.ReadLine();
+            AccountModel acc = accountsLogic.CheckLogin(email, password);
+            if (acc != null)
             {
-                bool admin = true;
                 Console.Clear();
-                Console.WriteLine("Welkom admin.");
-                Overzicht_Admin.Admin(admin);
-            }
-            bool user = true;
+                Console.WriteLine("Welkom terug " + acc.fName + acc.lName);
+                Console.WriteLine("Uw email is " + acc.Email);
 
-            Menu.Start(user);
+                //Write some code to go back to the menu
+                if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
+                {
+                    bool admin = true;
+                    Console.Clear();
+                    Console.WriteLine("Welkom admin.");
+                    Overzicht_Admin.Admin(admin);
+                }
+                bool user = true;
+
+                Menu.Start(user);
+            }
+        }
+        else if (input == "r")
+        {
+            Console.WriteLine("Voornaam: ");
+            string fname = Console.ReadLine();
+            Console.WriteLine("Achternaam: ");
+            string lname = Console.ReadLine();
+            Console.WriteLine("Voer een nieuw emailadres in: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Voer een nieuw wachtwoord in: ");
+            string password = Console.ReadLine();
+
+            string jsondata = File.ReadAllText("accounts.json");
+            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
+            dynamic newLogin = new
+            {
+                email = email,
+                wachtwoord = password,
+                fName = fname,
+                lName = lname
+            };
+            data.Add(newLogin);
+
+            string output = JsonConvert.SerializeObject(data, Formatting.Indented);
+            File.WriteAllText("accounts.json", output);
+            Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
         }
         else
         {

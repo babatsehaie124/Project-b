@@ -50,7 +50,7 @@ class AccountsLogic
         {
             return null;
         }
-        CurrentAccount = _accounts.Find(i => i.EmailAddress == email && i.Password == password);
+        CurrentAccount = _accounts.Find(i => i.Email == email && i.Wachtwoord == password);
         return CurrentAccount;
     }
 }

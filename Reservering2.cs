@@ -29,6 +29,17 @@ class ReserveringsManagerZaal2
         {
 
             Console.Clear();
+            string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+            Console.WriteLine(menu2);
             PrintSeatingArea();
             PrintInstructions();
 
@@ -122,7 +133,7 @@ class ReserveringsManagerZaal2
                             // doorverstuurd naar eten
                             Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
-                           // Choosefood.PickFood();
+                            // Choosefood.PickFood();
                             ja = false;
                             Menu.Start(user);
                             break;

@@ -4,6 +4,17 @@ public class Rooster
 {
     public static void RoosterMenu(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("[A] - Rooster\n[T] - Terug naar het menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
@@ -33,16 +44,14 @@ public class Rooster
         {
             string day = kvp.Key;
             List<MovieSchedule> movieSchedules = kvp.Value;
-
-            Console.WriteLine(day);
+            Console.WriteLine("----------------------------------------------------------------------------");
+            Console.WriteLine($"{day}\n----------------------------------------------------------------------------");
 
             foreach (var movieSchedule in movieSchedules)
             {
                 Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
                 Console.WriteLine();
             }
-
-            Console.WriteLine();
         }
 
         Console.WriteLine("[F] - Filter rooster");
@@ -76,7 +85,8 @@ public class Rooster
         bool exit = false;
         while (!exit)
         {
-            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.) of [T] om terug te gaan");
+            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
+            Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
             input = Char.ToUpper(input[0]) + input.Substring(1);
 
@@ -98,11 +108,11 @@ public class Rooster
 
                 Console.WriteLine();
 
-                Console.WriteLine("Wil je verder filteren?\n [J] - Ja\n [N] - Nee");
+                Console.WriteLine("Wil je verder filteren?\n[J] - Ja\n[N] - Nee");
                 string filter = Console.ReadLine();
                 if (filter.ToLower() == "j")
                 {
-                    Console.WriteLine("Voer de titel van de film:");
+                    Console.WriteLine("Voer de titel van de film in:");
                     string filmTitle = Console.ReadLine();
 
                     var selectedFilm = movieSchedules.Find(schedule => schedule.Title.Equals(filmTitle, StringComparison.OrdinalIgnoreCase));
@@ -113,7 +123,7 @@ public class Rooster
                     }
                     else
                     {
-                        Console.WriteLine("Film niet gevonden. Probeer opnieuw.");
+                        Console.WriteLine("Film niet gevonden. Probeer het opnieuw.");
                     }
 
                     Console.WriteLine();

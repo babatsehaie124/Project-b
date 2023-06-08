@@ -24,16 +24,16 @@ ______ _                                  ______      _   _               _
         string input = Console.ReadLine().ToLower();
         if (input == "i")
         {
-            Console.WriteLine("Please enter your email address:");
+            Console.WriteLine("Voer uw email in: ");
             string email = Console.ReadLine();
-            Console.WriteLine("Please enter your password: ");
+            Console.WriteLine("Voer uw wachtwoord in: ");
             string password = Console.ReadLine();
             AccountModel acc = accountsLogic.CheckLogin(email, password);
             if (acc != null)
             {
                 Console.Clear();
                 Console.WriteLine("Welkom terug " + acc.fName + acc.lName);
-                Console.WriteLine("Uw email is " + acc.Email);
+                Console.WriteLine("Uw email is " + acc.email);
 
                 //Write some code to go back to the menu
                 if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
@@ -55,16 +55,16 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("Achternaam: ");
             string lname = Console.ReadLine();
             Console.WriteLine("Voer een nieuw emailadres in: ");
-            string email = Console.ReadLine();
+            string email1 = Console.ReadLine();
             Console.WriteLine("Voer een nieuw wachtwoord in: ");
-            string password = Console.ReadLine();
-
+            string password1 = Console.ReadLine();
+        
             string jsondata = File.ReadAllText("accounts.json");
-            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
+            List<AccountModel> data = JsonConvert.DeserializeObject<List<AccountModel>>(jsondata);
             dynamic newLogin = new
             {
-                email = email,
-                wachtwoord = password,
+                email = email1,
+                wachtwoord = password1,
                 fName = fname,
                 lName = lname
             };

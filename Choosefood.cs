@@ -10,8 +10,10 @@ class ChooseFood
 
         double Foodcost = 0.0;
 
-        Console.WriteLine("Welkom bij onze eet-menu");
-        Console.WriteLine("Maak a.u.b u keuze");
+        Console.WriteLine("Welkom bij onze Eet- drinkmenu!");
+        Console.WriteLine("Maak a.u.b u keuze: ");
+        Console.WriteLine("Voer a.u.b het aantal dat u wilt hebben per product:");
+        Console.WriteLine();
 
         // List<double> Food_Drinks = new();
         // foreach(var food in )
@@ -28,16 +30,20 @@ class ChooseFood
         Foodcost += OrderFood("Snoepzak", storeproducts.Candy_Bag);
         Foodcost += OrderFood("Chips", storeproducts.Crisps);
 
-
+        Console.WriteLine();
         Console.WriteLine($"De totale kosten zijn: {Foodcost} euro");
-        Console.WriteLine("Bedankt voor het bestellen van onze Eet-drink winkel!");
+        Console.WriteLine("Bedankt voor het bestellen bij onze Eet-drinkmenu!");
+        Console.WriteLine("Je wordt doorverwezen...\n");
+        Thread.Sleep(3000);
+        Console.Clear();
+        // Hier wordt de totalcost file verwezen. 
 
         Console.ReadLine();
     }
 
     static double OrderFood(string itemName, double itemPrice)
     {
-        Console.Write($"Voer a.u.b in aantal {itemName}: ");
+        Console.Write($"{itemName}: ");
         double amount = Convert.ToDouble(Console.ReadLine());
 
 

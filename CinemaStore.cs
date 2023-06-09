@@ -18,6 +18,7 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
+        Console.WriteLine();
         Console.WriteLine("Welkom bij onze online winkel.");
         Console.WriteLine("[P] - Bekijk aanwezige producten.");
         Console.WriteLine("[T] - Terug naar het menu.");

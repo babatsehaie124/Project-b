@@ -33,7 +33,7 @@ ______ _                                  ______      _   _               _
             {
                 Console.Clear();
                 Console.WriteLine("Welkom terug " + acc.fName + acc.lName);
-                Console.WriteLine("Uw email is " + acc.email);
+                // Console.WriteLine("Uw email is " + acc.email);
 
                 //Write some code to go back to the menu
                 if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
@@ -58,7 +58,7 @@ ______ _                                  ______      _   _               _
             string email1 = Console.ReadLine();
             Console.WriteLine("Voer een nieuw wachtwoord in: ");
             string password1 = Console.ReadLine();
-        
+
             string jsondata = File.ReadAllText("accounts.json");
             List<AccountModel> data = JsonConvert.DeserializeObject<List<AccountModel>>(jsondata);
             dynamic newLogin = new

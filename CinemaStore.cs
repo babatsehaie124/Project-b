@@ -37,15 +37,15 @@ ______ _                                  ______      _   _               _
 
             foreach (var product in products)
             {
-                Console.WriteLine("                                    Extra informatie:");
-                Console.WriteLine($"Kleine Popcorn: {product.Small_Popcorn} euro         | Dezelfde prijzen gelden voor de smaken: Zoet, Zout, Mix en Caramel.");
+                Console.WriteLine("                                   Extra informatie:");
+                Console.WriteLine($"Kleine Popcorn: {product.Small_Popcorn} euro           | Dezelfde prijzen gelden voor de smaken: Zoet, Zout, Mix en Caramel.");
                 Console.WriteLine($"Medium Popcorn: {product.Medium_Popcorn} euro");
                 Console.WriteLine($"Grote Popcorn:  {product.Large_Popcorn} euro\n");
 
-                Console.WriteLine($"Nachos:         {product.Nachos} euro         | Dit zijn driehoekvormige chips met een lichte paprika smaak.");
+                Console.WriteLine($"Nachos:         {product.Nachos} euro           | Dit zijn driehoekvormige chips met een lichte paprika smaak.");
                 Console.WriteLine($"Loaded Nachos:  {product.Loaded_Nachos} euro         | Bevat Paprika saus, uien, augurken, jalapeños en kaas.\n");
 
-                Console.WriteLine($"Hotdog:         {product.Hotdog} euro         | Bevat varkensvlees en saus is naar keuze.");
+                Console.WriteLine($"Hotdog:         {product.Hotdog} euro        | Bevat varkensvlees en saus is naar keuze.");
                 Console.WriteLine($"Loaded Hotdog:  {product.Loaded_Hotdog} euro         | Bevat Varkensvlees, Mosterd saus, kaas, uien en paprika stukjes.\n");
 
                 Console.WriteLine($"Koude dranken:  {product.Cold_Drinks} euro         | Dezelfde prijzen voor alle dranken: Cola, Chaudfontaine blauw (water), Fristy, Chocolademelk, Lipton, Fanta, Sprite en 7up.");
@@ -53,9 +53,9 @@ ______ _                                  ______      _   _               _
 
                 Console.WriteLine($"Kindermenu:     {product.Kids_Meal} euro         | Bevat Kleine stukjes chocolade, een speelgoed, en een appelmoes.\n");
 
-                Console.WriteLine($"Snoepzak:       {product.Candy_Bag} euro         | Bevat stukjes van Haribo, rode drop, Pico Bella, kleine lolly, Maoam.\n");
+                Console.WriteLine($"Snoepzak:       {product.Candy_Bag} euro           | Bevat stukjes van Haribo, rode drop, Pico Bella, kleine lolly, Maoam.\n");
 
-                Console.WriteLine($"Chips:          {product.Crisps} euro         | Bevat alleen Lays merk chips.\n");
+                Console.WriteLine($"Chips:          {product.Crisps} euro           | Bevat alleen Lays merk chips.\n");
             }
 
             Console.WriteLine("Bedankt voor het bekijken van onze menu.");

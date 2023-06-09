@@ -1,8 +1,8 @@
-/*using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 class ChooseFood
 {
-    static void Main()
+    public static void PickFood(bool user)
     {
         string json = File.ReadAllText("Store.json");
         List<Storeproducts> storeProductsList = JsonConvert.DeserializeObject<List<Storeproducts>>(json);
@@ -16,17 +16,17 @@ class ChooseFood
         // List<double> Food_Drinks = new();
         // foreach(var food in )
         Foodcost += OrderFood("Kleine Popcorn", storeproducts.Small_Popcorn);
-        Foodcost += OrderFood("Medium Popcorn", storeProducts.Medium_Popcorn);
-        Foodcost += OrderFood("Grote Popcorn", storeProducts.Large_Popcorn);
-        Foodcost += OrderFood("Nachos", storeProducts.Nachos);
-        Foodcost += OrderFood("Loaded Nachos", storeProducts.Loaded_Nachos);
-        Foodcost += OrderFood("Hotdog", storeProducts.Hotdog);
-        Foodcost += OrderFood("Loaded Hotdog", storeProducts.Loaded_Hotdog);
-        Foodcost += OrderFood("Koude dranken", storeProducts.Cold_Drinks);
-        Foodcost += OrderFood("Warme dranken", storeProducts.Hot_Drinks);
-        Foodcost += OrderFood("Kindermenu", storeProducts.Kids_Meal);
-        Foodcost += OrderFood("Snoepzak", storeProducts.Candy_Bag);
-        Foodcost += OrderFood("Chips", storeProducts.Crisps);
+        Foodcost += OrderFood("Medium Popcorn", storeproducts.Medium_Popcorn);
+        Foodcost += OrderFood("Grote Popcorn", storeproducts.Large_Popcorn);
+        Foodcost += OrderFood("Nachos", storeproducts.Nachos);
+        Foodcost += OrderFood("Loaded Nachos", storeproducts.Loaded_Nachos);
+        Foodcost += OrderFood("Hotdog", storeproducts.Hotdog);
+        Foodcost += OrderFood("Loaded Hotdog", storeproducts.Loaded_Hotdog);
+        Foodcost += OrderFood("Koude dranken", storeproducts.Cold_Drinks);
+        Foodcost += OrderFood("Warme dranken", storeproducts.Hot_Drinks);
+        Foodcost += OrderFood("Kindermenu", storeproducts.Kids_Meal);
+        Foodcost += OrderFood("Snoepzak", storeproducts.Candy_Bag);
+        Foodcost += OrderFood("Chips", storeproducts.Crisps);
 
 
         Console.WriteLine($"De totale kosten zijn: {Foodcost} euro");
@@ -38,11 +38,12 @@ class ChooseFood
     static double OrderFood(string itemName, double itemPrice)
     {
         Console.Write($"Voer a.u.b in aantal {itemName}: ");
-        int amount = Convert.ToInt32(Console.ReadLine());
+        double amount = Convert.ToDouble(Console.ReadLine());
+
 
         return amount * itemPrice;
     }
-}*/
+}
 
 
 

@@ -14,14 +14,14 @@ public class Reservering
 
     public void LoadFromCurrent()
     {
-        string jsonData = File.ReadAllText("HuidigeReservering.json");
-        List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+        // string jsonData = File.ReadAllText("HuidigeReservering.json");
+        // List<Reservering> data = JsonConvert.DeserializeObject<List<Reservering>>(jsonData);
     }
 
     public void SaveAsCurrent()
     {
-        string jsonData = File.ReadAllText("HuidigeReservering.json");
-        List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+        // string jsonData = File.ReadAllText("HuidigeReservering.json");
+        // List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
 
         //dynamic current
     }

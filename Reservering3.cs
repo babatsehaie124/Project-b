@@ -133,7 +133,8 @@ ______ _                                  ______      _   _               _
                             // doorverstuurd naar eten
                             Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
-                            //Choosefood.PickFood();
+                            Console.Clear();
+                            ChooseFood.PickFood(user);
                             ja = false;
                             Menu.Start(user);
                             break;

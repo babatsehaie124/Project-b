@@ -57,6 +57,7 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar ons reserveringssysteem.");
             Rooster.RoosterMenu(user);
+
         }
         else if (input == "E")
         {

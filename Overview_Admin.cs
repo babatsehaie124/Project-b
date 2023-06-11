@@ -16,7 +16,6 @@ ______ _                                  ______      _   _               _
 \____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
                                   | |                                                       
                                   |_|";
-
         Console.WriteLine(menu2);
         Console.WriteLine("Welkom Admin! \n");
         Console.WriteLine("[A] - in om huidige films te zien:");

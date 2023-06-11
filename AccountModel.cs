@@ -6,10 +6,10 @@ class AccountModel
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("email")]
+    [JsonPropertyName("Email")]
     public string Email { get; set; }
 
-    [JsonPropertyName("wachtwoord")]
+    [JsonPropertyName("Wachtwoord")]
     public string Wachtwoord { get; set; }
 
     [JsonPropertyName("fName")]

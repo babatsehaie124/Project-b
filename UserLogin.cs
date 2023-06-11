@@ -3,6 +3,7 @@ static class UserLogin
 {
     static private AccountsLogic accountsLogic = new AccountsLogic();
 
+    public static int NextId { get; private set; }
 
     public static void Start()
     {
@@ -60,14 +61,16 @@ ______ _                                  ______      _   _               _
             string password1 = Console.ReadLine();
 
             string jsondata = File.ReadAllText("accounts.json");
-            List<AccountModel> data = JsonConvert.DeserializeObject<List<AccountModel>>(jsondata);
+            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
             dynamic newLogin = new
             {
+                Id = NextId++,
                 email = email1,
                 wachtwoord = password1,
                 fName = fname,
                 lName = lname
             };
+            // AccountModel nieuw = new(NextId++, email1, password1, fname, lname);
             data.Add(newLogin);
 
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);

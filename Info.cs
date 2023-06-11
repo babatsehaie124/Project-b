@@ -232,6 +232,17 @@ ______ _                                  ______      _   _               _
 
     public static void Faq(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Wat voor 3D bril moet ik gebruiken?\n" +
         "Voor 3D, 4DX 3D en Dolby Atmos 3D gebruik je de normale 3D Brillen.\n" +
         "Imax 3D Gebruik je speciale brillen, Imax 3D laser glasses.\n");

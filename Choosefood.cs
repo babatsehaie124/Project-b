@@ -9,7 +9,17 @@ class ChooseFood
         Storeproducts storeproducts = storeProductsList[0];
 
         double Foodcost = 0.0;
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
 
+        Console.WriteLine(menu2);
         Console.WriteLine("Welkom bij onze Eet- drinkmenu!");
         Console.WriteLine("Maak a.u.b u keuze: ");
         Console.WriteLine("Voer a.u.b het aantal dat u wilt hebben per product:");

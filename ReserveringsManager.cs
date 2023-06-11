@@ -100,22 +100,22 @@ ______ _                                  ______      _   _               _
                 Menu.Start(user);
             }
 
-            // else if (keyInfo.Key == ConsoleKey.Spacebar)
-            //pas wanneer een stoel succesvol opgeslagen kan worden
-            // {
-            //     if (seats[selectedRow, selectedCol] == SEAT_AVAILABLE) pas wanneer een stoel succesvol opgeslagen kan worden
-            //     {
-            //         System.Console.WriteLine("Je hebt nog niks geselecteerd. Selecteer een stoel als u de door wilt gaan met u reservering.\n");
-            //         Reserveren(user);
-            //         break;
-            //     }
-            //     else
-            //     Console.WriteLine("Je wordt doorverwezen...\n");
-            //     Thread.Sleep(3000);
-            //     ja = false;
-            //     Menu.Start(user);
-            //     // break;
-            // }
+            else if (keyInfo.Key == ConsoleKey.Spacebar)
+            // pas wanneer een stoel succesvol opgeslagen kan worden
+            {
+                if (seats[selectedRow, selectedCol] == SEAT_AVAILABLE)  // pas wanneer een stoel succesvol opgeslagen kan worden
+                {
+                    System.Console.WriteLine("Je hebt nog niks geselecteerd. Selecteer een stoel als u de door wilt gaan met u reservering.\n");
+                    Reserveren(user);
+                    break;
+                }
+                else
+                    Console.WriteLine("Je wordt doorverwezen...\n");
+                Thread.Sleep(3000);
+                ja = false;
+                Menu.Start(user);
+                break;
+            }
 
             else if (keyInfo.Key == ConsoleKey.Enter)
             {
@@ -134,13 +134,13 @@ ______ _                                  ______      _   _               _
                     else
                     {
                         SelectSeat(selectedRow, selectedCol);
-                        if (seats[selectedRow, selectedCol] == SELECT_SEAT )
+                        if (seats[selectedRow, selectedCol] == SELECT_SEAT)
                         {
                             Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} geselecteerd.\n");
                             reservedSeatCount--;
                         }
                         else
-                        Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gedeselecteerd.\n");
+                            Console.WriteLine($"Je hebt stoel {GetSeatRow(selectedRow, selectedCol)} gedeselecteerd.\n");
                         reservedSeatCount++;
 
                         selectedRow = -1;
@@ -151,9 +151,6 @@ ______ _                                  ______      _   _               _
                             Console.WriteLine("Het maximale aantal stoelen per Reserverings is bereikt. Je kunt niet meer stoelen selecteren.");
                             break;
                         }
-                        // Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
-                        // string reser_input = Console.ReadLine().ToUpper();
-                        // if (reser_input == "N")
                     }
                 }
             }
@@ -288,8 +285,8 @@ ______ _                                  ______      _   _               _
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("[Space] - Selecteer een stoel");
-        Console.WriteLine("[Enter] - Ga door met je reservering");
+        Console.WriteLine("[Enter] - Selecteer een stoel");
+        Console.WriteLine("[Space] - Ga door met je reservering");
         Console.WriteLine("[Esc]   - Keer terug naar het menu");
         Console.WriteLine();
     }
@@ -329,7 +326,7 @@ ______ _                                  ______      _   _               _
         {
             seats[row, col] = SEAT_AVAILABLE;
             currentReservation.Stoelen.Remove(GetSeatRow(row, col));
-            
+
         }
         else
         {

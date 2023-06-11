@@ -58,7 +58,7 @@ ______ _                                  ______      _   _               _
         else
         {
             Console.Clear();
-            Console.WriteLine("Ongeldige invoer");
+            Console.WriteLine("Ongeldige invoer.");
             User(user);
         }
     }

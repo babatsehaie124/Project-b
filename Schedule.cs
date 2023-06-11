@@ -161,7 +161,7 @@ ______ _                                  ______      _   _               _
             else
             {
                 Console.Clear();
-                Console.WriteLine("Invalid day entered. Please try again.");
+                Console.WriteLine("Ongeldige invoer. Probeer opnieuw.");
                 RoosterOneDay(user);
             }
         }

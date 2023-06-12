@@ -46,6 +46,10 @@ ______ _                                  ______      _   _               _
         {
             string day = kvp.Key;
             List<MovieSchedule> movieSchedules = kvp.Value;
+
+            // Sort movie schedules by start time
+            movieSchedules.Sort((a, b) => DateTime.Parse(a.Start).CompareTo(DateTime.Parse(b.Start)));
+
             Console.WriteLine("----------------------------------------------------------------------------");
             Console.WriteLine($"{day}\n----------------------------------------------------------------------------");
 
@@ -73,11 +77,13 @@ ______ _                                  ______      _   _               _
             RoosterOneDay(user);
         }
         else if (input0.ToLower() == "r")
-        {
+        {   
             Console.Clear();
             Reserveervoorfilm(user);
         }
     }
+
+
 
     public static void Reserveervoorfilm(bool user)
     {
@@ -177,6 +183,9 @@ ______ _                                  ______      _   _               _
 
                 Console.WriteLine(input);
 
+                // Sort movie schedules by start time
+                movieSchedules.Sort((a, b) => DateTime.Parse(a.Start).CompareTo(DateTime.Parse(b.Start)));
+
                 foreach (var movieSchedule in movieSchedules)
                 {
                     Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
@@ -204,6 +213,7 @@ ______ _                                  ______      _   _               _
                         Console.WriteLine("Film niet gevonden. Probeer het opnieuw.");
                     }
 
+                    Console.WriteLine();
 
                     Console.WriteLine("[R] - Reserveer voor de film");
                     Console.WriteLine("[T] - Terug naar het rooster menu");
@@ -220,13 +230,12 @@ ______ _                                  ______      _   _               _
                         Console.Clear();
                         Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal);
                         Roosterreserveer.Reserve(user);
-                        
                         // Roosterreserveer.Reser(user);
                     }
                 }
                 else if (filter.ToLower() == "n")
                 {
-                    Console.WriteLine("[T] - Terug naar het rooster menu");
+                    Console.Clear();
                     Console.WriteLine("Selecteer de opties: ");
 
                     string? input0 = Console.ReadLine();
@@ -245,9 +254,7 @@ ______ _                                  ______      _   _               _
             }
         }
     }
+
 }
-
-
-
 
 

@@ -20,6 +20,7 @@ ______ _                                  ______      _   _               _
         string User_lower = User.ToLower();
         if (User_lower == "a")
         {
+            Console.Clear();
             Roosterweek(user);
         }
         else if (User_lower == "t")
@@ -31,6 +32,7 @@ ______ _                                  ______      _   _               _
         else
         {
             Console.WriteLine("Ongeldige invoer");
+            Console.Clear();
             RoosterMenu(user);
         }
     }
@@ -67,12 +69,85 @@ ______ _                                  ______      _   _               _
         }
         else if (input0.ToLower() == "f")
         {
+            Console.Clear();
             RoosterOneDay(user);
         }
         else if (input0.ToLower() == "r")
         {
             Console.Clear();
-            RoosterOneDay(user);
+            Reserveervoorfilm(user);
+        }
+    }
+
+    public static void Reserveervoorfilm(bool user)
+    {
+        string json = File.ReadAllText("Rooster.json");
+        var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
+
+        bool exit = false;
+        while (!exit)
+        {
+            Console.Clear();
+            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
+            Console.WriteLine("[T] - Terug naar het roostermenu");
+            string input = Console.ReadLine();
+            input = Char.ToUpper(input[0]) + input.Substring(1);
+
+            if (input.ToLower() == "t")
+            {
+                Console.Clear();
+                RoosterMenu(user);
+            }
+            else if (scheduleByDay.ContainsKey(input))
+            {
+                List<MovieSchedule> movieSchedules = scheduleByDay[input];
+
+                Console.WriteLine(input);
+
+                foreach (var movieSchedule in movieSchedules)
+                {
+                    Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
+                    Console.WriteLine();
+                }
+
+                Console.WriteLine();
+                
+
+                Console.WriteLine("Voer de titel van de film in:");
+                string filmTitle = Console.ReadLine();
+                Console.Clear();
+
+                var selectedFilm = movieSchedules.Find(schedule => schedule.Title.Equals(filmTitle, StringComparison.OrdinalIgnoreCase));
+
+                if (selectedFilm != null)
+                {
+                    Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
+                }
+                else
+                {
+                    Console.WriteLine("Film niet gevonden. Probeer het opnieuw.");
+                }
+
+                Console.WriteLine();
+
+                Console.WriteLine("[R] - Reserveer voor de film");
+                Console.WriteLine("[T] - Terug naar het rooster menu");
+                Console.WriteLine("Selecteer een van de opties: ");
+
+                string? input0 = Console.ReadLine();
+                if (input0?.ToLower() == "t")
+                {
+                    Console.Clear();
+                    RoosterMenu(user);
+                }
+                else if (input0.ToLower() == "r")
+                {
+                    Console.Clear();
+                    Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal);
+                    Roosterreserveer.Reserve(user);
+                    //Roosterreserveer.Reser(user);
+                }
+            }
         }
     }
 
@@ -85,6 +160,7 @@ ______ _                                  ______      _   _               _
         bool exit = false;
         while (!exit)
         {
+            Console.Clear();
             Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
             Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
@@ -92,6 +168,7 @@ ______ _                                  ______      _   _               _
 
             if (input.ToLower() == "t")
             {
+                Console.Clear();
                 RoosterMenu(user);
             }
             else if (scheduleByDay.ContainsKey(input))
@@ -114,6 +191,7 @@ ______ _                                  ______      _   _               _
                 {
                     Console.WriteLine("Voer de titel van de film in:");
                     string filmTitle = Console.ReadLine();
+                    Console.Clear();
 
                     var selectedFilm = movieSchedules.Find(schedule => schedule.Title.Equals(filmTitle, StringComparison.OrdinalIgnoreCase));
 
@@ -126,7 +204,6 @@ ______ _                                  ______      _   _               _
                         Console.WriteLine("Film niet gevonden. Probeer het opnieuw.");
                     }
 
-                    Console.WriteLine();
 
                     Console.WriteLine("[R] - Reserveer voor de film");
                     Console.WriteLine("[T] - Terug naar het rooster menu");
@@ -141,8 +218,10 @@ ______ _                                  ______      _   _               _
                     else if (input0.ToLower() == "r")
                     {
                         Console.Clear();
-                        Roosterreserveer roosterreserveer = new(selectedFilm.Zaal);
-                        //Roosterreserveer.Reser(user);
+                        Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal);
+                        Roosterreserveer.Reserve(user);
+                        
+                        // Roosterreserveer.Reser(user);
                     }
                 }
                 else if (filter.ToLower() == "n")
@@ -164,22 +243,6 @@ ______ _                                  ______      _   _               _
                 Console.WriteLine("Ongeldige invoer. Probeer opnieuw.");
                 RoosterOneDay(user);
             }
-        }
-    }
-
-    public static void Roosterreserveer(int zaal)
-    {
-        if (zaal == 1)
-        {
-            ReserveringsManager reserveer = new();
-        }
-        else if (zaal == 2)
-        {
-            ReserveringsManagerZaal2 reserveer = new();
-        }
-        else if (zaal == 3)
-        {
-            ReserveringsManagerZaal3 reserveer = new();
         }
     }
 }

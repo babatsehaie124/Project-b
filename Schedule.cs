@@ -102,7 +102,7 @@ ______ _                                  ______      _   _               _
         while (!exit)
         {
             Console.Clear();
-            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.)");
+            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
             Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
             input = Char.ToUpper(input[0]) + input.Substring(1);
@@ -170,8 +170,8 @@ ______ _                                  ______      _   _               _
                 else if (input0.ToLower() == "r")
                 {
                     Console.Clear();
-                    Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal);
-                    Roosterreserveer.Reserve(user);
+                    Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal, selectedFilm.Rooster_Id);
+                    Roosterreserveer.Reserve(user, selectedFilm.Rooster_Id);
                     //Roosterreserveer.Reser(user);
                 }
             }
@@ -265,8 +265,8 @@ ______ _                                  ______      _   _               _
                     else if (input0.ToLower() == "r")
                     {
                         Console.Clear();
-                        Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal);
-                        Roosterreserveer.Reserve(user);
+                        Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal, selectedFilm.Rooster_Id);
+                        Roosterreserveer.Reserve(user, selectedFilm.Rooster_Id);
                         // Roosterreserveer.Reser(user);
                     }
                 }
@@ -293,5 +293,3 @@ ______ _                                  ______      _   _               _
     }
 
 }
-
-

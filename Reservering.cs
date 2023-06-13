@@ -14,15 +14,20 @@ public class Reservering
 
     public void LoadFromCurrent()
     {
-        // string jsonData = File.ReadAllText("HuidigeReservering.json");
-        // List<Reservering> data = JsonConvert.DeserializeObject<List<Reservering>>(jsonData);
+        string jsonData = File.ReadAllText("HuidigeReservering.json");
+        Reservering data = JsonConvert.DeserializeObject<Reservering>(jsonData);
+        RoosterId = data.RoosterId;
+        Stoelen = data.Stoelen;
+        Snacks = data.Snacks;
     }
 
     public void SaveAsCurrent()
     {
-        // string jsonData = File.ReadAllText("HuidigeReservering.json");
-        // List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsonData);
+        Reservering data = new Reservering(RoosterId);
+        data.Stoelen = Stoelen;
+        data.Snacks = Snacks;
 
-        //dynamic current
+        string jsonData = JsonConvert.SerializeObject(data);
+        File.WriteAllText("HuidigeReservering.json", jsonData);
     }
 }

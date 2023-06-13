@@ -37,7 +37,7 @@ ______ _                                  ______      _   _               _
         if (input == "I")
         {
             Console.Clear();
-            UserLogin.Start();
+            UserLogin.Start(user);
         }
         else if (input == "B")
         {
@@ -49,8 +49,9 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            //Overzicht_Customer.User(user);
-            ReserveringsManager.Reserveren(user);
+            // Overzicht_Customer.User(user);
+            ReserveringsManager.Reserveren(user, 20);
+            // Overzicht_Admin.Admin(user);
         }
         else if (input == "R")
         {

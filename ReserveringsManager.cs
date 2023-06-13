@@ -107,11 +107,15 @@ ______ _                                  ______      _   _               _
                     foreach (var seat in selectedSeats)
                     {
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
-                        Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
+                        Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.");
                     }
-                    Thread.Sleep(3000);
+                    Console.WriteLine();
+                    Console.WriteLine("Je wordt doorverwezen...");
+                    Thread.Sleep(5000);
+                    Console.Clear();
                     currentReservation.RoosterId = Rooster_Id;
                     currentReservation.SaveAsCurrent();
+                    ChooseFood.PickFood(user);
                     break;
                 case ConsoleKey.Escape:
                     Console.Clear();

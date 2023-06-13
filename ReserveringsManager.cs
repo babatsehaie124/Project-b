@@ -110,12 +110,13 @@ ______ _                                  ______      _   _               _
                     {
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
                         Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
-                        System.Console.WriteLine(LoveSeats);
-                        System.Console.WriteLine(PremiumSeats);
                     }
+                    System.Console.WriteLine("Je wordt doorverwezen...");
                     Thread.Sleep(3000);
                     currentReservation.RoosterId = Rooster_Id;
                     currentReservation.SaveAsCurrent();
+                    Console.Clear();
+                    ChooseFood.PickFood(user);
                     break;
                 case ConsoleKey.Escape:
                     Console.Clear();
@@ -190,12 +191,10 @@ ______ _                                  ______      _   _               _
                 seats[row, col] = LOVESEAT_AVAILABLE;
                 if (LoveSeats.Contains((row, col + 1)))
                 {
-                    latestError = "rechts";
                     seats[row, col + 1] = LOVESEAT_AVAILABLE;
                 }
                 else if (LoveSeats.Contains((row, col - 1)))
                 {
-                    latestError = "links";
                     seats[row, col - 1] = LOVESEAT_AVAILABLE;
                 }
                 currentReservation.Stoelen.Remove(GetSeatRow(row, col));

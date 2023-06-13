@@ -21,7 +21,7 @@ ______ _                                  ______      _   _               _
         // }
         if (user != true && Admin != true)
         {
-            Console.WriteLine("[L1]- Inloggen");
+            Console.WriteLine("[I] - Inloggen / Registreren");
         }
         Console.WriteLine("[B] - Bioscoop informatie");
         Console.WriteLine("[E] - Aanwezige etenswaren");
@@ -29,15 +29,15 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("[R] - Reserveren");
         if (user == true || Admin == true)
         {
-            Console.WriteLine("[L2]- Uitloggen");
+            Console.WriteLine("[U] - Uitloggen");
         }
         Console.WriteLine("[Q] - Verlaat programma");
 
         string input = Console.ReadLine().ToUpper();
-        if (input == "L1")
+        if (input == "I")
         {
             Console.Clear();
-            UserLogin.Start();
+            UserLogin.Start(user);
         }
         else if (input == "B")
         {
@@ -49,14 +49,16 @@ ______ _                                  ______      _   _               _
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            //Overzicht_Customer.User(user);
-            Reservering.Reserveren(user);
+            // Overzicht_Customer.User(user);
+            ReserveringsManager.Reserveren(user, 20);
+            // Overzicht_Admin.Admin(user);
         }
         else if (input == "R")
         {
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar ons reserveringssysteem.");
             Rooster.RoosterMenu(user);
+
         }
         else if (input == "E")
         {
@@ -65,7 +67,7 @@ ______ _                                  ______      _   _               _
             CinemaStore.Products(user);
 
         }
-        else if (input == "L2" && user == true || input == "L2" && Admin == true)
+        else if (input == "U" && user == true || input == "U" && Admin == true)
         {
             Console.WriteLine("Weet je zeker dat je wil uitloggen? (J of N)");
             string choice = Console.ReadLine().ToUpper();

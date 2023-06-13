@@ -1,4 +1,4 @@
-class ReserveringZaal2
+class ReserveringsManagerZaal2
 {
     private const int ROW_COUNT = 10;
     private const int COL_COUNT = 20;
@@ -29,6 +29,17 @@ class ReserveringZaal2
         {
 
             Console.Clear();
+            string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+            Console.WriteLine(menu2);
             PrintSeatingArea();
             PrintInstructions();
 
@@ -112,7 +123,7 @@ class ReserveringZaal2
 
                         if (reservedSeatCount >= 10)
                         {
-                            Console.WriteLine("Het maximale aantal stoelen per reservering is bereikt. Je kunt niet meer stoelen selecteren.");
+                            Console.WriteLine("Het maximale aantal stoelen per Reservering is bereikt. Je kunt niet meer stoelen selecteren.");
                             break;
                         }
                         Console.WriteLine("Wil je nog meer stoelen selecteren? [J] of [N]");
@@ -122,7 +133,7 @@ class ReserveringZaal2
                             // doorverstuurd naar eten
                             Console.WriteLine("Je wordt doorverwezen...\n");
                             Thread.Sleep(3000);
-                           // Choosefood.PickFood();
+                            // Choosefood.PickFood();
                             ja = false;
                             Menu.Start(user);
                             break;
@@ -136,52 +147,52 @@ class ReserveringZaal2
     }
 
     private static void InitializeSeats()
-{
-    seats = new char[ROW_COUNT, COL_COUNT];
-
-    for (int row = 0; row < ROW_COUNT; row++)
     {
-        for (int col = 0; col < COL_COUNT; col++)
-        {
-            if (row == 5 && (col == 2 || col == 3 || col == 7 ||
-                col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
+        seats = new char[ROW_COUNT, COL_COUNT];
 
+        for (int row = 0; row < ROW_COUNT; row++)
+        {
+            for (int col = 0; col < COL_COUNT; col++)
             {
-                seats[row, col] = LOVESEAT_AVAILABLE;
-            }
-            else if (row == 7 && (col == 2 || col == 3 || col == 7 ||
+                if (row == 5 && (col == 2 || col == 3 || col == 7 ||
                     col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
 
-            {
-                Console.BackgroundColor = ConsoleColor.White;
-                seats[row, col] = PREMIUMSEAT_AVAILABLE;
-                Console.ResetColor();
-            }
-            else
-            {
-                seats[row, col] = SEAT_AVAILABLE;
+                {
+                    seats[row, col] = LOVESEAT_AVAILABLE;
+                }
+                else if (row == 7 && (col == 2 || col == 3 || col == 7 ||
+                        col == 8 || col == 12 || col == 13 || col == 17 || col == 18))
+
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                    Console.ResetColor();
+                }
+                else
+                {
+                    seats[row, col] = SEAT_AVAILABLE;
+                }
             }
         }
-    }
-    // hier controleert hij de huidig beschikbare stoelen
-    if (File.Exists("selected_seats2.txt"))
-    {
-        string[] Seats = File.ReadAllLines("selected_seats2.txt");
-        foreach (string seatName in Seats)
+        // hier controleert hij de huidig beschikbare stoelen
+        if (File.Exists("selected_seats2.txt"))
         {
-            if (seatName.Length >= 2)
+            string[] Seats = File.ReadAllLines("selected_seats2.txt");
+            foreach (string seatName in Seats)
             {
-                int row = seatName[0] - 'A';
-                int col = int.Parse(seatName.Substring(1)) - 1;
-
-                if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                if (seatName.Length >= 2)
                 {
-                    seats[row, col] = SEAT_TAKEN;
+                    int row = seatName[0] - 'A';
+                    int col = int.Parse(seatName.Substring(1)) - 1;
+
+                    if (row >= 0 && row < ROW_COUNT && col >= 0 && col < COL_COUNT)
+                    {
+                        seats[row, col] = SEAT_TAKEN;
+                    }
                 }
             }
         }
     }
-}
 
 
 
@@ -245,7 +256,7 @@ class ReserveringZaal2
 
             Console.WriteLine("|");
         }
-        Console.WriteLine("  -------------------------Projector----------------------------\n");;
+        Console.WriteLine("  -------------------------Projector----------------------------\n"); ;
     }
 
 
@@ -270,7 +281,7 @@ class ReserveringZaal2
         Console.ResetColor();
 
         Console.WriteLine("Gebruik de pijltjes om rond te bewegen");
-        Console.WriteLine("Druk [Enter] om een stoel te selecteren");
+        Console.WriteLine("Druk [Space] om een stoel te selecteren");
         Console.WriteLine("Druk [Esc] om terug te keren naar het menu");
         Console.WriteLine();
     }

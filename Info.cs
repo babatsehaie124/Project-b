@@ -7,13 +7,23 @@ using Newtonsoft.Json.Linq;
 
 public class Info
 {
-
     public static void CinemaInfo(bool user)
     {
-        Console.WriteLine("[A] - Bioscoop informatie\n[B] - Contact\n[C] - Informatie contact\n[D] - Terug naar het menu");
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
+        Console.WriteLine("[I] - Bioscoop informatie\n[B] - Contact\n[C] - Informatie contact\n[T] - Terug naar het menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
-        if (User_lower == "a")
+        if (User_lower == "i")
         {
             Schouwburgplein(user);
         }
@@ -25,7 +35,7 @@ public class Info
         {
             Contactinfo(user);
         }
-        else if (User_lower == "d")
+        else if (User_lower == "t")
         {
             Console.Clear();
             Console.WriteLine("Keert terug naar het menu");
@@ -81,11 +91,22 @@ public class Info
     public static void Contactinfo(bool user)
     {
         Console.Clear();
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Als uw vraag niet is beantwoord in het bioscoopinformatie pagina kunt u ons contacteren.");
         Console.WriteLine("Om ons te kunnen bereiken moet u eerst uw naam, email en vraag doorgeven. ");
         Console.WriteLine("Uw vraag is misschien al beantwoord in de FAQ.\n");
         Console.WriteLine("Wilt u weten of u vraag al beantwoord is in Frequently Asked Questions?\n" +
-        "[A] - ja\n[B] - nee\n[C] - terug naar informatie menu");
+        "[J] - Ja\n[N] - Nee\n[T] - Terug naar informatie menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
         if (User_lower is "a")
@@ -106,14 +127,25 @@ public class Info
         else
         {
             Console.Clear();
-            Console.WriteLine("Verkeerde input!Probeer opnieuw!");
+            Console.WriteLine("Ongeldige invoer");
             Contactinfo(user);
         }
     }
 
     public static void Contact(bool user)
     {
-        // if statement voor als user als in ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
+        // if statement voor als user al is ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
         if (user == true)
         {
             Loggedinquestion(true);
@@ -160,7 +192,7 @@ public class Info
     public static void Loggedinquestion(bool user)
     {
         // Read the JSON file content
-        string jsonfile = File.ReadAllText("accounts.json");
+        string jsonfile = File.ReadAllText("accoutns.json");
 
         // Parse the JSON array
         JArray jsonArray = JArray.Parse(jsonfile);
@@ -172,11 +204,11 @@ public class Info
         string lastFullName = lastObject["fullName"].ToString();
         string lastEmailAddress = lastObject["emailAddress"].ToString();
 
-            // Use the last account information
-            Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
+        // Use the last account information
+        Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
 
-            Console.WriteLine("Vraag: ");
-            string question = Console.ReadLine();
+        Console.WriteLine("Vraag: ");
+        string question = Console.ReadLine();
 
         User newUser = new User { Fullname = lastFullName, Email = lastEmailAddress, Question = question };
 
@@ -200,6 +232,17 @@ public class Info
 
     public static void Faq(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Wat voor 3D bril moet ik gebruiken?\n" +
         "Voor 3D, 4DX 3D en Dolby Atmos 3D gebruik je de normale 3D Brillen.\n" +
         "Imax 3D Gebruik je speciale brillen, Imax 3D laser glasses.\n");

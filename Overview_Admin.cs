@@ -5,7 +5,7 @@ class Overzicht_Admin
 {
     static public void Admin(bool user)
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.BackgroundColor = ConsoleColor.DarkGray;
         Console.Clear();
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
@@ -17,15 +17,17 @@ ______ _                                  ______      _   _               _
                                   | |                                                       
                                   |_|";
 
+
+
         Console.WriteLine(menu2);
         Console.WriteLine("Welkom Admin! \n");
 
-        Console.WriteLine("[A] - Huidige films bekijken.");
-        Console.WriteLine("[B] - Een film toevoegen.");
-        Console.WriteLine("[C] - Data van een film wijzigen.");
-        Console.WriteLine("[D] - Een film verwijderen.");
-        Console.WriteLine("[E] - Bekijk de vragen van klanten.");
-        Console.WriteLine("[F] - Terug naar de normale menu.");
+        Console.WriteLine("[A] - in om huidige films te zien:");
+        Console.WriteLine("[B] - in om een film toe te voegen:");
+        Console.WriteLine("[C] - om de data van een film te wijzigen:");
+        Console.WriteLine("[D] - om een film te verwijderen:");
+        Console.WriteLine("[E] - om de vragen van de klanten te zien:");
+        Console.WriteLine("[F] - om terug te keren naar het menu:");
 
         // optie voor rooster zien en kunnen wijzigen
 
@@ -125,6 +127,17 @@ ______ _                                  ______      _   _               _
     }
     static void AddData(string fileName)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Voer de data in\n");
         Console.WriteLine("Id: ");
         int idData = int.Parse(Console.ReadLine());
@@ -167,6 +180,17 @@ ______ _                                  ______      _   _               _
 
     static public void EditData(string fileName)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         string jsonData = File.ReadAllText(fileName);
         JArray data = JArray.Parse(jsonData);
         dynamic ddata = JsonConvert.DeserializeObject(jsonData);
@@ -191,9 +215,11 @@ ______ _                                  ______      _   _               _
 
         if (index < data.Count)
         {
+
             Console.WriteLine("wil je doorgaan?[D]\nOf terug naar de menu?[T]");
             string answer = Console.ReadLine().ToUpper();
             if (answer == "D")
+
             {
                 JObject movie = (JObject)data[index];
                 Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
@@ -249,6 +275,17 @@ ______ _                                  ______      _   _               _
 
     static void DeleteData(string fileName)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         string jsonData = File.ReadAllText(fileName);
         dynamic data = JsonConvert.DeserializeObject(jsonData);
         Console.WriteLine("Data in " + fileName + ":\n");
@@ -276,6 +313,17 @@ ______ _                                  ______      _   _               _
 
     public static void PrintQuestionsFromJson(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         string filename = "userdata.json";
         string json = File.ReadAllText(filename);
         List<User> userList = JsonConvert.DeserializeObject<List<User>>(json);
@@ -291,6 +339,7 @@ ______ _                                  ______      _   _               _
 
         AdminInfo.CinemaInfo(user);
     }
+
 
     public static void ReadJsonFileBasic(bool user)
     {

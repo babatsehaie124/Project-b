@@ -6,6 +6,17 @@ public static class Overzicht_Customer
 {
     static public void User(bool user)
     {
+        string menu2 = @"
+______ _                                  ______      _   _               _                 
+| ___ (_)                                 | ___ \    | | | |             | |                
+| |_/ /_  ___  ___  ___ ___   ___  _ __   | |_/ /___ | |_| |_ ___ _ __ __| | __ _ _ __ ___  
+| ___ | |/ _ \/ __|/ __/ _ \ / _ \| '_ \  |    // _ \| __| __/ _ | '__/ _` |/ _` | '_ ` _ \ 
+| |_/ | | (_) \__ | (_| (_) | (_) | |_) | | |\ | (_) | |_| ||  __| | | (_| | (_| | | | | | |
+\____/|_|\___/|___/\___\___/ \___/| .__/  \_| \_\___/ \__|\__\___|_|  \__,_|\__,_|_| |_| |_|
+                                  | |                                                       
+                                  |_|";
+
+        Console.WriteLine(menu2);
         Console.WriteLine("Overzicht van huidige films:\n");
 
         string jsondata = File.ReadAllText("MovieBio.json");
@@ -47,7 +58,7 @@ public static class Overzicht_Customer
         else
         {
             Console.Clear();
-            Console.WriteLine("Ongeldige invoer");
+            Console.WriteLine("Ongeldige invoer.");
             User(user);
         }
     }

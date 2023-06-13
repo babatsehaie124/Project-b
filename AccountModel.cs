@@ -1,30 +1,28 @@
 ﻿using System.Text.Json.Serialization;
 
-
 class AccountModel
 {
     [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("emailAddress")]
-    public string EmailAddress { get; set; }
+    [JsonPropertyName("Email")]
+    public string Email { get; set; }
 
-    [JsonPropertyName("password")]
-    public string Password { get; set; }
+    [JsonPropertyName("Wachtwoord")]
+    public string Wachtwoord { get; set; }
 
-    [JsonPropertyName("fullName")]
-    public string FullName { get; set; }
+    [JsonPropertyName("fName")]
+    public string FName { get; set; }
 
-    public AccountModel(int id, string emailAddress, string password, string fullName)
+    [JsonPropertyName("lName")]
+    public string LName { get; set; }
+
+    public AccountModel(int id, string email, string wachtwoord, string fName, string lName)
     {
         Id = id;
-        EmailAddress = emailAddress;
-        Password = password;
-        FullName = fullName;
+        Email = email;
+        Wachtwoord = wachtwoord;
+        FName = fName;
+        LName = lName;
     }
-
 }
-
-
-
-

@@ -1,6 +1,6 @@
 public class MovieSchedule
 {
-    public int id { get; set; }
+    public int Rooster_Id { get; set; }
     public string Title { get; set; }
     public int Zaal { get; set; }
     public string Start { get; set; }

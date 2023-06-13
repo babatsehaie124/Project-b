@@ -33,5 +33,12 @@
     "wachtwoord": "busssss",
     "fName": "Ambatu",
     "lName": "Kam"
+  },
+  {
+    "Id": 0,
+    "email": "akam@hr.nl",
+    "wachtwoord": "buss",
+    "fName": "AMbatu",
+    "lName": "Kam"
   }
 ]

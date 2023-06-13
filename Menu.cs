@@ -50,8 +50,8 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
             // Overzicht_Customer.User(user);
-            // ReserveringsManager.Reserveren(user);
-            Overzicht_Admin.Admin(user);
+            ReserveringsManager.Reserveren(user, 20);
+            // Overzicht_Admin.Admin(user);
         }
         else if (input == "R")
         {

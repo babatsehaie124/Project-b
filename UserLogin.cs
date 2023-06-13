@@ -5,7 +5,7 @@ static class UserLogin
 
     public static int NextId { get; private set; }
 
-    public static void Start()
+    public static void Start(bool user)
     {
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
@@ -33,7 +33,7 @@ ______ _                                  ______      _   _               _
             if (acc != null)
             {
                 Console.Clear();
-                Console.WriteLine("Welkom terug " + acc.fName + acc.lName);
+                Console.WriteLine("Welkom terug " + acc.FName + acc.LName);
                 // Console.WriteLine("Uw email is " + acc.email);
 
                 //Write some code to go back to the menu
@@ -44,7 +44,7 @@ ______ _                                  ______      _   _               _
                     Console.WriteLine("Welkom admin.");
                     Overzicht_Admin.Admin(admin);
                 }
-                bool user = true;
+                user = true;
 
                 Menu.Start(user);
             }
@@ -60,7 +60,7 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("Voer een nieuw wachtwoord in: ");
             string password1 = Console.ReadLine();
 
-            string jsondata = File.ReadAllText("accounts.json");
+            string jsondata = File.ReadAllText("DataSources/accounts.json");
             List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
             dynamic newLogin = new
             {
@@ -74,14 +74,14 @@ ______ _                                  ______      _   _               _
             data.Add(newLogin);
 
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
-            File.WriteAllText("accounts.json", output);
+            File.WriteAllText("DataSources/accounts.json", output);
             Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
         }
         else
         {
             Console.Clear();
             Console.WriteLine("Geen account gevonden met die email en password!");
-            bool user = false;
+            user = false;
             Menu.Start(user);
 
         }

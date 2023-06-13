@@ -59,30 +59,46 @@ ______ _                                  ______      _   _               _
             PrintInstructions();
 
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-            
+
             switch (keyInfo.Key)
             {
                 case ConsoleKey.UpArrow:
                     if (cursorRow > 0)
                     {
+                        if (seats[cursorRow - 1, cursorCol] == LOVESEAT_AVAILABLE && cursorCol > 0 && seats[cursorRow - 1, cursorCol - 1] == LOVESEAT_AVAILABLE)
+                        {
+                            cursorCol--;
+                        }
                         cursorRow--;
                     }
                     break;
                 case ConsoleKey.DownArrow:
                     if (cursorRow < ROW_COUNT - 1)
                     {
+                        if (seats[cursorRow + 1, cursorCol] == LOVESEAT_AVAILABLE && cursorCol > 0 && seats[cursorRow + 1, cursorCol - 1] == LOVESEAT_AVAILABLE)
+                        {
+                            cursorCol--;
+                        }
                         cursorRow++;
                     }
                     break;
                 case ConsoleKey.LeftArrow:
                     if (cursorCol > 0)
                     {
+                        if (seats[cursorRow, cursorCol - 1] == LOVESEAT_AVAILABLE)
+                        {
+                            cursorCol -= 1;
+                        }
                         cursorCol--;
                     }
                     break;
                 case ConsoleKey.RightArrow:
                     if (cursorCol < COL_COUNT - 1)
                     {
+                        if (seats[cursorRow, cursorCol] == LOVESEAT_AVAILABLE)
+                        {
+                            cursorCol += 1;
+                        }
                         cursorCol++;
                     }
                     break;
@@ -92,7 +108,7 @@ ______ _                                  ______      _   _               _
                     {
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
                         Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
-                    } 
+                    }
                     Thread.Sleep(3000);
                     currentReservation.RoosterId = Rooster_Id;
                     currentReservation.SaveAsCurrent();
@@ -121,7 +137,9 @@ ______ _                                  ______      _   _               _
                 if (row == 5 && (col == 1 || col == 2 || col == 5 ||
                     col == 6 || col == 9 || col == 10 || col == 12 || col == 13))
                 {
+                    Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = LOVESEAT_AVAILABLE;
+                    Console.ResetColor();
                 }
                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
                         col == 6 || col == 9 || col == 10 || col == 12 || col == 13))
@@ -155,30 +173,40 @@ ______ _                                  ______      _   _               _
 
     private static void TryToSelectSeat(int row, int col, int reservedSeatCount)
     {
-        if (seats[cursorRow, cursorCol] == SEAT_TAKEN) {
+        if (seats[cursorRow, cursorCol] == SEAT_TAKEN)
+        {
             latestError = "Deze stoel is al bezet, kies een andere stoel";
-        } else if (seats[cursorRow, cursorCol] == SELECT_SEAT) {
+        }
+        else if (seats[cursorRow, cursorCol] == SELECT_SEAT)
+        {
             // Check of het een loveseat is, zoja ...
             seats[cursorRow, cursorCol] = SEAT_AVAILABLE;
             selectedSeats.Remove((cursorRow, cursorCol));
             reservedSeatCount--;
         }
-            else if (reservedSeatCount == 10 || reservedSeatCount + 1 == 10) {
-                // Check if reservedSeatcount + current selected seat is more that 10
+        else if (reservedSeatCount == 10 || reservedSeatCount + 1 == 10)
+        {
+            // Check if reservedSeatcount + current selected seat is more that 10
             latestError = "Maximaal aantal stoelen bereikt.";
         }
-            else {
-            if (seats[cursorRow, cursorCol] == LOVESEAT_AVAILABLE) {
+        else
+        {
+            if (seats[cursorRow, cursorCol] == LOVESEAT_AVAILABLE)
+            {
                 seats[cursorRow, cursorCol] = SELECT_SEAT;
                 seats[cursorRow, cursorCol + 1] = SELECT_SEAT;
                 selectedSeats.Add((cursorRow, cursorCol));
                 selectedSeats.Add((cursorRow, cursorCol + 1));
                 reservedSeatCount = reservedSeatCount + 2;
-            } else if (seats[cursorRow, cursorCol] == PREMIUMSEAT_AVAILABLE) {
+            }
+            else if (seats[cursorRow, cursorCol] == PREMIUMSEAT_AVAILABLE)
+            {
                 seats[cursorRow, cursorCol] = SELECT_SEAT;
                 selectedSeats.Add((cursorRow, cursorCol));
                 reservedSeatCount++;
-            } else {
+            }
+            else
+            {
                 seats[cursorRow, cursorCol] = SELECT_SEAT;
                 selectedSeats.Add((cursorRow, cursorCol));
                 reservedSeatCount++;

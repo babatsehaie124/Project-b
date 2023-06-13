@@ -184,7 +184,7 @@ ______ _                                  ______      _   _               _
             selectedSeats.Remove((cursorRow, cursorCol));
             reservedSeatCount--;
         }
-        else if (reservedSeatCount == 10 || reservedSeatCount + 1 == 10)
+        else if (reservedSeatCount == 10 || reservedSeatCount + selectedSeats.Count() == 10)
         {
             // Check if reservedSeatcount + current selected seat is more that 10
             latestError = "Maximaal aantal stoelen bereikt.";

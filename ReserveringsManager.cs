@@ -25,6 +25,8 @@ class ReserveringsManager
 
     private static string latestError = "";
 
+    private static List<(int, int)> LoveSeats = new();
+    private static List<(int, int)> PremiumSeats = new();
     public static void Reserveren(bool user, int Rooster_Id)
     {
         currentReservation = new(1);
@@ -107,15 +109,13 @@ ______ _                                  ______      _   _               _
                     foreach (var seat in selectedSeats)
                     {
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
-                        Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.");
+                        Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
+                        System.Console.WriteLine(LoveSeats);
+                        System.Console.WriteLine(PremiumSeats);
                     }
-                    Console.WriteLine();
-                    Console.WriteLine("Je wordt doorverwezen...");
-                    Thread.Sleep(5000);
-                    Console.Clear();
+                    Thread.Sleep(3000);
                     currentReservation.RoosterId = Rooster_Id;
                     currentReservation.SaveAsCurrent();
-                    ChooseFood.PickFood(user);
                     break;
                 case ConsoleKey.Escape:
                     Console.Clear();
@@ -143,6 +143,7 @@ ______ _                                  ______      _   _               _
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = LOVESEAT_AVAILABLE;
+                    LoveSeats.Add((row, col));
                     Console.ResetColor();
                 }
                 else if (row == 7 && (col == 1 || col == 2 || col == 5 ||
@@ -150,6 +151,7 @@ ______ _                                  ______      _   _               _
                 {
                     Console.BackgroundColor = ConsoleColor.White;
                     seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                    PremiumSeats.Add((row, col));
                     Console.ResetColor();
                 }
                 else
@@ -183,14 +185,35 @@ ______ _                                  ______      _   _               _
         }
         else if (seats[cursorRow, cursorCol] == SELECT_SEAT)
         {
-            // Check of het een loveseat is, zoja ...
-            seats[cursorRow, cursorCol] = SEAT_AVAILABLE;
-            selectedSeats.Remove((cursorRow, cursorCol));
-            reservedSeatCount--;
+            if (LoveSeats.Contains((row, col)))
+            {
+                seats[row, col] = LOVESEAT_AVAILABLE;
+                if (LoveSeats.Contains((row, col + 1)))
+                {
+                    latestError = "rechts";
+                    seats[row, col + 1] = LOVESEAT_AVAILABLE;
+                }
+                else if (LoveSeats.Contains((row, col - 1)))
+                {
+                    latestError = "links";
+                    seats[row, col - 1] = LOVESEAT_AVAILABLE;
+                }
+                currentReservation.Stoelen.Remove(GetSeatRow(row, col));
+            }
+            else if (PremiumSeats.Contains((row, col)))
+            {
+                seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                currentReservation.Stoelen.Remove(GetSeatRow(row, col));
+            }
+            else
+            {
+                seats[cursorRow, cursorCol] = SEAT_AVAILABLE;
+                selectedSeats.Remove((cursorRow, cursorCol));
+                reservedSeatCount--;
+            }
         }
         else if (reservedSeatCount == 10 || reservedSeatCount + selectedSeats.Count() == 10)
         {
-            // Check if reservedSeatcount + current selected seat is more that 10
             latestError = "Maximaal aantal stoelen bereikt.";
         }
         else
@@ -310,15 +333,11 @@ ______ _                                  ______      _   _               _
     private static void SaveSeatsData()
     {
         List<Reservering> reservations = new List<Reservering>();
-
-        // Load existing reservations from JSON file
         if (File.Exists("HuidigeReservering.json"))
         {
             string jsonData = File.ReadAllText("HuidigeReservering.json");
             reservations = JsonConvert.DeserializeObject<List<Reservering>>(jsonData);
         }
-
-        // Create a new reservation object with selected seats
         Reservering newReservation = new Reservering(1);
         for (int row = 0; row < ROW_COUNT; row++)
         {
@@ -331,13 +350,8 @@ ______ _                                  ______      _   _               _
                 }
             }
         }
-        // Add the new reservation to the list
         reservations.Add(newReservation);
-
-        // Serialize the updated reservations list to JSON
         string updatedJsonData = JsonConvert.SerializeObject(reservations);
-
-        // Write the JSON data back to the file
         File.WriteAllText("HuidigeReservering.json", updatedJsonData);
     }
     private static char SelectSeat(int row, int col)
@@ -366,21 +380,6 @@ ______ _                                  ______      _   _               _
             return SELECT_SEAT;
         }
     }
-    private static void ReserveSeat(int row, int col)
-    {
-        // rushil moet dit aanroepen zodra eten en drinken 
-        if (seats[row, col - 1] == LOVESEAT_AVAILABLE)
-        {
-            seats[row, col - 1] = SEAT_TAKEN;
-        }
-        else if (seats[row, col + 1] == LOVESEAT_AVAILABLE)
-        {
-            seats[row, col + 1] = SEAT_TAKEN;
-        }
-        seats[row, col] = SEAT_TAKEN;
-        // SaveSeatsData();
-    }
-
     private static string GetSeatRow(int row, int col)
     {
         char rowName = (char)('A' + row);

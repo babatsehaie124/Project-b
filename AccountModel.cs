@@ -1,5 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
+
 class AccountModel
 {
     [JsonPropertyName("id")]
@@ -12,17 +13,21 @@ class AccountModel
     public string Wachtwoord { get; set; }
 
     [JsonPropertyName("fName")]
-    public string FName { get; set; }
-
+    public string fName { get; set; }
     [JsonPropertyName("lName")]
-    public string LName { get; set; }
+    public string lName { get; set; }
 
-    public AccountModel(int id, string email, string wachtwoord, string fName, string lName)
+    public AccountModel(int id, string emailAddress, string wachtwoord, string fname, string lname)
     {
         Id = id;
-        Email = email;
+        Email = emailAddress;
         Wachtwoord = wachtwoord;
-        FName = fName;
-        LName = lName;
+        fName = fname;
+        lName = lname;
     }
+
 }
+
+
+
+

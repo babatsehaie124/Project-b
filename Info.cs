@@ -145,7 +145,7 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-        // if statement voor als user al is ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
+        // if statement voor als user als in ingelogd, als t true is dan hoef je geen data in te vullen maar kan je meteen je vraag stellen
         if (user == true)
         {
             Loggedinquestion(true);
@@ -192,7 +192,7 @@ ______ _                                  ______      _   _               _
     public static void Loggedinquestion(bool user)
     {
         // Read the JSON file content
-        string jsonfile = File.ReadAllText("accoutns.json");
+        string jsonfile = File.ReadAllText("accounts.json");
 
         // Parse the JSON array
         JArray jsonArray = JArray.Parse(jsonfile);

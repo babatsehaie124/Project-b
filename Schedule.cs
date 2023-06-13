@@ -4,6 +4,7 @@ public class Rooster
 {
     public static void RoosterMenu(bool user)
     {
+
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
 | ___ (_)                                 | ___ \    | | | |             | |                
@@ -15,31 +16,14 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-        Console.WriteLine("[A] - Rooster\n[T] - Terug naar het menu");
-        string User = Console.ReadLine();
-        string User_lower = User.ToLower();
-        if (User_lower == "a")
-        {
-            Console.Clear();
-            Roosterweek(user);
-        }
-        else if (User_lower == "t")
-        {
-            Console.Clear();
-            Console.WriteLine("Keer terug naar het menu...");
-            Menu.Start(user);
-        }
-        else
-        {
-            Console.WriteLine("Ongeldige invoer");
-            Console.Clear();
-            RoosterMenu(user);
-        }
+
+        Console.WriteLine();
+
+        Roosterweek(user);
     }
 
     public static void Roosterweek(bool user)
     {
-        Console.Clear();
         string json = File.ReadAllText("Rooster.json");
         var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
 
@@ -68,15 +52,16 @@ ______ _                                  ______      _   _               _
 
         Console.WriteLine("[F] - Filter rooster");
         Console.WriteLine("[R] - Reserveer voor een film");
-        Console.WriteLine("[T] - Terug naar het rooster menu");
+        Console.WriteLine("[T] - Terug naar het menu");
         Console.WriteLine("Selecteer een van de opties: ");
 
         string? input0 = Console.ReadLine();
         Console.Clear();
-        if (input0?.ToLower() == "t")
+        if (input0.ToLower() == "t")
         {
             Console.Clear();
-            RoosterMenu(user);
+            Console.WriteLine("Keer terug naar het menu...");
+            Menu.Start(user);
         }
         else if (input0.ToLower() == "f")
         {
@@ -87,6 +72,12 @@ ______ _                                  ______      _   _               _
         {   
             Console.Clear();
             Reserveervoorfilm(user);
+        }
+        else
+        {
+            Console.WriteLine("Ongeldige invoer");
+            Console.Clear();
+            RoosterMenu(user);
         }
     }
 
@@ -204,7 +195,10 @@ ______ _                                  ______      _   _               _
             else if (scheduleByDay.ContainsKey(input))
             {
                 Console.Clear();
+
                 List<MovieSchedule> movieSchedules = scheduleByDay[input];
+
+                Console.Clear();
 
                 Console.WriteLine(input);
 
@@ -228,6 +222,7 @@ ______ _                                  ______      _   _               _
                 string filter = Console.ReadLine();
                 if (filter.ToLower() == "j")
                 {
+                    // Console.Clear();
                     Console.WriteLine("Voer de titel van de film in:");
                     string filmTitle = Console.ReadLine();
                     Console.Clear();
@@ -272,7 +267,7 @@ ______ _                                  ______      _   _               _
                 }
                 else if (filter.ToLower() == "n")
                 {
-                    Console.Clear();
+                    // Console.Clear();
                     Console.WriteLine("Selecteer de opties: ");
 
                     string? input0 = Console.ReadLine();

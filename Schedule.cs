@@ -39,6 +39,7 @@ ______ _                                  ______      _   _               _
 
     public static void Roosterweek(bool user)
     {
+        Console.Clear();
         string json = File.ReadAllText("Rooster.json");
         var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
 
@@ -55,7 +56,12 @@ ______ _                                  ______      _   _               _
 
             foreach (var movieSchedule in movieSchedules)
             {
-                Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
+                Console.WriteLine("╔════════════════════════════════════════════╗");
+                Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
+                Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
+                Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
+                Console.WriteLine("╚════════════════════════════════════════════╝");
+                // Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
                 Console.WriteLine();
             }
         }
@@ -66,6 +72,7 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("Selecteer een van de opties: ");
 
         string? input0 = Console.ReadLine();
+        Console.Clear();
         if (input0?.ToLower() == "t")
         {
             Console.Clear();
@@ -87,6 +94,7 @@ ______ _                                  ______      _   _               _
 
     public static void Reserveervoorfilm(bool user)
     {
+        Console.Clear();
         string json = File.ReadAllText("Rooster.json");
         var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
 
@@ -106,13 +114,19 @@ ______ _                                  ______      _   _               _
             }
             else if (scheduleByDay.ContainsKey(input))
             {
+                Console.Clear();
                 List<MovieSchedule> movieSchedules = scheduleByDay[input];
 
                 Console.WriteLine(input);
 
                 foreach (var movieSchedule in movieSchedules)
                 {
-                    Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
+                    Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
+                    Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
+                    Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
+                    Console.WriteLine("╚════════════════════════════════════════════╝");
+                    // Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
                     Console.WriteLine();
                 }
 
@@ -127,7 +141,14 @@ ______ _                                  ______      _   _               _
 
                 if (selectedFilm != null)
                 {
-                    Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
+                    Console.Clear();
+                    Console.WriteLine(input);
+                    Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
+                    Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
+                    Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
+                    Console.WriteLine("╚════════════════════════════════════════════╝");
+                    // Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
                 }
                 else
                 {
@@ -160,6 +181,7 @@ ______ _                                  ______      _   _               _
 
     public static void RoosterOneDay(bool user)
     {
+        Console.Clear();
         string json = File.ReadAllText("Rooster.json");
         var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
 
@@ -167,10 +189,12 @@ ______ _                                  ______      _   _               _
         while (!exit)
         {
             Console.Clear();
-            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
+            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.)");
             Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
             input = Char.ToUpper(input[0]) + input.Substring(1);
+            Console.Clear();
+
 
             if (input.ToLower() == "t")
             {
@@ -179,6 +203,7 @@ ______ _                                  ______      _   _               _
             }
             else if (scheduleByDay.ContainsKey(input))
             {
+                Console.Clear();
                 List<MovieSchedule> movieSchedules = scheduleByDay[input];
 
                 Console.WriteLine(input);
@@ -188,7 +213,12 @@ ______ _                                  ______      _   _               _
 
                 foreach (var movieSchedule in movieSchedules)
                 {
-                    Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
+                    Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
+                    Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
+                    Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
+                    Console.WriteLine("╚════════════════════════════════════════════╝");
+                    // Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
                     Console.WriteLine();
                 }
 
@@ -206,7 +236,14 @@ ______ _                                  ______      _   _               _
 
                     if (selectedFilm != null)
                     {
-                        Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
+                        Console.Clear();
+                        Console.WriteLine(input);
+                        Console.WriteLine("╔════════════════════════════════════════════╗");
+                        Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
+                        Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
+                        Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
+                        Console.WriteLine("╚════════════════════════════════════════════╝");
+                        // Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
                     }
                     else
                     {

@@ -6,7 +6,7 @@ public class  Roosterreserveer
         Zaal = zaal;
     }
     
-    public static void Reserve(bool user)
+    public static void Reser(bool user)
     {
         if (Zaal == 1)
         {
@@ -22,4 +22,3 @@ public class  Roosterreserveer
         }
     }
 }
-

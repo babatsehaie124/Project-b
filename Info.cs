@@ -105,24 +105,24 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-        Console.WriteLine("Als uw vraag niet is beantwoord in het bioscoopinformatie pagina kunt u ons contacteren.");
+        Console.WriteLine("Als uw vraag niet is beantwoord in de bioscoopinformatie pagina kunt u ons contacteren.");
         Console.WriteLine("Om ons te kunnen bereiken moet u eerst uw naam, email en vraag doorgeven. ");
         Console.WriteLine("Uw vraag is misschien al beantwoord in de FAQ.\n");
-        Console.WriteLine("Wilt u weten of u vraag al beantwoord is in Frequently Asked Questions?\n" +
+        Console.WriteLine("Zou u naar de FAQ pagina willen gaan?\n" +
         "[J] - Ja\n[N] - Nee\n[T] - Terug naar informatie menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
-        if (User_lower is "a")
+        if (User_lower is "j")
         {
             Console.Clear();
             Faq(user);
         }
-        else if (User_lower is "b")
+        else if (User_lower is "n")
         {
             Console.Clear();
             Contact(user);
         }
-        else if (User_lower is "c")
+        else if (User_lower is "t")
         {
             Console.Clear();
             CinemaInfo(user);
@@ -204,7 +204,7 @@ ______ _                                  ______      _   _               _
         string email = UserLogin.loginEmail;
         string wachtwoord = UserLogin.loginWachtwoord;
 
-        
+
         JObject userObject = jsonArray.FirstOrDefault(
         obj => obj["Email"].ToString() == email && obj["Wachtwoord"].ToString() == wachtwoord
         ) as JObject;
@@ -252,9 +252,9 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-        Console.WriteLine("Wat voor 3D bril moet ik gebruiken?\n" +
-        "Voor 3D, 4DX 3D en Dolby Atmos 3D gebruik je de normale 3D Brillen.\n" +
-        "Imax 3D Gebruik je speciale brillen, Imax 3D laser glasses.\n");
+        Console.WriteLine("Vraag:\n" + "Wat voor 3D bril moet ik gebruiken?\n" + "Antwoord:\n" +
+        "Voor 3D, 4DX en Dolby Atmos 3D gebruik je de normale 3D brillen.\n" +
+        "Verder gebruik je voor Imax 3D speciale brillen, de laser glasses.\n");
         CinemaInfo(user);
     }
 

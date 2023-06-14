@@ -109,7 +109,7 @@ ______ _                                  ______      _   _               _
 
     static public void ViewData(List<Movies> movies)
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.BackgroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("Data in MovieBio.json:\n");
         foreach (Movies movie in movies)
         {
@@ -216,27 +216,27 @@ ______ _                                  ______      _   _               _
         if (index < data.Count)
         {
 
-            Console.WriteLine("wil je doorgaan?[D]\nOf terug naar de menu?[T]");
+            Console.WriteLine("[W] weet je zeker dat je deze wilt wijzigen?\n[T]Of terug naar de menu?");
             string answer = Console.ReadLine().ToUpper();
-            if (answer == "D")
+            if (answer == "W")
 
             {
                 JObject movie = (JObject)data[index];
                 Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
-                string fieldToEdit = Console.ReadLine();
+                string fieldToEdit = Console.ReadLine().ToUpper();
                 switch (fieldToEdit)
                 {
-                    case "Titel":
+                    case "TITEL":
                         Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
                         string newTitle = Console.ReadLine();
                         movie["Titel"] = newTitle;
                         break;
-                    case "Beschrijving":
+                    case "BESCHRIJVING":
                         Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
                         string newDescription = Console.ReadLine();
                         movie["Beschrijving"] = newDescription;
                         break;
-                    case "Prijs":
+                    case "PRIJS":
                         Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
                         int newPrice = int.Parse(Console.ReadLine());
                         movie["Prijs"] = newPrice;

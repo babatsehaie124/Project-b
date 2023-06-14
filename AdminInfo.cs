@@ -10,7 +10,7 @@ public class AdminInfo
 
     public static void CinemaInfo(bool user)
     {
-        Console.WriteLine("[A] - Bioscoop informatie\n[B] - Contact\n[C] - Informatie contact\n[D] - Terug naar het menu");
+        Console.WriteLine("[A] - Bioscoop informatie\n[B] - Contact\n[C] - Informatie contact\n[G] - Gegevens van een klant bekijken\n[T] - Terug naar het menu");
         string User = Console.ReadLine();
         string User_lower = User.ToLower();
         if (User_lower == "a")
@@ -25,7 +25,14 @@ public class AdminInfo
         {
             Contactinfo(user);
         }
-        else if (User_lower == "d")
+        else if (User_lower == "g")
+        {
+            List<Users> usergegevens = GetMovieData();
+            Console.Clear();
+            ViewKlant(usergegevens);
+
+        }
+        else if (User_lower == "t")
         {
             Console.Clear();
             Console.WriteLine("Keert terug naar het menu");
@@ -36,6 +43,26 @@ public class AdminInfo
             Console.WriteLine("Verkeerde Input!probeer opnieuw!");
             CinemaInfo(user);
         }
+    }
+    static public List<Users> GetMovieData()
+    {
+        string jsonDataUsers = File.ReadAllText("DataSources/accounts.json");
+        Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonDataUsers);
+        List<Users> usergegevens = new List<Users>();
+        foreach (JObject item in data)
+        {
+            Users userdata = new Users
+            {
+                Email = (string)item["Email"],
+                Wachtwoord = (string)item["Wachtwoord"],
+                fName = (string)item["fName"],
+                lName = (string)item["lName"],
+            };
+            usergegevens.Add(userdata);
+        }
+        Console.ResetColor();
+        return usergegevens;
+
     }
 
     public static void Schouwburgplein(bool user)
@@ -206,6 +233,19 @@ public class AdminInfo
         CinemaInfo(user);
     }
 
+    static public void ViewKlant(List<Users> usergegevens)
+    {
 
+        Console.BackgroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine("Hier zijn alle klanten hun gegevens:");
+        foreach (Users userdata in usergegevens)
+        {
+            Console.WriteLine($"Email: {userdata.Email}");
+            Console.WriteLine($"Wachtwoord: {userdata.Wachtwoord}");
+            Console.WriteLine($"First name: {userdata.fName}");
+            Console.WriteLine($"Last name: {userdata.lName}\n");
+        }
+        CinemaInfo(true);
+    }
 }
 

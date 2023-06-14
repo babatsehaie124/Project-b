@@ -8,9 +8,9 @@ class ChooseFood
 {
     public static void PickFood(bool user)
     {
-        Console.WriteLine("Welkom bij onze Eet-drink menu!");
+        Console.WriteLine("Welkom bij ons eet- en drinkkaart!");
         Console.WriteLine("Wilt u:");
-        Console.WriteLine("[E] Het Eet- en drinkmenu bekijken");
+        Console.WriteLine("[E] Het eet- en drinkkaart bekijken");
         Console.WriteLine("[S] Uw eten en drinken bestellen");
         Console.WriteLine("[B] Uw Bonnetje ontvangen");
         string choice = Console.ReadLine().ToLower();
@@ -115,15 +115,8 @@ class ChooseFood
             Console.WriteLine("Bedankt voor het bestellen bij onze Eet-drink menu!");
             Console.WriteLine("U wordt doorverwezen naar...");
         }
-        // Geef hier je bon aan Adrian 
+        // Geef hier je bon aan Adrian
 
         Console.ReadLine();
     }
 }
-
-
-
-
-
-
-

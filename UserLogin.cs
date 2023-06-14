@@ -102,7 +102,7 @@ ______ _                                  ______      _   _               _
         else
         {
             string jsondata = File.ReadAllText("DataSources/accounts.json");
-            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
+            List<AccountModel> data = JsonConvert.DeserializeObject<List<AccountModel>>(jsondata);
             AccountModel newLogin = new AccountModel(NextId++, emailaddress, password1, fname, lname);
             data.Add(newLogin);
 

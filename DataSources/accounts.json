@@ -21,20 +21,6 @@
     "lName": "Heezen"
   },
   {
-    "id": 3,
-    "Email": "t@hr.nl",
-    "Wachtwoord": "abc",
-    "fName": "t",
-    "lName": "t"
-  },
-  {
-    "id": 4,
-    "Email": "aa@hr.nl",
-    "Wachtwoord": "aa",
-    "fName": "aa",
-    "lName": "aa"
-  },
-  {
     "id": 5,
     "Email": "jayden.su13@gmail.com",
     "Wachtwoord": "hr3",

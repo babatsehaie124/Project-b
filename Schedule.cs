@@ -68,7 +68,7 @@ ______ _                                  ______      _   _               _
             RoosterOneDay(user);
         }
         else if (input0.ToLower() == "r")
-        {   
+        {
             Console.Clear();
             Reserveervoorfilm(user);
         }
@@ -123,7 +123,7 @@ ______ _                                  ______      _   _               _
                 }
 
                 Console.WriteLine();
-                
+
 
                 Console.WriteLine("Voer de titel van de film in:");
                 string filmTitle = Console.ReadLine();
@@ -215,7 +215,7 @@ ______ _                                  ______      _   _               _
                 }
 
                 Console.WriteLine();
-            
+
                 Console.WriteLine("Wil je een film uitkiezen?\n[J] - Ja\n[N] - Nee");
                 string filter = Console.ReadLine();
                 if (filter.ToLower() == "j")
@@ -235,21 +235,21 @@ ______ _                                  ______      _   _               _
                         Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
                         Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
                         Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
-                        switch ( selectedFilm.Zaal)
+                        switch (selectedFilm.Zaal)
                         {
                             case 1:
-                            Console.WriteLine($"║   Projector: 4DX ");
-                            break;
+                                Console.WriteLine($"║   Projector: 4DX ");
+                                break;
 
                             case 2:
-                            Console.WriteLine($"║   Projector: 3D ");
-                            break;
+                                Console.WriteLine($"║   Projector: 3D ");
+                                break;
 
                             case 3:
-                            Console.WriteLine($"║   Projector: 2D ");
-                            break;
+                                Console.WriteLine($"║   Projector: 2D ");
+                                break;
                         }
-                        
+
                         Console.WriteLine("╚════════════════════════════════════════════╝");
                         // Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
                     }
@@ -275,7 +275,6 @@ ______ _                                  ______      _   _               _
                         Console.Clear();
                         Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal, selectedFilm.Rooster_Id);
                         Roosterreserveer.Reserve(user, selectedFilm.Rooster_Id);
-                        // Roosterreserveer.Reser(user);
                     }
                 }
                 else if (filter.ToLower() == "n")

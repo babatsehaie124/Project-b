@@ -22,12 +22,13 @@ ______ _                                  ______      _   _               _
         Console.WriteLine(menu2);
         Console.WriteLine("Welkom Admin! \n");
 
-        Console.WriteLine("[A] - in om huidige films te zien:");
-        Console.WriteLine("[B] - in om een film toe te voegen:");
-        Console.WriteLine("[C] - om de data van een film te wijzigen:");
-        Console.WriteLine("[D] - om een film te verwijderen:");
-        Console.WriteLine("[E] - om de vragen van de klanten te zien:");
-        Console.WriteLine("[F] - om terug te keren naar het menu:");
+        Console.WriteLine("[A] - Overzicht van huidige films");
+        Console.WriteLine("[B] - Voeg een film toe");
+        Console.WriteLine("[C] - Wijzig data van een film");
+        Console.WriteLine("[D] - Verwijder een film");
+        Console.WriteLine("[E] - Vragen van klanten bekijken");
+        Console.WriteLine("[F] - Klantgegevens bekijken");
+        Console.WriteLine("[G] - Terugkeren naar het menu");
 
         // optie voor rooster zien en kunnen wijzigen
 
@@ -64,11 +65,16 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             PrintQuestionsFromJson(true);
         }
-
         else if (input == "F")
         {
             Console.Clear();
-            Console.WriteLine("Je wordt teruggestuurd naar het menu...");
+            List<Users> gegevens = GetUserData();
+            ViewKlant(gegevens);
+        }
+        else if (input == "G")
+        {
+            Console.Clear();
+            Console.WriteLine("U wordt teruggestuurd naar het menu...");
             Thread.Sleep(3000); // gamechanger
             Console.ResetColor();
             Console.Clear();
@@ -109,7 +115,7 @@ ______ _                                  ______      _   _               _
 
     static public void ViewData(List<Movies> movies)
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.BackgroundColor = ConsoleColor.DarkGray;
         Console.WriteLine("Data in MovieBio.json:\n");
         foreach (Movies movie in movies)
         {
@@ -216,30 +222,30 @@ ______ _                                  ______      _   _               _
         if (index < data.Count)
         {
 
-            Console.WriteLine("wil je doorgaan?[D]\nOf terug naar de menu?[T]");
+            Console.WriteLine("[W] - Weet u zeker dat u dit wilt wijzigen?\n[T] - Terug naar het menu");
             string answer = Console.ReadLine().ToUpper();
-            if (answer == "D")
+            if (answer == "W")
 
             {
                 JObject movie = (JObject)data[index];
                 Console.WriteLine("Welke data zou je willen wijzigen? (Titel/Beschrijving/Prijs/)");
-                string fieldToEdit = Console.ReadLine();
+                string fieldToEdit = Console.ReadLine().ToUpper();
                 switch (fieldToEdit)
                 {
-                    case "Titel":
+                    case "TITEL":
                         Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
                         string newTitle = Console.ReadLine();
-                        movie["Titel"] = newTitle;
+                        movie["Title"] = newTitle;
                         break;
-                    case "Beschrijving":
+                    case "BESCHRIJVING":
                         Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
                         string newDescription = Console.ReadLine();
-                        movie["Beschrijving"] = newDescription;
+                        movie["Description"] = newDescription;
                         break;
-                    case "Prijs":
+                    case "PRIJS":
                         Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
                         int newPrice = int.Parse(Console.ReadLine());
-                        movie["Prijs"] = newPrice;
+                        movie["Price"] = newPrice;
                         break;
                     default:
                         Console.WriteLine("Ongeldige invoer.");
@@ -335,20 +341,61 @@ ______ _                                  ______      _   _               _
         }
         System.Console.WriteLine();
 
+        Admin(user);
 
-
-        AdminInfo.CinemaInfo(user);
+        // AdminInfo.CinemaInfo(user);
     }
 
-
-    public static void ReadJsonFileBasic(bool user)
+    static public void ViewKlant(List<Users> gegevens)
     {
-        string filename = "userdata.json";
-        string json = File.ReadAllText(filename);
-        Console.Clear();
-        Console.WriteLine(json);
-        AdminInfo.CinemaInfo(user);
 
+        Console.BackgroundColor = ConsoleColor.DarkGray;
+        Console.WriteLine("Accountgegevens van alle klanten:");
+        foreach (Users userdata in gegevens)
+        {
+            Console.WriteLine($"Voornaam: {userdata.fName}");
+            Console.WriteLine($"Achternaam: {userdata.lName}\n");
+            Console.WriteLine($"Email: {userdata.Email}");
+            Console.WriteLine($"Wachtwoord: {userdata.Wachtwoord}");
+        }
+        // EditAccount("Datasources/accounts.json");
+        OngInvoer(true);
     }
 
+    static public List<Users> GetUserData()
+    {
+        string jsonDataUsers = File.ReadAllText("DataSources/accounts.json");
+        Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonDataUsers);
+        List<Users> usergegevens = new List<Users>();
+        Console.Clear();
+        foreach (JObject item in data)
+        {
+            Users userdata = new Users
+            {
+                Email = (string)item["Email"],
+                Wachtwoord = (string)item["Wachtwoord"],
+                fName = (string)item["fName"],
+                lName = (string)item["lName"],
+            };
+            usergegevens.Add(userdata);
+        }
+        Console.ResetColor();
+        return usergegevens;
+    }
+
+    public static void OngInvoer(bool user)
+    {
+        System.Console.WriteLine("[T] - Terug naar het menu");
+        string input1 = Console.ReadLine().ToLower();
+        if (input1 == "t")
+        {
+            Admin(user);
+        }
+        else
+        {
+            System.Console.WriteLine("Ongeldige invoer.");
+            OngInvoer(user);
+        }
+
+    }
 }

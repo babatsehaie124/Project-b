@@ -4,7 +4,6 @@ public class Rooster
 {
     public static void RoosterMenu(bool user)
     {
-
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
 | ___ (_)                                 | ___ \    | | | |             | |                
@@ -237,6 +236,21 @@ ______ _                                  ______      _   _               _
                         Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
                         Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
                         Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
+                        switch ( selectedFilm.Zaal)
+                        {
+                            case 1:
+                            Console.WriteLine($"║   Projector: 4DX ");
+                            break;
+
+                            case 2:
+                            Console.WriteLine($"║   Projector: 3D ");
+                            break;
+
+                            case 3:
+                            Console.WriteLine($"║   Projector: 2D ");
+                            break;
+                        }
+                        
                         Console.WriteLine("╚════════════════════════════════════════════╝");
                         // Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
                     }

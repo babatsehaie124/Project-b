@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "id": 0,
     "Email": "ADMIN@hr.nl",
@@ -12,5 +12,19 @@
     "Wachtwoord": "hr1",
     "fName": "Adrian",
     "lName": "Yan"
+  },
+  {
+    "id": 2,
+    "Email": "1063813@hr.nl",
+    "Wachtwoord": "testcinema",
+    "fName": "Ceylan",
+    "lName": "Heezen"
+  },
+  {
+    "id": 3,
+    "Email": "t@hr.nl",
+    "Wachtwoord": "abc",
+    "fName": "t",
+    "lName": "t"
   }
 ]

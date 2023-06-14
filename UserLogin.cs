@@ -19,6 +19,7 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("[I] - Inloggen");
         Console.WriteLine("[R] - Registreren");
+        Console.WriteLine("[T] - Terug naar het menu");
 
         string input = Console.ReadLine().ToLower();
         if (input == "i")
@@ -28,6 +29,13 @@ ______ _                                  ______      _   _               _
         else if (input == "r")
         {
             Registreren(user);
+        }
+        else if (input == "t")
+        {
+            Console.WriteLine("U wordt terug gestuurd naar het menu.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            Menu.Start(user);
         }
         else
             Console.Clear();
@@ -97,9 +105,12 @@ ______ _                                  ______      _   _               _
 
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText("DataSources/accounts.json", output);
+            Thread.Sleep(1500);
+            Console.Clear();
             Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
             accountsLogic.UpdateList(newLogin);
-            UserLogin.Start(user);
+            Menu.Start(user);
+            // UserLogin.Start(user);
         }
     }
 }

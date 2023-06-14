@@ -229,17 +229,17 @@ ______ _                                  ______      _   _               _
                     case "TITEL":
                         Console.WriteLine($"Voer de nieuwe titel van de film in ({movie["Title"]}):");
                         string newTitle = Console.ReadLine();
-                        movie["Titel"] = newTitle;
+                        movie["Title"] = newTitle;
                         break;
                     case "BESCHRIJVING":
                         Console.WriteLine($"Voer de nieuwe beschrijving van de film in ({movie["Description"]}):");
                         string newDescription = Console.ReadLine();
-                        movie["Beschrijving"] = newDescription;
+                        movie["Description"] = newDescription;
                         break;
                     case "PRIJS":
                         Console.WriteLine($"Voer de nieuwe prijs in van de film ({movie["Price"]}):");
                         int newPrice = int.Parse(Console.ReadLine());
-                        movie["Prijs"] = newPrice;
+                        movie["Price"] = newPrice;
                         break;
                     default:
                         Console.WriteLine("Ongeldige invoer.");

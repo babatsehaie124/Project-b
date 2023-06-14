@@ -7,6 +7,7 @@ using Newtonsoft.Json.Linq;
 
 public class AdminInfo
 {
+    string fileName = "Datasources/accounts.json";
 
     public static void CinemaInfo(bool user)
     {
@@ -49,6 +50,7 @@ public class AdminInfo
         string jsonDataUsers = File.ReadAllText("DataSources/accounts.json");
         Newtonsoft.Json.Linq.JArray data = JArray.Parse(jsonDataUsers);
         List<Users> usergegevens = new List<Users>();
+        Console.Clear();
         foreach (JObject item in data)
         {
             Users userdata = new Users
@@ -196,7 +198,7 @@ public class AdminInfo
         string email = UserLogin.loginEmail;
         string wachtwoord = UserLogin.loginWachtwoord;
 
-        
+
         JObject userObject = jsonArray.FirstOrDefault(
         obj => obj["Email"].ToString() == email && obj["Wachtwoord"].ToString() == wachtwoord
         ) as JObject;
@@ -247,10 +249,13 @@ public class AdminInfo
         {
             Console.WriteLine($"Email: {userdata.Email}");
             Console.WriteLine($"Wachtwoord: {userdata.Wachtwoord}");
-            Console.WriteLine($"First name: {userdata.fName}");
-            Console.WriteLine($"Last name: {userdata.lName}\n");
+            Console.WriteLine($"voornaam: {userdata.fName}");
+            Console.WriteLine($"Achternaam: {userdata.lName}\n");
         }
+        // EditAccount("Datasources/accounts.json");
         CinemaInfo(true);
     }
+
+
 }
 

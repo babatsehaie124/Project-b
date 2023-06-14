@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
 public  class UserLogin
 {
+    public static string loginEmail { get; set; }
+    public static string loginWachtwoord { get; set; }
     static private AccountsLogic accountsLogic = new AccountsLogic();
     static private int NextId = 1;
     public static string email;
@@ -49,14 +51,14 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("Voer uw email in: ");
         email = Console.ReadLine();
         Console.WriteLine("Voer uw wachtwoord in: ");
-        string password = Console.ReadLine();
-        AccountModel acc = accountsLogic.CheckLogin(email, password);
+        loginWachtwoord = Console.ReadLine();
+        AccountModel acc = accountsLogic.CheckLogin(loginEmail, loginWachtwoord);
         if (acc != null)
         {
             Console.Clear();
             Console.WriteLine("Welkom terug, " + acc.FName + " " + acc.LName);
 
-            if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
+            if (loginEmail == "ADMIN@hr.nl" && loginWachtwoord == "ADMINLOGIN")
             {
                 bool admin = true;
                 Console.Clear();

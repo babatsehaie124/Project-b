@@ -331,7 +331,7 @@ ______ _                                  ______      _   _               _
 
         foreach (User userEntry in userList)
         {
-            Console.WriteLine("Question from " + userEntry.Fullname + ": " + userEntry.Question);
+            Console.WriteLine("Question from " + userEntry.Voornaam + userEntry.Achternaam + ": " + userEntry.Question);
         }
         System.Console.WriteLine();
 

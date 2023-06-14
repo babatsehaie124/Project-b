@@ -92,7 +92,7 @@ ______ _                                  ______      _   _               _
         while (!exit)
         {
             Console.Clear();
-            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.");
+            Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.)");
             Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
             input = Char.ToUpper(input[0]) + input.Substring(1);
@@ -104,10 +104,12 @@ ______ _                                  ______      _   _               _
             }
             else if (scheduleByDay.ContainsKey(input))
             {
-                Console.Clear();
                 List<MovieSchedule> movieSchedules = scheduleByDay[input];
 
                 Console.WriteLine(input);
+
+                // Sort movie schedules by start time
+                movieSchedules.Sort((a, b) => DateTime.Parse(a.Start).CompareTo(DateTime.Parse(b.Start)));
 
                 foreach (var movieSchedule in movieSchedules)
                 {
@@ -178,7 +180,6 @@ ______ _                                  ______      _   _               _
         bool exit = false;
         while (!exit)
         {
-            Console.Clear();
             Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.)");
             Console.WriteLine("[T] - Terug naar het roostermenu");
             string input = Console.ReadLine();
@@ -196,8 +197,6 @@ ______ _                                  ______      _   _               _
                 Console.Clear();
 
                 List<MovieSchedule> movieSchedules = scheduleByDay[input];
-
-                Console.Clear();
 
                 Console.WriteLine(input);
 

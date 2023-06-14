@@ -23,6 +23,7 @@ class ReserveringsManager
     private static List<(int, int)> selectedSeats = new();
 
     private static string latestError = "";
+    private static string email;
 
     private static List<(int, int)> LoveSeats = new();
     private static List<(int, int)> PremiumSeats = new();
@@ -110,8 +111,18 @@ ______ _                                  ______      _   _               _
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
                         Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
                     }
+                    if (user == true)
+                    {
+                        email = UserLogin.email;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Voer een Email in");
+                        email = Console.ReadLine();
+                    }
                     System.Console.WriteLine("Je wordt doorverwezen...");
                     Thread.Sleep(3000);
+                    currentReservation.Emailaddress = email;
                     currentReservation.RoosterId = Rooster_Id;
                     currentReservation.SaveAsCurrent();
                     Console.Clear();

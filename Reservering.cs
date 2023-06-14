@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 public class Reservering
 {
+    public string Emailaddress;
     public int RoosterId;
     public List<string> Stoelen;
     public List<string> Snacks;
@@ -19,15 +20,12 @@ public class Reservering
         RoosterId = data.RoosterId;
         Stoelen = data.Stoelen;
         Snacks = data.Snacks;
+        Emailaddress = data.Emailaddress;
     }
 
     public void SaveAsCurrent()
     {
-        Reservering data = new Reservering(RoosterId);
-        data.Stoelen = Stoelen;
-        data.Snacks = Snacks;
-
-        string jsonData = JsonConvert.SerializeObject(data);
+        string jsonData = JsonConvert.SerializeObject(this);
         File.WriteAllText("HuidigeReservering.json", jsonData);
     }
 }

@@ -26,5 +26,12 @@
     "Wachtwoord": "abc",
     "fName": "t",
     "lName": "t"
+  },
+  {
+    "id": 4,
+    "Email": "jayden.su13@gmail.com",
+    "Wachtwoord": "hr3",
+    "fName": "Jayden",
+    "lName": "Ganpat"
   }
 ]

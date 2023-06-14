@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using System;
 class ReserveringsManager
 {
     private const int ROW_COUNT = 10;
@@ -304,14 +303,14 @@ ______ _                                  ______      _   _               _
 
     private static void PrintInstructions()
     {
-        Console.WriteLine("[_] = Normale seats");
+        Console.WriteLine("[_] = Normale seats = 20,-");
 
         Console.ForegroundColor = ConsoleColor.Magenta;
-        Console.WriteLine($" {LOVESEAT_AVAILABLE} = Love seats");
+        Console.WriteLine($" {LOVESEAT_AVAILABLE} = Love seats = 45,- (Voor 2 seats)");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} = Premium seats");
+        Console.WriteLine($" {PREMIUMSEAT_AVAILABLE} - Premium seats = 25,-");
         Console.ResetColor();
 
         Console.ForegroundColor = ConsoleColor.Red;

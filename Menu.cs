@@ -42,46 +42,50 @@ ______ _                                  ______      _   _               _
         else if (input == "B")
         {
             Console.Clear();
-            Console.WriteLine("U wordt nu doorverwezen naar onze bioscoop informatie pagina...");
+            Console.WriteLine("U wordt doorverwezen naar onze bioscoop informatie pagina...");
+            Thread.Sleep(2000);
             Info.CinemaInfo(user);
         }
         else if (input == "M")
         {
             Console.Clear();
-            Console.WriteLine("U wordt nu doorverwezen naar onze filmoverzicht pagina...");
-            // Overzicht_Customer.User(user);
-            ReserveringsManager.Reserveren(user, 20);
+            Console.WriteLine("U wordt doorverwezen naar onze filmoverzicht pagina...");
+            Thread.Sleep(2000);
+            Overzicht_Customer.User(user);
+            // ReserveringsManager.Reserveren(user, 20);
             // Overzicht_Admin.Admin(user);
         }
         else if (input == "R")
         {
             Console.Clear();
-            Console.WriteLine("U wordt nu doorverwezen naar ons reserveringssysteem.");
+            Console.WriteLine("U wordt doorverwezen naar ons reserveringssysteem.");
+            Thread.Sleep(2000);
             Rooster.RoosterMenu(user);
 
         }
         else if (input == "E")
         {
             Console.Clear();
-            Console.WriteLine("Maak uw keuze aub");
+            System.Console.WriteLine("U wordt doorverwezen naar ons eet-drinkmenu...");
+            Thread.Sleep(2000);
             CinemaStore.Products(user);
 
         }
         else if (input == "U" && user == true || input == "U" && Admin == true)
         {
-            Console.WriteLine("Weet je zeker dat je wil uitloggen? (J of N)");
+            Console.WriteLine("Weet u zeker dat u wilt uitloggen? (J of N)");
             string choice = Console.ReadLine().ToUpper();
             if (choice == "J")
             {
                 Console.Clear();
-                Console.WriteLine("Je bent uitgelogd...");
+                Console.WriteLine("U bent uitgelogd...");
                 user = false;
 
                 Start(user);
             }
             else if (choice == "N")
             {
-                Console.WriteLine("Je keert terug naar het menu...");
+                Console.WriteLine("U keert terug naar het menu...");
                 Start(user);
             }
             else
@@ -92,17 +96,18 @@ ______ _                                  ______      _   _               _
         }
         else if (input == "Q")
         {
-            Console.WriteLine("Weet je zeker dat je het programma wil verlaten? [J] of [N]");
+            Console.WriteLine("Weet u zeker dat u het programma wilt verlaten? [J] of [N]");
             string choice = Console.ReadLine().ToUpper();
             if (choice == "J")
             {
                 Console.WriteLine("Sluit programma af...");
+                Thread.Sleep(2000);
                 System.Environment.Exit(0);
             }
             else if (choice == "N")
             {
                 Console.Clear();
-                Console.WriteLine("Je keert terug naar het menu...");
+                Console.WriteLine("U keert terug naar het menu...");
                 Start(user);
             }
             else

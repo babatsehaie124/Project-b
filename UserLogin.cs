@@ -2,9 +2,7 @@ using Newtonsoft.Json;
 static class UserLogin
 {
     static private AccountsLogic accountsLogic = new AccountsLogic();
-
-    public static int NextId { get; private set; }
-
+    static private int NextId = 1;
     public static void Start(bool user)
     {
         string menu2 = @"
@@ -21,69 +19,98 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("Welcome to the login page");
         Console.WriteLine("[I] - Inloggen");
         Console.WriteLine("[R] - Registreren");
+        Console.WriteLine("[T] - Terug naar het menu");
 
         string input = Console.ReadLine().ToLower();
         if (input == "i")
         {
-            Console.WriteLine("Voer uw email in: ");
-            string email = Console.ReadLine();
-            Console.WriteLine("Voer uw wachtwoord in: ");
-            string password = Console.ReadLine();
-            AccountModel acc = accountsLogic.CheckLogin(email, password);
-            if (acc != null)
-            {
-                Console.Clear();
-                Console.WriteLine("Welkom terug " + acc.FName + acc.LName);
-                // Console.WriteLine("Uw email is " + acc.email);
-
-                //Write some code to go back to the menu
-                if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
-                {
-                    bool admin = true;
-                    Console.Clear();
-                    Console.WriteLine("Welkom admin.");
-                    Overzicht_Admin.Admin(admin);
-                }
-                user = true;
-
-                Menu.Start(user);
-            }
+            Inloggen(user);
         }
         else if (input == "r")
         {
-            Console.WriteLine("Voornaam: ");
-            string fname = Console.ReadLine();
-            Console.WriteLine("Achternaam: ");
-            string lname = Console.ReadLine();
-            Console.WriteLine("Voer een nieuw emailadres in: ");
-            string email1 = Console.ReadLine();
-            Console.WriteLine("Voer een nieuw wachtwoord in: ");
-            string password1 = Console.ReadLine();
+            Registreren(user);
+        }
+        else if (input == "t")
+        {
+            Console.WriteLine("U wordt terug gestuurd naar het menu.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            Menu.Start(user);
+        }
+        else
+            Console.Clear();
+        System.Console.WriteLine("Ongeldige invoer.");
+        UserLogin.Start(user);
+    }
 
-            string jsondata = File.ReadAllText("DataSources/accounts.json");
-            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
-            dynamic newLogin = new
+    public static void Inloggen(bool user)
+    {
+        Console.WriteLine("Voer uw email in: ");
+        string email = Console.ReadLine();
+        Console.WriteLine("Voer uw wachtwoord in: ");
+        string password = Console.ReadLine();
+        AccountModel acc = accountsLogic.CheckLogin(email, password);
+        if (acc != null)
+        {
+            Console.Clear();
+            Console.WriteLine("Welkom terug, " + acc.FName + " " + acc.LName);
+
+            if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
             {
-                Id = NextId++,
-                email = email1,
-                wachtwoord = password1,
-                fName = fname,
-                lName = lname
-            };
-            // AccountModel nieuw = new(NextId++, email1, password1, fname, lname);
-            data.Add(newLogin);
-
-            string output = JsonConvert.SerializeObject(data, Formatting.Indented);
-            File.WriteAllText("DataSources/accounts.json", output);
-            Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
+                bool admin = true;
+                Console.Clear();
+                Console.WriteLine("Welkom admin.");
+                Overzicht_Admin.Admin(admin);
+            }
+            user = true;
+            Menu.Start(user);
         }
         else
         {
             Console.Clear();
-            Console.WriteLine("Geen account gevonden met die email en password!");
+            Console.WriteLine("Geen account gevonden met die email en wachtwoord!");
             user = false;
-            Menu.Start(user);
+            UserLogin.Start(user);
+        }
+    }
 
+    public static void Registreren(bool user)
+    {
+        Console.Clear();
+        Console.WriteLine("Voornaam: ");
+        string fname = Console.ReadLine();
+        Console.WriteLine("Achternaam: ");
+        string lname = Console.ReadLine();
+        Console.WriteLine("Voer een nieuw emailadres in: ");
+        string email1 = Console.ReadLine();
+        Console.WriteLine("Voer een nieuw wachtwoord in: ");
+        string password1 = Console.ReadLine();
+
+        string emailaddress = email1.Trim();
+        int atIndex = emailaddress.IndexOf('@');
+        int dotIndex = emailaddress.LastIndexOf('.');
+        if (atIndex <= 0 || dotIndex <= atIndex + 1 || dotIndex == emailaddress.Length - 1)
+        {
+            System.Console.WriteLine("Ongeldige email. Probeer het opnieuw.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            UserLogin.Start(user);
+        }
+        else
+        {
+            string jsondata = File.ReadAllText("DataSources/accounts.json");
+            List<dynamic> data = JsonConvert.DeserializeObject<List<dynamic>>(jsondata);
+            AccountModel newLogin = new AccountModel(NextId++, emailaddress, password1, fname, lname);
+            data.Add(newLogin);
+
+            string output = JsonConvert.SerializeObject(data, Formatting.Indented);
+            File.WriteAllText("DataSources/accounts.json", output);
+            Thread.Sleep(1500);
+            Console.Clear();
+            Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
+            accountsLogic.UpdateList(newLogin);
+            Menu.Start(user);
+            // UserLogin.Start(user);
         }
     }
 }

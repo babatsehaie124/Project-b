@@ -15,30 +15,16 @@
   },
   {
     "id": 2,
-    "Email": "1050045",
-    "Wachtwoord": "hr2",
-    "fName": "Amen",
-    "lName": "Tsehaie"
+    "Email": "1063813@hr.nl",
+    "Wachtwoord": "testcinema",
+    "fName": "Ceylan",
+    "lName": "Heezen"
   },
   {
-    "Id": 0,
-    "email": "bsimpson@hr.nl",
-    "wachtwoord": "aintnosimpson",
-    "fName": "Bart",
-    "lName": "Simpson"
-  },
-  {
-    "Id": 0,
-    "email": "akam@hr.nl",
-    "wachtwoord": "busssss",
-    "fName": "Ambatu",
-    "lName": "Kam"
-  },
-  {
-    "Id": 0,
-    "email": "akam@hr.nl",
-    "wachtwoord": "buss",
-    "fName": "AMbatu",
-    "lName": "Kam"
+    "id": 3,
+    "Email": "t@hr.nl",
+    "Wachtwoord": "abc",
+    "fName": "t",
+    "lName": "t"
   }
 ]

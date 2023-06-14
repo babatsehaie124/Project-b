@@ -4,7 +4,6 @@ public class Rooster
 {
     public static void RoosterMenu(bool user)
     {
-
         string menu2 = @"
 ______ _                                  ______      _   _               _                 
 | ___ (_)                                 | ___ \    | | | |             | |                
@@ -210,14 +209,14 @@ ______ _                                  ______      _   _               _
                     Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
                     Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
                     Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
-                    Console.WriteLine("╚════════════════════════════════════════════╝");
+                    Console.WriteLine("╚════════════════════════════════════════════╝\n");
                     // Console.WriteLine($"Titel: {movieSchedule.Title}\n Tijd: {movieSchedule.Start} -  {movieSchedule.Ending}\n Zaal: {movieSchedule.Zaal}");
                     Console.WriteLine();
                 }
 
                 Console.WriteLine();
-
-                Console.WriteLine("Wil je verder filteren?\n[J] - Ja\n[N] - Nee");
+            
+                Console.WriteLine("Wil je een film uitkiezen?\n[J] - Ja\n[N] - Nee");
                 string filter = Console.ReadLine();
                 if (filter.ToLower() == "j")
                 {
@@ -236,6 +235,21 @@ ______ _                                  ______      _   _               _
                         Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
                         Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
                         Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
+                        switch ( selectedFilm.Zaal)
+                        {
+                            case 1:
+                            Console.WriteLine($"║   Projector: 4DX ");
+                            break;
+
+                            case 2:
+                            Console.WriteLine($"║   Projector: 3D ");
+                            break;
+
+                            case 3:
+                            Console.WriteLine($"║   Projector: 2D ");
+                            break;
+                        }
+                        
                         Console.WriteLine("╚════════════════════════════════════════════╝");
                         // Console.WriteLine($"Titel: {selectedFilm.Title}\n Tijd: {selectedFilm.Start} -  {selectedFilm.Ending}\n Zaal: {selectedFilm.Zaal}");
                     }
@@ -267,14 +281,10 @@ ______ _                                  ______      _   _               _
                 else if (filter.ToLower() == "n")
                 {
                     // Console.Clear();
-                    Console.WriteLine("Selecteer de opties: ");
-
-                    string? input0 = Console.ReadLine();
-                    if (input0?.ToLower() == "t")
-                    {
-                        Console.Clear();
-                        RoosterMenu(user);
-                    }
+                    Console.WriteLine("Je wordt terugverwezen naar menu... ");
+                    Thread.Sleep(3000);
+                    Console.Clear();
+                    RoosterMenu(user);
                 }
             }
             else

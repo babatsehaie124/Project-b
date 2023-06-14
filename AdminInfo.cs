@@ -147,8 +147,11 @@ public class AdminInfo
         }
         Console.WriteLine("Vul de gegevens in:");
 
-        Console.WriteLine("Volledige naam: ");
-        string fullName = Console.ReadLine();
+        Console.WriteLine("Voornaam: ");
+        string voornaam = Console.ReadLine();
+
+        Console.WriteLine("Achternaam: ");
+        string achternaam = Console.ReadLine();
 
         Console.WriteLine("Email: ");
         string email = Console.ReadLine();
@@ -165,7 +168,7 @@ public class AdminInfo
         Console.WriteLine("Vraag: ");
         string question = Console.ReadLine();
 
-        User newUser = new User { Fullname = fullName, Email = email, Question = question };
+        User newUser = new User { Voornaam = voornaam, Achternaam = achternaam, Email = email, Question = question };
 
         string filename = "userdata.json";
 
@@ -186,26 +189,28 @@ public class AdminInfo
 
     public static void Loggedinquestion(bool user)
     {
-        // Read the JSON file content
         string jsonfile = File.ReadAllText("DataSources/accounts.json");
 
-        // Parse the JSON array
         JArray jsonArray = JArray.Parse(jsonfile);
 
-        // Get the last object from the array
-        JObject lastObject = (JObject)jsonArray.Last;
+        string email = UserLogin.loginEmail;
+        string wachtwoord = UserLogin.loginWachtwoord;
 
-        // Access the last account's FullName and EmailAddress
-        string lastFullName = lastObject["fullName"].ToString();
-        string lastEmailAddress = lastObject["emailAddress"].ToString();
+        
+        JObject userObject = jsonArray.FirstOrDefault(
+        obj => obj["Email"].ToString() == email && obj["Wachtwoord"].ToString() == wachtwoord
+        ) as JObject;
 
-        // Use the last account information
-        Console.WriteLine($"Last Account:\nFull Name: {lastFullName}\nEmail: {lastEmailAddress}");
 
+        string lastvoornaam = userObject["fName"].ToString();
+        string lastachternaam = userObject["lName"].ToString();
+        string lastEmailAddress = userObject["Email"].ToString();
+
+        Console.WriteLine($"Jouw Account:\nVoornaam: {lastvoornaam}\nAchternaam: {lastachternaam}\nEmail: {lastEmailAddress}");
         Console.WriteLine("Vraag: ");
         string question = Console.ReadLine();
 
-        User newUser = new User { Fullname = lastFullName, Email = lastEmailAddress, Question = question };
+        User newUser = new User { Voornaam = lastvoornaam, Achternaam = lastachternaam, Email = lastEmailAddress, Question = question };
 
         string filename = "userdata.json";
 

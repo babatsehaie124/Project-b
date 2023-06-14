@@ -1,8 +1,11 @@
 using Newtonsoft.Json;
-static class UserLogin
+public  class UserLogin
 {
+    public static string loginEmail { get; set; }
+    public static string loginWachtwoord { get; set; }
     static private AccountsLogic accountsLogic = new AccountsLogic();
     static private int NextId = 1;
+    public static string email;
     public static void Start(bool user)
     {
         string menu2 = @"
@@ -46,16 +49,16 @@ ______ _                                  ______      _   _               _
     public static void Inloggen(bool user)
     {
         Console.WriteLine("Voer uw email in: ");
-        string email = Console.ReadLine();
+        email = Console.ReadLine();
         Console.WriteLine("Voer uw wachtwoord in: ");
-        string password = Console.ReadLine();
-        AccountModel acc = accountsLogic.CheckLogin(email, password);
+        loginWachtwoord = Console.ReadLine();
+        AccountModel acc = accountsLogic.CheckLogin(loginEmail, loginWachtwoord);
         if (acc != null)
         {
             Console.Clear();
             Console.WriteLine("Welkom terug, " + acc.FName + " " + acc.LName);
 
-            if (email == "ADMIN@hr.nl" && password == "ADMINLOGIN")
+            if (loginEmail == "ADMIN@hr.nl" && loginWachtwoord == "ADMINLOGIN")
             {
                 bool admin = true;
                 Console.Clear();
@@ -104,7 +107,9 @@ ______ _                                  ______      _   _               _
             data.Add(newLogin);
 
             string output = JsonConvert.SerializeObject(data, Formatting.Indented);
+            string outputemail = JsonConvert.SerializeObject(emailaddress, Formatting.Indented);
             File.WriteAllText("DataSources/accounts.json", output);
+            File.WriteAllText("Gereserveerd.json", outputemail);
             Thread.Sleep(1500);
             Console.Clear();
             Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");

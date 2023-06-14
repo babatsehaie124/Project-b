@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": 0,
     "Email": "ADMIN@hr.nl",
@@ -12,33 +12,5 @@
     "Wachtwoord": "hr1",
     "fName": "Adrian",
     "lName": "Yan"
-  },
-  {
-    "id": 2,
-    "Email": "1050045",
-    "Wachtwoord": "hr2",
-    "fName": "Amen",
-    "lName": "Tsehaie"
-  },
-  {
-    "Id": 0,
-    "email": "bsimpson@hr.nl",
-    "wachtwoord": "aintnosimpson",
-    "fName": "Bart",
-    "lName": "Simpson"
-  },
-  {
-    "Id": 0,
-    "email": "akam@hr.nl",
-    "wachtwoord": "busssss",
-    "fName": "Ambatu",
-    "lName": "Kam"
-  },
-  {
-    "Id": 0,
-    "email": "akam@hr.nl",
-    "wachtwoord": "buss",
-    "fName": "AMbatu",
-    "lName": "Kam"
   }
 ]

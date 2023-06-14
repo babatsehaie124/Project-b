@@ -66,14 +66,14 @@ ______ _                                  ______      _   _               _
             "\n" +
             "Bereikbaarheid:\n" +
             "Parkeergarage Schouwburgplein The Parking rate\n" +
-            "is  2,30 Euro per hour. De dichtsbijzijnde\n" +
-            "gehandicapte parkeerplaatsen kan worden gevonden bij\n" +
-            "Schouwburgplein near De Doelen.\n" +
+            "is 2,30 Euro per uur. De dichtsbijzijnde\n" +
+            "gehandicapte parkeerplaatsen kunnen worden gevonden bij\n" +
+            "Schouwburgplein in de buurt van De Doelen.\n" +
             "Adres Schouwburgplein 101\n" +
-            "Tarief  2,30 Euro\n" +
+            "Tarief: 2,30 Euro\n" +
             "\n" +
             "Q-Park Weena reserveer je parkeerplek met een kortingscode\n" +
-            "bij Q-Park and betaal per 22 minutes van een gedeelte/n" +
+            "bij Q-Park en betaal per 22 minuten van een gedeelte\n" +
             "van dit 1,50 Euro met een maximale dag tarief van 30,00 Euro.\n" +
             "Adres Karel Doormanstraat 10\n" +
             "tarief  4,50 Euro\n" +

@@ -3,7 +3,9 @@
 class AccountModel
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public int Id { get; private set; }
+    [JsonIgnore]
+    static int NextId = 0;
 
     [JsonPropertyName("Email")]
     public string Email { get; set; }
@@ -19,7 +21,7 @@ class AccountModel
 
     public AccountModel(int id, string email, string wachtwoord, string fName, string lName)
     {
-        Id = id;
+        Id = NextId++;
         Email = email;
         Wachtwoord = wachtwoord;
         FName = fName;

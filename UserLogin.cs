@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-public  class UserLogin
+public class UserLogin
 {
     public static string loginEmail { get; set; }
     public static string loginWachtwoord { get; set; }
@@ -49,7 +49,7 @@ ______ _                                  ______      _   _               _
     public static void Inloggen(bool user)
     {
         Console.WriteLine("Voer uw email in: ");
-        email = Console.ReadLine();
+        loginEmail = Console.ReadLine();
         Console.WriteLine("Voer uw wachtwoord in: ");
         loginWachtwoord = Console.ReadLine();
         AccountModel acc = accountsLogic.CheckLogin(loginEmail, loginWachtwoord);

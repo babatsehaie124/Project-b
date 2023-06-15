@@ -18,7 +18,7 @@ class ChooseFood
         Console.WriteLine("Wilt u:");
         Console.WriteLine("[E] Het eet- en drinkkaart bekijken");
         Console.WriteLine("[S] Uw eten en drinken bestellen");
-        Console.WriteLine("[B] Uw Bonnetje ontvangen");
+        Console.WriteLine("[B] Uw bonnetje ontvangen");
         string choice = Console.ReadLine().ToLower();
 
         if (choice == "e")
@@ -112,4 +112,5 @@ class ChooseFood
 
         Console.ReadLine();
     }
+    
 }

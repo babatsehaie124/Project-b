@@ -24,7 +24,7 @@ ______ _                                  ______      _   _               _
         var products = JsonConvert.DeserializeObject<List<Storeproducts>>(storedata);
         Console.Clear();
         Console.WriteLine(menu2);
-        Console.WriteLine("Welkom klant bij ons eet-drinkmenu");
+        Console.WriteLine("Welkom bij ons eet-drinkmenu");
         Console.WriteLine("Als u iets vanuit dit menu wilt bestellen");
         Console.WriteLine("Ga terug naar het Menu -> Reserveren -> Eten bestellen\n");
 

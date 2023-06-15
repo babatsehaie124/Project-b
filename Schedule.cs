@@ -40,6 +40,7 @@ ______ _                                  ______      _   _               _
             foreach (var movieSchedule in movieSchedules)
             {
                 Console.WriteLine("╔════════════════════════════════════════════╗");
+                Console.WriteLine($"║   Filmnummer: {movieSchedule.Rooster_Id,-23} ");
                 Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
                 Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
                 Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
@@ -80,6 +81,120 @@ ______ _                                  ______      _   _               _
         }
     }
 
+    // public static void Reserveervoorfilm(bool user)
+    // {
+    //     Console.Clear();
+    //     string json = File.ReadAllText("Rooster.json");
+    //     var scheduleByDay = JsonConvert.DeserializeObject<Dictionary<string, List<MovieSchedule>>>(json);
+
+    //     bool exit = false;
+    //     while (!exit)
+    //     {
+    //         Console.Clear();
+    //         Console.WriteLine("Voer een dag in (Maandag, Dinsdag, Woensdag, etc.)");
+    //         Console.WriteLine("[T] - Terug naar het roostermenu");
+    //         string input = Console.ReadLine();
+    //         input = Char.ToUpper(input[0]) + input.Substring(1);
+
+    //         if (input.ToLower() == "t")
+    //         {
+    //             Console.Clear();
+    //             RoosterMenu(user);
+    //         }
+    //         else if (scheduleByDay.ContainsKey(input))
+    //         {
+    //             List<MovieSchedule> movieSchedules = scheduleByDay[input];
+    //             int selectedIndex = 0;
+
+    //             while (true)
+    //             {
+    //                 Console.Clear();
+    //                 Console.WriteLine(input);
+
+    //                 movieSchedules.Sort((a, b) => DateTime.Parse(a.Start).CompareTo(DateTime.Parse(b.Start)));
+
+    //                 for (int i = 0; i < movieSchedules.Count; i++)
+    //                 {
+    //                     var movieSchedule = movieSchedules[i];
+    //                     string selectionMarker = i == selectedIndex ? "> " : "  ";
+
+    //                     Console.BackgroundColor = i == selectedIndex ? ConsoleColor.White : ConsoleColor.Black;
+    //                     Console.ForegroundColor = i == selectedIndex ? ConsoleColor.Black : ConsoleColor.White;
+
+    //                     Console.WriteLine("╔════════════════════════════════════════════╗");
+    //                     Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
+    //                     Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
+    //                     Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
+    //                     Console.WriteLine($"╚════════════════════════════════════════════╝");
+
+    //                     Console.ResetColor();
+    //                     Console.WriteLine();
+    //                 }
+
+    //                 Console.WriteLine();
+    //                 Console.WriteLine("[T] - Terug naar het rooster menu");
+    //                 Console.WriteLine("[R] - Reserveer voor de film");
+    //                 Console.WriteLine("Selecteer een van de opties: ");
+
+    //                 ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+    //                 if (keyInfo.Key == ConsoleKey.UpArrow)
+    //                 {
+    //                     selectedIndex = Math.Max(selectedIndex - 1, 0);
+    //                 }
+    //                 else if (keyInfo.Key == ConsoleKey.DownArrow)
+    //                 {
+    //                     selectedIndex = Math.Min(selectedIndex + 1, movieSchedules.Count - 1);
+    //                 }
+    //                 else if (keyInfo.Key == ConsoleKey.Enter)
+    //                 {
+    //                     Console.Clear();
+    //                     var selectedFilm = movieSchedules[selectedIndex];
+
+    //                     Console.WriteLine(input);
+                        
+    //                     Console.BackgroundColor = ConsoleColor.White;
+    //                     Console.ForegroundColor = ConsoleColor.Black;
+
+    //                     Console.WriteLine("╔════════════════════════════════════════════╗");
+    //                     Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
+    //                     Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
+    //                     Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
+    //                     Console.WriteLine("╚════════════════════════════════════════════╝");
+
+    //                     Console.ResetColor();
+    //                     Console.WriteLine();
+
+    //                     Console.WriteLine("[R] - Reserveer voor de film");
+    //                     Console.WriteLine("[T] - Terug naar het rooster menu");
+    //                     Console.WriteLine("Selecteer een van de opties: ");
+
+    //                     string input0 = Console.ReadLine()?.ToLower();
+    //                     if (input0 == "t")
+    //                     {  
+    //                         Console.Clear();
+    //                         RoosterMenu(user);
+    //                     }
+    //                     else if (input0 == "r")
+    //                     {
+    //                         Console.Clear();
+    //                         Roosterreserveer roosterreserveer = new Roosterreserveer(selectedFilm.Zaal, selectedFilm.Rooster_Id);
+    //                         Roosterreserveer.Reserve(user, selectedFilm.Rooster_Id);
+    //                     }
+
+    //                     break;
+    //                 }
+    //                 else
+    //                 {
+    //                     Console.WriteLine("Ongeldige invoer");
+    //                 }
+    //             }
+    //         }
+    //         else
+    //         {
+    //             Console.WriteLine("Ongeldige invoer. Probeer het opnieuw.");
+    //         }
+    //     }
+    // }
 
 
     public static void Reserveervoorfilm(bool user)
@@ -114,6 +229,7 @@ ______ _                                  ______      _   _               _
                 foreach (var movieSchedule in movieSchedules)
                 {
                     Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Filmnummer: {movieSchedule.Rooster_Id,-23} ");
                     Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
                     Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
                     Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
@@ -125,17 +241,18 @@ ______ _                                  ______      _   _               _
                 Console.WriteLine();
 
 
-                Console.WriteLine("Voer de titel van de film in:");
-                string filmTitle = Console.ReadLine();
+                Console.WriteLine("Voer de Filmnummer in:");
+                int filmTitle = int.Parse(Console.ReadLine());
                 Console.Clear();
 
-                var selectedFilm = movieSchedules.Find(schedule => schedule.Title.Equals(filmTitle, StringComparison.OrdinalIgnoreCase));
+                var selectedFilm = movieSchedules.Find(schedule => schedule.Rooster_Id == filmTitle);
 
                 if (selectedFilm != null)
                 {
                     Console.Clear();
                     Console.WriteLine(input);
                     Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Filmnummer: {selectedFilm.Rooster_Id,-23} ");
                     Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
                     Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
                     Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");
@@ -206,6 +323,7 @@ ______ _                                  ______      _   _               _
                 foreach (var movieSchedule in movieSchedules)
                 {
                     Console.WriteLine("╔════════════════════════════════════════════╗");
+                    Console.WriteLine($"║   Filmnummer: {movieSchedule.Rooster_Id,-23} ");
                     Console.WriteLine($"║   Titel: {movieSchedule.Title,-27} ");
                     Console.WriteLine($"║   Tijd: {movieSchedule.Start}  - {movieSchedule.Ending}");
                     Console.WriteLine($"║   Zaal: {movieSchedule.Zaal,-28} ");
@@ -221,17 +339,18 @@ ______ _                                  ______      _   _               _
                 if (filter.ToLower() == "j")
                 {
                     // Console.Clear();
-                    Console.WriteLine("Voer de titel van de film in:");
-                    string filmTitle = Console.ReadLine();
+                    Console.WriteLine("Voer de Filmnummer in:");
+                    int filmTitle = int.Parse(Console.ReadLine());
                     Console.Clear();
 
-                    var selectedFilm = movieSchedules.Find(schedule => schedule.Title.Equals(filmTitle, StringComparison.OrdinalIgnoreCase));
+                    var selectedFilm = movieSchedules.Find(schedule => schedule.Rooster_Id == filmTitle);
 
                     if (selectedFilm != null)
                     {
                         Console.Clear();
                         Console.WriteLine(input);
                         Console.WriteLine("╔════════════════════════════════════════════╗");
+                        Console.WriteLine($"║   Filmnummer: {selectedFilm.Rooster_Id,-23} ");
                         Console.WriteLine($"║   Titel: {selectedFilm.Title,-27} ");
                         Console.WriteLine($"║   Tijd: {selectedFilm.Start}  - {selectedFilm.Ending}");
                         Console.WriteLine($"║   Zaal: {selectedFilm.Zaal,-28} ");

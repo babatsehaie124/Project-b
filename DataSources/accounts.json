@@ -1,30 +1,37 @@
 [
   {
-    "id": 0,
+    "id": 4,
     "Email": "ADMIN@hr.nl",
     "Wachtwoord": "ADMINLOGIN",
     "fName": "admin",
     "lName": "admin"
   },
   {
-    "id": 1,
+    "id": 5,
     "Email": "1054255@hr.nl",
     "Wachtwoord": "hr1",
     "fName": "Adrian",
     "lName": "Yan"
   },
   {
-    "id": 2,
+    "id": 6,
     "Email": "1063813@hr.nl",
     "Wachtwoord": "testcinema",
     "fName": "Ceylan",
     "lName": "Heezen"
   },
   {
-    "id": 5,
+    "id": 7,
     "Email": "jayden.su13@gmail.com",
     "Wachtwoord": "hr3",
     "fName": "Jayden",
     "lName": "Ganpat"
+  },
+  {
+    "id": 8,
+    "Email": "1034363@hr.nl",
+    "Wachtwoord": "Chaimaa123",
+    "fName": "Chaimaa",
+    "lName": "el Omari"
   }
 ]

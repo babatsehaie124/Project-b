@@ -28,7 +28,7 @@ ______ _                                  ______      _   _               _
         }
         Console.WriteLine();
         Console.WriteLine("[T] - Terug naar het menu");
-        Console.WriteLine("Selecteer een van films: ");
+        Console.WriteLine("Selecteer een van de films: ");
 
         string? input0 = Console.ReadLine();
         if (input0?.ToLower() == "t")

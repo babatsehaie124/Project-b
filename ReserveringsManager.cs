@@ -1,4 +1,6 @@
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+
 class ReserveringsManager
 {
     private const int ROW_COUNT = 10;
@@ -32,7 +34,7 @@ class ReserveringsManager
         currentReservation = new(1);
         InitializeSeats();
         bool seatChosen = false;
-        int reservedSeatCount = 0;
+        int reservedSeatCount = 1;
 
         do
         {
@@ -113,12 +115,21 @@ ______ _                                  ______      _   _               _
                     }
                     if (user == true)
                     {
-                        email = UserLogin.email;
+                        email = UserLogin.loginEmail;
                     }
                     else
                     {
                         System.Console.WriteLine("Voer een Email in");
                         email = Console.ReadLine();
+                        bool isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+
+                        while (!isValidEmail)
+                        {
+                            Console.WriteLine("Onjuiste email format. Probeer opnieuw.");
+                            Console.WriteLine("Email: ");
+                            email = Console.ReadLine();
+                            isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                        }
                     }
                     System.Console.WriteLine("Je wordt doorverwezen...");
                     Thread.Sleep(3000);
@@ -196,23 +207,32 @@ ______ _                                  ______      _   _               _
         }
         else if (seats[cursorRow, cursorCol] == SELECT_SEAT)
         {
-            if (LoveSeats.Contains((row, col)))
+            if (LoveSeats.Contains((cursorRow, cursorCol)))
             {
                 seats[row, col] = LOVESEAT_AVAILABLE;
-                if (LoveSeats.Contains((row, col + 1)))
+                if (LoveSeats.Contains((cursorRow, cursorCol + 1)))
                 {
-                    seats[row, col + 1] = LOVESEAT_AVAILABLE;
+                    seats[cursorRow, cursorCol + 1] = LOVESEAT_AVAILABLE;
+                    selectedSeats.Remove((row, col + 1));
+                    currentReservation.Stoelen.Remove(GetSeatRow(cursorRow, cursorCol + 1));
+                    reservedSeatCount -= 2;
                 }
-                else if (LoveSeats.Contains((row, col - 1)))
+                else if (LoveSeats.Contains((cursorRow, cursorCol - 1)))
                 {
-                    seats[row, col - 1] = LOVESEAT_AVAILABLE;
+                    seats[cursorRow, cursorCol - 1] = LOVESEAT_AVAILABLE;
+                    selectedSeats.Remove((row, col - 1));
+                    currentReservation.Stoelen.Remove(GetSeatRow(cursorRow, cursorCol - 1));
+                    reservedSeatCount -= 2;
                 }
-                currentReservation.Stoelen.Remove(GetSeatRow(row, col));
+
             }
-            else if (PremiumSeats.Contains((row, col)))
+
+            else if (PremiumSeats.Contains((cursorRow, cursorCol)))
             {
-                seats[row, col] = PREMIUMSEAT_AVAILABLE;
+                seats[cursorRow, cursorCol] = PREMIUMSEAT_AVAILABLE;
+                selectedSeats.Remove((cursorRow, cursorCol));
                 currentReservation.Stoelen.Remove(GetSeatRow(row, col));
+                reservedSeatCount--;
             }
             else
             {
@@ -223,7 +243,16 @@ ______ _                                  ______      _   _               _
         }
         else if (reservedSeatCount == 10 || reservedSeatCount + selectedSeats.Count() == 10)
         {
+            System.Console.WriteLine(reservedSeatCount);
+            seats[cursorRow, cursorCol] = SEAT_AVAILABLE;
+            selectedSeats.Remove((cursorRow, cursorCol));
+            reservedSeatCount--;
             latestError = "Maximaal aantal stoelen bereikt.";
+        }
+        else if (reservedSeatCount == 0)
+        {
+            System.Console.WriteLine(reservedSeatCount);
+            Thread.Sleep(3000);
         }
         else
         {
@@ -388,6 +417,7 @@ ______ _                                  ______      _   _               _
             currentReservation.Stoelen.Add(GetSeatRow(row, col));
             return SELECT_SEAT;
         }
+
     }
     private static string GetSeatRow(int row, int col)
     {

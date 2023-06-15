@@ -1,11 +1,17 @@
-
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Newtonsoft.Json;
-
 class ChooseFood
 {
+    private static Reservering? currentReservation = new(20);
+    public static string storedata = File.ReadAllText("Store.json");
+    public static dynamic products = JsonConvert.DeserializeObject<List<Storeproducts>>(storedata);
+    public static string jsonFilePath = "Store.json";
+    public static List<Dictionary<string, decimal>> menu = JsonConvert.DeserializeObject<List<Dictionary<string, decimal>>>(File.ReadAllText(jsonFilePath));
+    public static Dictionary<string, decimal> menuItems = menu[0];
+    public static decimal totalCost = 0;
+    public static Dictionary<string, int> orderedItems = new Dictionary<string, int>();
+
+    public static int quantity;
+
     public static void PickFood(bool user)
     {
         Console.WriteLine("Welkom bij ons eet- en drinkkaart!");
@@ -14,10 +20,6 @@ class ChooseFood
         Console.WriteLine("[S] Uw eten en drinken bestellen");
         Console.WriteLine("[B] Uw Bonnetje ontvangen");
         string choice = Console.ReadLine().ToLower();
-
-        string storedata = File.ReadAllText("Store.json");
-        var products = JsonConvert.DeserializeObject<List<Storeproducts>>(storedata);
-
 
         if (choice == "e")
         {
@@ -51,45 +53,36 @@ class ChooseFood
         }
         else if (choice == "s")
         {
-            string jsonFilePath = "Store.json";
-            List<Dictionary<string, decimal>> menu = JsonConvert.DeserializeObject<List<Dictionary<string, decimal>>>(File.ReadAllText(jsonFilePath));
-
-            Dictionary<string, decimal> menuItems = menu[0];
 
             Console.WriteLine("Menu:");
             foreach (var item in menuItems)
             {
                 Console.WriteLine($"{item.Key}: {item.Value} euro");
             }
-
-            Dictionary<string, int> orderedItems = new Dictionary<string, int>();
+            System.Console.WriteLine();
 
             string userInput;
             do
             {
                 Console.Write("Vul het artikel in dat je wilt bestellen (of 'klaar' om af te ronden):");
+                System.Console.WriteLine();
                 userInput = Console.ReadLine();
-
+                System.Console.WriteLine();
                 if (menuItems.ContainsKey(userInput))
-                {
-                    Console.Write("Voer a.u.b uw aantal in: ");
-                    int quantity;
-                    bool isValidQuantity = int.TryParse(Console.ReadLine(), out quantity);
 
-                    if (isValidQuantity && quantity > 0)
+                {
+
+                    Console.Write("Voer a.u.b uw aantal in: ");
+                    System.Console.WriteLine();
+                    int quantity = Convert.ToInt32(Console.ReadLine());
+                    System.Console.WriteLine();
+                    orderedItems.Add(userInput, quantity);
+                    if (orderedItems.ContainsKey(userInput))
                     {
-                        if (orderedItems.ContainsKey(userInput))
-                        {
-                            orderedItems[userInput] += quantity;
-                        }
-                        else
-                        {
-                            orderedItems.Add(userInput, quantity);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ongeldige invoer, probeer a.u.b opnieuw");
+                        orderedItems[userInput] += quantity;
+                        currentReservation.LoadFromCurrent();
+                        currentReservation.Snacks[userInput] = quantity;
+                        currentReservation.SaveAsCurrent();
                     }
                 }
                 else if (userInput.ToLower() != "klaar")
@@ -99,19 +92,19 @@ class ChooseFood
             } while (userInput.ToLower() != "klaar");
 
 
-            decimal totalCost = 0;
+
             foreach (var item in orderedItems)
             {
                 totalCost += menuItems[item.Key] * item.Value;
             }
-
-            Console.WriteLine("Gekozen producten:");
+            Console.Clear();
+            Console.WriteLine("Gekozen producten:\n");
             foreach (var item in orderedItems)
             {
-                Console.WriteLine($"{item.Key}: Aantal: {item.Value}");
+                Console.WriteLine($"Product: {item.Key}\nAantal: {item.Value}\n");
             }
 
-            Console.WriteLine($"De totale kosten zijn: {totalCost} euro");
+            Console.WriteLine($"De totale kosten zijn: {totalCost} euro\n");
             Console.WriteLine("Bedankt voor het bestellen bij onze Eet-drink menu!");
             Console.WriteLine("U wordt doorverwezen naar...");
         }

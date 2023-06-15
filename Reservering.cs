@@ -4,7 +4,7 @@ public class Reservering
     public string Emailaddress;
     public int RoosterId;
     public List<string> Stoelen;
-    public List<string> Snacks;
+    public Dictionary<string, int> Snacks;
 
     public Reservering(int roosterId)
     {

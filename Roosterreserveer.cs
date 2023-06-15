@@ -16,11 +16,11 @@ public class  Roosterreserveer
         }
         else if (Zaal == 2)
         {
-            ReserveringsManagerZaal2.Reserveren(user);
+            ReserveringsManagerZaal2.Reserveren(user, RoosterId);
         }
         else if (Zaal == 3)
         {
-            ReserveringsManagerZaal3.Reserveren(user);
+            ReserveringsManagerZaal3.Reserveren(user, RoosterId);
         }
     }
 }

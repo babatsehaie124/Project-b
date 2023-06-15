@@ -50,6 +50,7 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
             Console.WriteLine(menu2);
+            System.Console.WriteLine();
             DrawSeats();
 
             if (latestError != "")
@@ -113,31 +114,40 @@ ______ _                                  ______      _   _               _
                         currentReservation.Stoelen.Add(GetSeatRow(seat.Item1, seat.Item2));
                         Console.WriteLine($"Je hebt stoel {GetSeatRow(seat.Item1, seat.Item2)} geselecteerd.\n");
                     }
-                    if (user == true)
+                    if (currentReservation.Stoelen != null && currentReservation.Stoelen.Count > 0)
                     {
-                        email = UserLogin.loginEmail;
+                        if (user == true)
+                        {
+                            email = UserLogin.loginEmail;
+                        }
+                        else
+                        {
+                            System.Console.WriteLine("Voer een Email in");
+                            email = Console.ReadLine();
+                            bool isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+
+                            while (!isValidEmail)
+                            {
+                                Console.WriteLine("Onjuiste email format. Probeer opnieuw.");
+                                Console.WriteLine("Email: ");
+                                email = Console.ReadLine();
+                                isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                            }
+                        }
+                        System.Console.WriteLine("Je wordt doorverwezen...");
+                        Thread.Sleep(3000);
+                        currentReservation.Emailaddress = email;
+                        currentReservation.RoosterId = Rooster_Id;
+                        currentReservation.SaveAsCurrent();
+                        Console.Clear();
+                        ChooseFood.PickFood(user);
                     }
                     else
                     {
-                        System.Console.WriteLine("Voer een Email in");
-                        email = Console.ReadLine();
-                        bool isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-
-                        while (!isValidEmail)
-                        {
-                            Console.WriteLine("Onjuiste email format. Probeer opnieuw.");
-                            Console.WriteLine("Email: ");
-                            email = Console.ReadLine();
-                            isValidEmail = Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
-                        }
+                        System.Console.WriteLine("Selecteer a.u.b. een stoel voordat u verder met de reservering wilt gaan");
+                        Thread.Sleep(3000);
+                        ReserveringsManager.Reserveren(user, Rooster_Id);
                     }
-                    System.Console.WriteLine("Je wordt doorverwezen...");
-                    Thread.Sleep(3000);
-                    currentReservation.Emailaddress = email;
-                    currentReservation.RoosterId = Rooster_Id;
-                    currentReservation.SaveAsCurrent();
-                    Console.Clear();
-                    ChooseFood.PickFood(user);
                     break;
                 case ConsoleKey.Escape:
                     Console.Clear();

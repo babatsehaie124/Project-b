@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 public class UserLogin
 {
     public static string loginEmail { get; set; }
@@ -19,7 +20,7 @@ ______ _                                  ______      _   _               _
                                   |_|";
 
         Console.WriteLine(menu2);
-        Console.WriteLine("Welcome to the login page");
+        Console.WriteLine("Welkom bij de inlog/registreer pagina");
         Console.WriteLine("[I] - Inloggen");
         Console.WriteLine("[R] - Registreren");
         Console.WriteLine("[T] - Terug naar het menu");
@@ -80,15 +81,30 @@ ______ _                                  ______      _   _               _
     public static void Registreren(bool user)
     {
         Console.Clear();
+        System.Console.WriteLine("Voer uw gegevens in: ");
         Console.WriteLine("Voornaam: ");
         string fname = Console.ReadLine();
+        if (fname.Length < 3 || fname.Any(char.IsDigit))
+        {
+            Console.WriteLine("Ongeldige voornaam. De voornaam moet minimaal 3 tekens bevatten en geen cijfers bevatten.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            Registreren(user);
+            return;
+        }
+
         Console.WriteLine("Achternaam: ");
         string lname = Console.ReadLine();
+        if (lname.Length < 3 || lname.Any(char.IsDigit))
+        {
+            Console.WriteLine("Ongeldige achternaam. De achternaam moet minimaal 3 tekens bevatten en geen cijfers bevatten.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            Registreren(user);
+            return;
+        }
         Console.WriteLine("Voer een nieuw emailadres in: ");
         string email1 = Console.ReadLine();
-        Console.WriteLine("Voer een nieuw wachtwoord in: ");
-        string password1 = Console.ReadLine();
-
         string emailaddress = email1.Trim();
         int atIndex = emailaddress.IndexOf('@');
         int dotIndex = emailaddress.LastIndexOf('.');
@@ -97,8 +113,20 @@ ______ _                                  ______      _   _               _
             System.Console.WriteLine("Ongeldige email. Probeer het opnieuw.");
             Thread.Sleep(1500);
             Console.Clear();
-            UserLogin.Start(user);
+            Registreren(user);
         }
+        Console.WriteLine("Voer een nieuw wachtwoord in: ");
+        string password1 = Console.ReadLine();
+        if (password1.Length < 8)
+        {
+            Console.WriteLine("Ongeldig wachtwoord. Het wachtwoord moet minimaal 8 tekens bevatten.");
+            Thread.Sleep(1500);
+            Console.Clear();
+            Registreren(user);
+            return;
+        }
+
+
         else
         {
             string jsondata = File.ReadAllText("DataSources/accounts.json");
@@ -115,7 +143,6 @@ ______ _                                  ______      _   _               _
             Console.WriteLine("Uw account is succesvol opgeslagen in ons systeem!");
             accountsLogic.UpdateList(newLogin);
             Menu.Start(user);
-            // UserLogin.Start(user);
         }
     }
 }

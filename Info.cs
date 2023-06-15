@@ -41,7 +41,7 @@ ______ _                                  ______      _   _               _
         else if (User_lower == "t")
         {
             Console.Clear();
-            Console.WriteLine("Keert terug naar het menu");
+            Console.WriteLine("Keert terug naar het menu...");
             Menu.Start(user);
         }
         else

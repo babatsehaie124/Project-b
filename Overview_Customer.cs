@@ -66,13 +66,13 @@ ______ _                                  ______      _   _               _
     static void PrintMov(Movies movie)
     {
         Console.Clear();
-        Console.WriteLine($"Titel: {movie.Title}");
-        Console.WriteLine($"Genres: {movie.Genres}");
-        Console.WriteLine($"Regisseur(s): {movie.Regisseur}");
-        Console.WriteLine($"Hoofd acteur(s): {movie.LeadActor}");
-        Console.WriteLine($"Duur: {movie.Duration} minuten");
-        Console.WriteLine($"Release: {movie.Release}");
-        Console.WriteLine($"Beschrijving: {movie.Description}");
-        Console.WriteLine($"Standaard prijs(2D): {movie.Price} euro");
+        Console.WriteLine($"Titel: {movie.Title}\n");
+        Console.WriteLine($"Genres: {movie.Genres}\n");
+        Console.WriteLine($"Regisseur(s): {movie.Regisseur}\n");
+        Console.WriteLine($"Hoofd acteur(s): {movie.LeadActor}\n");
+        Console.WriteLine($"Duur: {movie.Duration} minuten\n");
+        Console.WriteLine($"Release: {movie.Release}\n");
+        Console.WriteLine($"Beschrijving: {movie.Description}\n");
+        Console.WriteLine($"Standaard prijs(2D): {movie.Price} euro\n");
     }
 }

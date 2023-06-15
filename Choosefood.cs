@@ -7,7 +7,7 @@ class ChooseFood
     public static string jsonFilePath = "Store.json";
     public static List<Dictionary<string, decimal>> menu = JsonConvert.DeserializeObject<List<Dictionary<string, decimal>>>(File.ReadAllText(jsonFilePath));
     public static Dictionary<string, decimal> menuItems = menu[0];
-    public static decimal totalCost = 0;
+    public static dynamic totalCost = 0;
     public static Dictionary<string, int> orderedItems = new Dictionary<string, int>();
 
     public static int quantity;
@@ -107,10 +107,17 @@ class ChooseFood
             Console.WriteLine($"De totale kosten zijn: {totalCost} euro\n");
             Console.WriteLine("Bedankt voor het bestellen bij onze Eet-drink menu!");
             Console.WriteLine("U wordt doorverwezen naar...");
+            TotalCost.PrintReceipt();
         }
-        // Geef hier je bon aan Adrian
+        else if (choice == "b")
+        {
+            TotalCost.PrintReceipt();
+        }
+        else
+            System.Console.WriteLine("Ongeldige invoer.");
+        ChooseFood.PickFood(user);
 
         Console.ReadLine();
     }
-    
+
 }

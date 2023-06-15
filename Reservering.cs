@@ -1,10 +1,10 @@
 using Newtonsoft.Json;
 public class Reservering
 {
-    public string Emailaddress;
-    public int RoosterId;
-    public List<string> Stoelen;
-    public Dictionary<string, int> Snacks;
+    public string Emailaddress { get; set; }
+    public int RoosterId { get; set; }
+    public List<string> Stoelen { get; set; }
+    public Dictionary<string, int> Snacks { get; set; }
 
     public Reservering(int roosterId)
     {

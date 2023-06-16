@@ -8,7 +8,7 @@ public class TotalCost
     public string Emailaddress;
     public int RoosterId;
     public List<string> Stoelen;
-    public Dictionary<string, int> Snacks;
+    public List<SnackModel> Snacks;
     public dynamic Result;
 
     private static Dictionary<int, Dictionary<string, double>> prices = new Dictionary<int, Dictionary<string, double>>()
@@ -30,7 +30,7 @@ public class TotalCost
         }}
     };
 
-    public static void PrintReceipt()
+    public static void PrintReceipt(Reservering currentReservation)
     {
         string jsonData = File.ReadAllText("HuidigeReservering.json");
         TotalCost data = JsonConvert.DeserializeObject<TotalCost>(jsonData);
@@ -54,13 +54,14 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("Snacks:");
         foreach (var snack in data.Snacks)
         {
-            Console.WriteLine(snack.Key + ": " + snack.Value);
+            Console.WriteLine($"- {snack.Name} (x{snack.Quantity}) | ${snack.Price}");
         }
-        Console.WriteLine("Total Price: " + GetTotalPrice(data));
+        Console.WriteLine("Total Price: $" + GetTotalPrice(data));
         Console.WriteLine("==================================");
         System.Console.WriteLine("Bedankt voor het reserveren bij Bioscoop Rotterdam!");
         Console.WriteLine("Het programma wordt nu afgesloten...");
         Thread.Sleep(2000);
+        currentReservation.Clear();
         System.Environment.Exit(0);
     }
 
@@ -79,8 +80,7 @@ ______ _                                  ______      _   _               _
         // Calculate snack price
         foreach (var snack in data.Snacks)
         {
-            double snackPrice = GetSnackPrice(snack.Key);
-            totalPrice += snackPrice * snack.Value;
+            totalPrice += snack.Quantity * snack.Price;
         }
 
         return totalPrice;
@@ -106,11 +106,5 @@ ______ _                                  ______      _   _               _
         }
 
         return 1; // Movie not found, return 0 as default price
-    }
-    private static double GetSnackPrice(string snackName)
-    {
-        // Add your logic to determine the price of each snack
-        // You can use the constants declared in the class or modify them as needed
-        return 0.0;
     }
 }

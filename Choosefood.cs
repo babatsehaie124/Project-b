@@ -31,7 +31,7 @@ class ChooseFood
                 Console.WriteLine($"Grote Popcorn:  {product.Large_Popcorn} euro\n");
 
                 Console.WriteLine($"Nachos:         {product.Nachos} euro           | Dit zijn driehoekvormige chips met een lichte paprika smaak.");
-                Console.WriteLine($"Loaded Nachos:  {product.Loaded_Nachos} euro         | Bevat Paprika saus, uien, augurken, jalapeños en kaas.\n");
+                Console.WriteLine($"Loaded Nachos:  {product.Loaded_Nachos} euro         | Bevat Paprika saus, uien, augurken, jalapeÃ±os en kaas.\n");
 
                 Console.WriteLine($"Hotdog:         {product.Hotdog} euro        | Bevat varkensvlees en saus is naar keuze.");
                 Console.WriteLine($"Loaded Hotdog:  {product.Loaded_Hotdog} euro         | Bevat Varkensvlees, Mosterd saus, kaas, uien en paprika stukjes.\n");
@@ -79,9 +79,12 @@ class ChooseFood
                     orderedItems.Add(userInput, quantity);
                     if (orderedItems.ContainsKey(userInput))
                     {
+                        decimal value;
+                        menuItems.TryGetValue(userInput, out value);
                         orderedItems[userInput] += quantity;
                         currentReservation.LoadFromCurrent();
-                        currentReservation.Snacks[userInput] = quantity;
+                        currentReservation.Snacks
+                        .Add(new SnackModel { Name = userInput, Price = ((int)value), Quantity = quantity });
                         currentReservation.SaveAsCurrent();
                     }
                 }
@@ -107,11 +110,11 @@ class ChooseFood
             Console.WriteLine($"De totale kosten zijn: {totalCost} euro\n");
             Console.WriteLine("Bedankt voor het bestellen bij onze Eet-drink menu!");
             Console.WriteLine("U wordt doorverwezen naar...");
-            TotalCost.PrintReceipt();
+            TotalCost.PrintReceipt(currentReservation);
         }
         else if (choice == "b")
         {
-            TotalCost.PrintReceipt();
+            TotalCost.PrintReceipt(currentReservation);
         }
         else
             System.Console.WriteLine("Ongeldige invoer.");

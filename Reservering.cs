@@ -4,7 +4,8 @@ public class Reservering
     public string Emailaddress { get; set; }
     public int RoosterId { get; set; }
     public List<string> Stoelen { get; set; }
-    public Dictionary<string, int> Snacks { get; set; }
+    // public Dictionary<string, int> Snacks { get; set; }
+    public List<SnackModel> Snacks { get; set; }
 
     public Reservering(int roosterId)
     {
@@ -25,6 +26,15 @@ public class Reservering
 
     public void SaveAsCurrent()
     {
+        string jsonData = JsonConvert.SerializeObject(this);
+        File.WriteAllText("HuidigeReservering.json", jsonData);
+    }
+
+    public void Clear()
+    {
+        RoosterId = 0;
+        Stoelen = new();
+        Snacks = new();
         string jsonData = JsonConvert.SerializeObject(this);
         File.WriteAllText("HuidigeReservering.json", jsonData);
     }

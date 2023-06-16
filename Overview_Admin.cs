@@ -179,7 +179,7 @@ ______ _                                  ______      _   _               _
 
         string output = JsonConvert.SerializeObject(data, Formatting.Indented);
         File.WriteAllText(fileName, output);
-        Console.WriteLine("Data added to " + fileName + ".");
+        Console.WriteLine("Data toegevoegd in " + fileName + ".");
         Admin(true);
         Console.ResetColor();
     }

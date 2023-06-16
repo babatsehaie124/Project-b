@@ -51,8 +51,8 @@ ______ _                                  ______      _   _               _
             Console.Clear();
             Console.WriteLine("U wordt doorverwezen naar onze filmoverzicht pagina...");
             Thread.Sleep(2000);
-            Overzicht_Customer.User(user);
-            // ReserveringsManager.Reserveren(user, 20);
+            //Overzicht_Customer.User(user);
+            ReserveringsManager.Reserveren(user, 20);
             // Overzicht_Admin.Admin(user);
             // ChooseFood.PickFood(user);
         }

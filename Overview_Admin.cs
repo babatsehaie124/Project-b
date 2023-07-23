@@ -77,6 +77,10 @@ ______ _                                  ______      _   _               _
         {
             ViewFood(user);
         }
+        /*else if(input == "H")
+        {
+            AddFood(); 
+        }*/
         else if (input == "I")
         {
             Console.Clear();
@@ -436,6 +440,7 @@ ______ _                                  ______      _   _               _
         }
         OngInvoer(user);
     }
+    /*public static void AddFood() {}*/
 
     public static void OngInvoer(bool user)
     {

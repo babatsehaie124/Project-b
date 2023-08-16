@@ -30,7 +30,9 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("[F] - Klantgegevens bekijken");
         Console.WriteLine("[G] - Overzicht van huidige etenswaren");
         Console.WriteLine("[H] - Voeg een etenswaar toe");
-        Console.WriteLine("[I] - Terugkeren naar het menu");
+        Console.WriteLine("[I] - Wijzig prijs van een etenswaar");
+        Console.WriteLine("[J] - Verwijder een etenswaar");
+        Console.WriteLine("[K] - Terugkeren naar het menu");
 
         // optie voor rooster zien en kunnen wijzigen
 
@@ -80,8 +82,16 @@ ______ _                                  ______      _   _               _
         /*else if(input == "H")
         {
             AddFood(); 
-        }*/
+        }
         else if (input == "I")
+        {
+            ChangeFood(); 
+        }
+        else if (input == "J")
+        {
+            DiscardFood(); 
+        }*/
+        else if (input == "K")
         {
             Console.Clear();
             Console.WriteLine("U wordt teruggestuurd naar het menu...");

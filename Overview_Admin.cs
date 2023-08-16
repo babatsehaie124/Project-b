@@ -79,18 +79,18 @@ ______ _                                  ______      _   _               _
         {
             ViewFood(user);
         }
-        /*else if(input == "H")
+        else if (input == "H")
         {
-            AddFood(); 
+            Food(user);
         }
         else if (input == "I")
         {
-            ChangeFood(); 
+            //EditFood(); 
         }
         else if (input == "J")
         {
-            DiscardFood(); 
-        }*/
+            //RemoveFood(); 
+        }
         else if (input == "K")
         {
             Console.Clear();
@@ -450,7 +450,57 @@ ______ _                                  ______      _   _               _
         }
         OngInvoer(user);
     }
-    /*public static void AddFood() {}*/
+    private static string jsonFilePath = "Store.json";
+
+    static void Food(bool user)
+    {
+        Console.WriteLine("Welkom, admin! Bij het toevoegen van een etenswaar.");
+
+        // Get the item's name and price from the admin
+        Console.Write("Vul de naam van een nieuwe etenswaar in: ");
+        string newItemName = Console.ReadLine();
+
+        Console.Write("Vul de prijs van het nieuwe etenswaar in: ");
+        double newItemPrice = Convert.ToDouble(Console.ReadLine());
+
+        // Create the new item
+        var newItem = new KeyValuePair<string, double>(newItemName, newItemPrice);
+
+
+        // Call the method to add the item to the JSON file
+        AddItemToJsonFile(newItem);
+
+        Console.WriteLine("Nieuwe item succesvol toegevoegd");
+
+        Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
+        Thread.Sleep(3000);
+        Admin(user);
+
+
+
+
+    }
+
+    static void AddItemToJsonFile(KeyValuePair<string, double> newItem)
+    {
+        // Read existing JSON data from the file
+        string jsonData = File.ReadAllText(jsonFilePath);
+
+        // Deserialize JSON data into a JArray
+        JArray storeData = JArray.Parse(jsonData);
+
+        // Get the first object in the array
+        JObject firstObject = storeData.First as JObject;
+
+        // Add the new item to the first object
+        firstObject[newItem.Key] = newItem.Value;
+
+        // Serialize the JArray back to JSON
+        string updatedJsonData = storeData.ToString();
+
+        // Write the updated JSON data back to the file
+        File.WriteAllText(jsonFilePath, updatedJsonData);
+    }
 
     public static void OngInvoer(bool user)
     {

@@ -1,16 +1,16 @@
 [
-    {
-        "Small_Popcorn": 2.00,
-        "Medium_Popcorn": 4.00,
-        "Large_Popcorn": 5.50,
-        "Nachos": 3.00,
-        "Loaded_Nachos": 4.50,
-        "Hotdog": 2.75,
-        "Loaded_Hotdog": 3.50,
-        "Cold_Drinks": 2.50,
-        "Hot_Drinks": 2.50,
-        "Kids_Meal": 4.50,
-        "Candy_Bag": 2.00,
-        "Crisps": 2.00
-    }
+  {
+    "Small_Popcorn": 2.0,
+    "Medium_Popcorn": 4.0,
+    "Large_Popcorn": 5.5,
+    "Nachos": 3.0,
+    "Loaded_Nachos": 4.5,
+    "Hotdog": 2.75,
+    "Loaded_Hotdog": 3.5,
+    "Cold_Drinks": 2.5,
+    "Hot_Drinks": 2.5,
+    "Kids_Meal": 4.5,
+    "Candy_Bag": 2.0,
+    "Crisps": 2.0
+  }
 ]

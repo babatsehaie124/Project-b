@@ -85,7 +85,7 @@ ______ _                                  ______      _   _               _
         }
         else if (input == "I")
         {
-            //RemoveFood(user);
+            EditPrice(user);
         }
         else if (input == "J")
         {
@@ -549,13 +549,56 @@ ______ _                                  ______      _   _               _
 
         }
     }
+    private static string jsonFilepath = "Store.json";
 
+    static void EditPrice(bool user)
+    {
+        Console.WriteLine("Welkom, admin! Verander hier de prijs van een etenswaar.");
 
+        // Get the name of the item to change the price for
+        Console.Write("Voer de naam van het etenswaar om de prijs aan te passen: ");
+        string itemName = Console.ReadLine();
 
+        // Get the new price from the user
+        Console.Write($"Voer de nieuwe prijs in van {itemName}: ");
+        double newPrice = Convert.ToDouble(Console.ReadLine());
 
+        // Call the method to change the price of the item in the JSON file
+        ChangeItemPriceInJsonFile(itemName, newPrice);
 
+        Console.WriteLine("Prijs succesvol aangepast!");
+        Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
+        Thread.Sleep(3000);
+        Admin(user);
+    }
 
+    static void ChangeItemPriceInJsonFile(string itemName, double newPrice)
+    {
+        // Read existing JSON data from the file
+        string jsonData = File.ReadAllText(jsonFilepath);
 
+        // Deserialize JSON data into a JArray
+        JArray storeData = JArray.Parse(jsonData);
+
+        // Get the first object in the array
+        JObject firstObject = storeData.First as JObject;
+
+        // Change the price of the item in the JObject
+        if (firstObject.ContainsKey(itemName))
+        {
+            firstObject[itemName] = newPrice;
+
+            // Serialize the JArray back to JSON
+            string updatedJsonData = storeData.ToString();
+
+            // Write the updated JSON data back to the file
+            File.WriteAllText(jsonFilepath, updatedJsonData);
+        }
+        else
+        {
+            Console.WriteLine($"Etenswaar '{itemName}' niet gevonden in de eet-drinkmenu.");
+        }
+    }
 
     public static void OngInvoer(bool user)
     {

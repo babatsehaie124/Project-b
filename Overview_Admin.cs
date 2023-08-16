@@ -81,15 +81,15 @@ ______ _                                  ______      _   _               _
         }
         else if (input == "H")
         {
-            Food(user);
+            AddFood(user);
         }
         else if (input == "I")
         {
-            //EditFood(); 
+            //RemoveFood(user);
         }
         else if (input == "J")
         {
-            //RemoveFood(); 
+            RemoveFood(user);
         }
         else if (input == "K")
         {
@@ -452,7 +452,7 @@ ______ _                                  ______      _   _               _
     }
     private static string jsonFilePath = "Store.json";
 
-    static void Food(bool user)
+    static void AddFood(bool user)
     {
         Console.WriteLine("Welkom, admin! Bij het toevoegen van een etenswaar.");
 
@@ -501,6 +501,61 @@ ______ _                                  ______      _   _               _
         // Write the updated JSON data back to the file
         File.WriteAllText(jsonFilePath, updatedJsonData);
     }
+
+    private static string jsonfilePath = "Store.json";
+
+    static void RemoveFood(bool user)
+    {
+        Console.WriteLine("Welkom, admin! Bij het verwijderen van een etenswaar.");
+
+        // Get the name of the item to be removed from the admin
+        Console.Write("Vul de naam van een etenswaar in die u wilt verwijderen.\n");
+        string itemToRemove = Console.ReadLine();
+
+        // Call the method to remove the item from the JSON file
+        RemoveItemFromJsonFile(itemToRemove);
+
+        Console.WriteLine("Etenswaar succesvol verwijderd");
+        Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
+        Thread.Sleep(3000);
+        Admin(user);
+    }
+
+    static void RemoveItemFromJsonFile(string itemName)
+    {
+        // Read existing JSON data from the file
+        string jsonData = File.ReadAllText(jsonfilePath);
+
+        // Deserialize JSON data into a JArray
+        JArray storeData = JArray.Parse(jsonData);
+
+        // Get the first object in the array
+        JObject firstObject = storeData.First as JObject;
+
+        // Remove the item from the JObject
+        if (firstObject.ContainsKey(itemName))
+        {
+            firstObject.Remove(itemName);
+
+            // Serialize the JArray back to JSON
+            string updatedJsonData = storeData.ToString();
+
+            // Write the updated JSON data back to the file
+            File.WriteAllText(jsonfilePath, updatedJsonData);
+        }
+        else
+        {
+            Console.WriteLine($"Etenswaar '{itemName}' niet gevonden in de eet-drinkmenu.");
+
+        }
+    }
+
+
+
+
+
+
+
 
     public static void OngInvoer(bool user)
     {

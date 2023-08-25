@@ -456,18 +456,14 @@ ______ _                                  ______      _   _               _
     {
         Console.WriteLine("Welkom, admin! Bij het toevoegen van een etenswaar.");
 
-        // Get the item's name and price from the admin
         Console.Write("Vul de naam van een nieuwe etenswaar in: ");
         string newItemName = Console.ReadLine();
 
         Console.Write("Vul de prijs van het nieuwe etenswaar in: ");
         double newItemPrice = Convert.ToDouble(Console.ReadLine());
 
-        // Create the new item
         var newItem = new KeyValuePair<string, double>(newItemName, newItemPrice);
 
-
-        // Call the method to add the item to the JSON file
         AddItemToJsonFile(newItem);
 
         Console.WriteLine("Nieuwe item succesvol toegevoegd");
@@ -475,30 +471,21 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
         Thread.Sleep(3000);
         Admin(user);
-
-
-
-
     }
 
     static void AddItemToJsonFile(KeyValuePair<string, double> newItem)
     {
-        // Read existing JSON data from the file
+
         string jsonData = File.ReadAllText(jsonFilePath);
 
-        // Deserialize JSON data into a JArray
         JArray storeData = JArray.Parse(jsonData);
 
-        // Get the first object in the array
         JObject firstObject = storeData.First as JObject;
 
-        // Add the new item to the first object
         firstObject[newItem.Key] = newItem.Value;
 
-        // Serialize the JArray back to JSON
         string updatedJsonData = storeData.ToString();
 
-        // Write the updated JSON data back to the file
         File.WriteAllText(jsonFilePath, updatedJsonData);
     }
 
@@ -508,13 +495,10 @@ ______ _                                  ______      _   _               _
     {
         Console.WriteLine("Welkom, admin! Bij het verwijderen van een etenswaar.");
 
-        // Get the name of the item to be removed from the admin
         Console.Write("Vul de naam van een etenswaar in die u wilt verwijderen.\n");
         string itemToRemove = Console.ReadLine();
 
-        // Call the method to remove the item from the JSON file
         RemoveItemFromJsonFile(itemToRemove);
-
         Console.WriteLine("Etenswaar succesvol verwijderd");
         Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
         Thread.Sleep(3000);
@@ -523,24 +507,18 @@ ______ _                                  ______      _   _               _
 
     static void RemoveItemFromJsonFile(string itemName)
     {
-        // Read existing JSON data from the file
+       
         string jsonData = File.ReadAllText(jsonfilePath);
-
-        // Deserialize JSON data into a JArray
         JArray storeData = JArray.Parse(jsonData);
 
-        // Get the first object in the array
         JObject firstObject = storeData.First as JObject;
 
-        // Remove the item from the JObject
         if (firstObject.ContainsKey(itemName))
         {
             firstObject.Remove(itemName);
 
-            // Serialize the JArray back to JSON
+          
             string updatedJsonData = storeData.ToString();
-
-            // Write the updated JSON data back to the file
             File.WriteAllText(jsonfilePath, updatedJsonData);
         }
         else
@@ -555,15 +533,14 @@ ______ _                                  ______      _   _               _
     {
         Console.WriteLine("Welkom, admin! Verander hier de prijs van een etenswaar.");
 
-        // Get the name of the item to change the price for
         Console.Write("Voer de naam van het etenswaar om de prijs aan te passen: ");
         string itemName = Console.ReadLine();
 
-        // Get the new price from the user
+
         Console.Write($"Voer de nieuwe prijs in van {itemName}: ");
         double newPrice = Convert.ToDouble(Console.ReadLine());
 
-        // Call the method to change the price of the item in the JSON file
+    
         ChangeItemPriceInJsonFile(itemName, newPrice);
 
         Console.WriteLine("Prijs succesvol aangepast!");
@@ -574,24 +551,19 @@ ______ _                                  ______      _   _               _
 
     static void ChangeItemPriceInJsonFile(string itemName, double newPrice)
     {
-        // Read existing JSON data from the file
+      
         string jsonData = File.ReadAllText(jsonFilepath);
 
-        // Deserialize JSON data into a JArray
         JArray storeData = JArray.Parse(jsonData);
 
-        // Get the first object in the array
         JObject firstObject = storeData.First as JObject;
 
-        // Change the price of the item in the JObject
         if (firstObject.ContainsKey(itemName))
         {
             firstObject[itemName] = newPrice;
 
-            // Serialize the JArray back to JSON
             string updatedJsonData = storeData.ToString();
 
-            // Write the updated JSON data back to the file
             File.WriteAllText(jsonFilepath, updatedJsonData);
         }
         else

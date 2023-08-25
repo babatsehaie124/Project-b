@@ -86,6 +86,7 @@ ______ _                                  ______      _   _               _
         else if (input == "I")
         {
             //RemoveFood(user);
+            EditPrice(user);
         }
         else if (input == "J")
         {
@@ -456,18 +457,16 @@ ______ _                                  ______      _   _               _
     {
         Console.WriteLine("Welkom, admin! Bij het toevoegen van een etenswaar.");
 
-        // Get the item's name and price from the admin
+
         Console.Write("Vul de naam van een nieuwe etenswaar in: ");
         string newItemName = Console.ReadLine();
 
         Console.Write("Vul de prijs van het nieuwe etenswaar in: ");
         double newItemPrice = Convert.ToDouble(Console.ReadLine());
 
-        // Create the new item
+
         var newItem = new KeyValuePair<string, double>(newItemName, newItemPrice);
 
-
-        // Call the method to add the item to the JSON file
         AddItemToJsonFile(newItem);
 
         Console.WriteLine("Nieuwe item succesvol toegevoegd");
@@ -475,24 +474,17 @@ ______ _                                  ______      _   _               _
         Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
         Thread.Sleep(3000);
         Admin(user);
-
-
-
-
     }
 
     static void AddItemToJsonFile(KeyValuePair<string, double> newItem)
     {
-        // Read existing JSON data from the file
+
         string jsonData = File.ReadAllText(jsonFilePath);
 
-        // Deserialize JSON data into a JArray
         JArray storeData = JArray.Parse(jsonData);
 
-        // Get the first object in the array
         JObject firstObject = storeData.First as JObject;
 
-        // Add the new item to the first object
         firstObject[newItem.Key] = newItem.Value;
 
         // Serialize the JArray back to JSON
@@ -547,6 +539,50 @@ ______ _                                  ______      _   _               _
         {
             Console.WriteLine($"Etenswaar '{itemName}' niet gevonden in de eet-drinkmenu.");
 
+        }
+    }
+    private static string jsonFilepath = "Store.json";
+
+    static void EditPrice(bool user)
+    {
+        Console.WriteLine("Welkom, admin! Verander hier de prijs van een etenswaar.");
+
+
+        Console.Write("Voer de naam van het etenswaar om de prijs aan te passen: ");
+        string itemName = Console.ReadLine();
+
+        Console.Write($"Voer de nieuwe prijs in van {itemName}: ");
+        double newPrice = Convert.ToDouble(Console.ReadLine());
+
+        ChangeItemPriceInJsonFile(itemName, newPrice);
+
+        Console.WriteLine("Prijs succesvol aangepast!");
+        Console.WriteLine("U wordt nu doorverwezen naar het admin menu...");
+        Thread.Sleep(3000);
+        Admin(user);
+    }
+
+    static void ChangeItemPriceInJsonFile(string itemName, double newPrice)
+    {
+
+        string jsonData = File.ReadAllText(jsonFilepath);
+
+
+        JArray storeData = JArray.Parse(jsonData);
+
+        JObject firstObject = storeData.First as JObject;
+
+        if (firstObject.ContainsKey(itemName))
+        {
+            firstObject[itemName] = newPrice;
+
+            string updatedJsonData = storeData.ToString();
+
+            File.WriteAllText(jsonFilepath, updatedJsonData);
+        }
+        else
+        {
+            Console.WriteLine($"Etenswaar '{itemName}' niet gevonden in de eet-drinkmenu.");
         }
     }
 
